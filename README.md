@@ -16,16 +16,16 @@ Hamburger-menu. De gebruiker kan zijn ervaringen delen met overige liefhebbers
 d.m.v. een chat.
 
 ## Schetsen
-![alt text](https://github.com/Roshanmahes/dartsWorld/blob/master/doc/sketch0.png "Schets 1: Beginscherm, Navigatie, Spelersinfo")
+![alt text](/doc/sketch0.png "Schets 1: Beginscherm, Navigatie, Spelersinfo")
 
-![alt text](https://github.com/Roshanmahes/dartsWorld/blob/master/doc/sketch1.png "Schets 2: Chat, Ranking, Kalender")
+![alt text](/doc/sketch1.png "Schets 2: Chat, Ranking, Kalender")
 
 ## Externe componenten
 De externe componenten zijn o.a. een (onofficiële) API (gescraped) met darts
 livescores, namelijk de site van SofaScore, een site waarop livescores van
 allerlei sporten te vinden zijn. Hieronder de te gebruiken links met JSON-data:
 
-Livescore darts: http://www.sofascore.com/darts/livescore/json.\
+Livescore darts: http://www.sofascore.com/darts/livescore/json.<br>
 Afgelopen/toekomstige wedstrijden: http://www.sofascore.com/darts//2017-05-07/json.
 
 Verder heb ik, aangezien er geen online database te vinden was, de
@@ -39,10 +39,10 @@ moeten er maatregelen getroffen worden bij de chat, opdat deze niet volgespamd
 wordt door een aantal personen. Hiervoor zal ik een _berichtlimiet_
 (een maximaal aantal berichten per minuut per gebruiker) instellen. Indien er
 veel berichten verstuurd worden in een bepaalde tijd, kunnen sommige gebruikers
-mogelijk niet chatten. Dit kan een technisch probleem worden.\
+mogelijk niet chatten. Dit kan een technisch probleem worden.<br>
 Verder was er geen eenvoudige gratis livescore API te vinden, waardoor ik dus
 besloten heb om de links van SofaScore te gebruiken. Omdat dit geen API is, kan
-het misschien lastig worden om deze goed te gebruiken.\
+het misschien lastig worden om deze goed te gebruiken.
 
 ## Vergelijkbare applicaties
 Er zijn diverse livescore applicaties beschikbaar. Echter is er geen specifieke
@@ -81,6 +81,6 @@ gestuurde berichten opnieuw versturen.
 toernooi te verspreiden (prijzengeld, schema, nieuws). Helaas zou ik dan weer
 zelf informatie moeten destilleren.
 
-Indien mijn app snel af zal zijn (wat waarschijnlijk niet zal gebeureb) en ik
+Indien mijn app snel af zal zijn (wat waarschijnlijk niet zal gebeuren) en ik
 mijn app nog kan uitbreiden, zal ik bovenstaand lijstje afgaan in de volgorde
 3-2-4-1-5.

@@ -10,7 +10,9 @@ ik enkele schetsen gemaakt:
 
 ## Dag 1 (07-06-17)
 #### 10:00-11:15 Daily Standup
-App besproken met klasgenoten. Ze vonden het een leuk idee. Nieuwe suggesties:
+App besproken met groepje (Gido, Emma, Julia). Ze vonden het een leuk idee.
+
+Nieuwe suggesties:
 * Op meerdere manieren spelersinformatie tonen, bijv. ook alfabetisch i.p.v.
 alleen op ranking.
 * Door op Twitter te klikken bij een speler, kan je misschien de laatste tweets
@@ -19,5 +21,36 @@ van de speler als een 'widget' zien (Twitter API lijkt noodzakelijk).
 Deze suggesties vind ik zeer interessant, ook al heb ik besloten om ze alleen
 toe te voegen indien ik tijd over heb.
 
-#### 11:30-16:00 Design
-Vandaag heb ik de
+Plan voor vandaag: Beginnen met app set-up in Android Studio, en werken aan
+design.
+
+#### 12:00-17:00 Design
+Vandaag heb ik een betere schets gemaakt:
+![alt text](/doc/design_sketch.png "Design schets")
+
+Hierin heb ik met pijltjes aangegeven welke schermen met elkaar verbonden zijn,
+welke activities ik nodig heb en wanneer en hoe ik data van buitenaf moet laden.
+Verder heb ik een begin gemaakt aan het Design-document (zie [DESIGN.md](DESIGN.md)),
+waarin ik dit verder heb uitgewerkt.
+
+## Dag 2 (08-06-17)
+#### 10:00-11:00 Daily Standup
+We hebben elkaars werk besproken. Ik heb de Design tekening van gisteren laten
+zien en uitgelegd. De tekening was erg mooi, goed dat ik alles heb uitgewerkt.
+Wel had ik mijn Home Screen beter in het midden van de tekening kunnen plaatsen,
+omdat het dan, vooral met de pijltjes, wat overzichtelijker zou zijn.
+
+Suggesties:
+* Misschien i.p.v. In-Play alle wedstrijden van vandaag laten zien, aangezien
+er bij darts vaak max. 1 wedstrijd tegelijk is en er niet heel veel wedstrijden
+op een dag gespeeld worden.
+
+Plan voor vandaag: Design-document af maken, prototype app maken met Android
+Studio.
+
+#### 11:00-15:00 Firebase
+Firebase toegevoegd aan project, database aangepast (geldig voor Firebase gemaakt
+  en aangepast aan de SofaScore API) en afbeeldingen (countryFlights) geüpload.
+Voorbeeld: https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Netherlands.png
+
+#### 15:00-17:00 Prototype

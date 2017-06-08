@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "195421036179",
+    "firebase_url": "https://dartsworld-e9f85.firebaseio.com",
+    "project_id": "dartsworld-e9f85",
+    "storage_bucket": "dartsworld-e9f85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195421036179:android:fa20b7183fb5db34",
+        "android_client_info": {
+          "package_name": "mprog.nl.a10973710.dartsworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195421036179-3h1lipoahp30mf007evt90ck7tlpd9q6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mprog.nl.a10973710.dartsworld",
+            "certificate_hash": "12f6fffad0477d5c192bdbcc7695797dfe02a211"
+          }
+        },
+        {
+          "client_id": "195421036179-umsd4se040vbc3cr2tbll76ulvp7jmog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdF6s10FPniLKqMJpvf_nhr3jH0cgoOmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195421036179-umsd4se040vbc3cr2tbll76ulvp7jmog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,13 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calendar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.calendar, menu);
         return true;
     }
 
@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             this.startActivity(intent);
+        } else if (id == R.id.nav_calendar) {
+
         } else if (id == R.id.nav_players) {
             Intent intent = new Intent(this, PlayersActivity.class);
             this.startActivity(intent);

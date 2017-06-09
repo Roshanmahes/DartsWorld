@@ -12,11 +12,11 @@
     <string name="info">Info</string>
     <string name="players">Players</string>
     <string name="calendar">Calendar</string>
-    <string name="title_activity_players">PlayersActivity</string>
-    <string name="title_activity_info">InfoActivity</string>
-    <string name="title_activity_player">PlayerActivity</string>
-    <string name="title_activity_calendar">CalendarActivity</string>
-    <string name="title_activity_date">DateActivity</string>
+    <string name="title_activity_players">Players</string>
+    <string name="title_activity_info">Info</string>
+    <string name="title_activity_player">DartsWorld</string>
+    <string name="title_activity_calendar">DartsWorld</string>
+    <string name="title_activity_date">DartsWorld</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->

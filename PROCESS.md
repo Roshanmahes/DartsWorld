@@ -53,8 +53,13 @@ Firebase toegevoegd aan project, database aangepast (geldig voor Firebase gemaak
   en aangepast aan de SofaScore API) en afbeeldingen (countryFlights) gemaakt en
   geüpload.
 Voorbeelden: <br>
-![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Netherlands.png "Nederland") ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/South%20Africa.png "Zuid-Afrika")
-![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Wales.png "Wales")
+<center>
+
+| Nederland      | Wales    | Zuid-Afrika          |
+| :------------: | :------------: | :------------: |
+| ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Netherlands.png?alt=media "Nederland") | ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Wales.png?alt=media "Wales") | ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/South%20Africa.png?alt=media "Zuid-Afrika")|
+
+</center>
 
 #### 15:00-22:00 Prototype
 Vandaag heb ik alle activities die ik nodig denk te hebben aangemaakt in Android
@@ -73,17 +78,22 @@ Tip van Renske: Inflater (oplossing voor volgende week).
 Design document afgemaakt.
 
 ## Dag 3 (Vr 09-06-17)
-Planning:
-* Bettercodehub toevoegen aan README.md.
-* Kalender maken
-* Spelersinfo proberen te laden vanuit Firebase
+
+#### 11:00-12:00 Bettercodehub
+Bettercodehub toegevoegd aan README (8/10), kleine wijzigingen in logboek.
 
 #### 15:00-17:00 Presentaties
 
-Planning weekend:
+
+##### De planning
+Vandaag:
+* Kalender maken
+* Spelersinfo proberen te laden vanuit Firebase
+
+Weekend:
 * AsyncTask + HttpRequestHelper maken, proberen SofaScore data op te halen en in
 te laden.
 * Data verwerken.
 
-Planning volgende week:
+Volgende week:
 * Beginnen aan chat (LoginActivity + ChatActivity schrijven + xmls).

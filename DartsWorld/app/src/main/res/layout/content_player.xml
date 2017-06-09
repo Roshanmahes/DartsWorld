@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,4 +8,24 @@
     tools:context="mprog.nl.a10973710.dartsworld.PlayerActivity"
     tools:showIn="@layout/app_bar_player">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_settings"
+        android:onClick="getFromDB"/>
+
+    <ListView
+        android:id="@+id/player_info_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:text="Test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button1"/>
+
+</RelativeLayout>

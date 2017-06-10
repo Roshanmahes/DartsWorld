@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    JSONObject sportItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
+        asyncTask.execute("");
+    }
+
+    public void fetchLiveScore(JSONObject liveScore) {
+//        try {
+//            sportItem = new JSONObject(liveScore.getJSONObject("sportItem"));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

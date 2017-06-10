@@ -33,4 +33,5 @@
     </string>
     <string name="title_activity_chat">ChatActivity</string>
     <string name="info_text">Hier komt nog wat informatie...</string>
+    <string name="choose_a_date">Choose a date</string>
 </resources>

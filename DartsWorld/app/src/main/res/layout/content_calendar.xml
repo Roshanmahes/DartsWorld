@@ -8,12 +8,21 @@
     tools:context="mprog.nl.a10973710.dartsworld.CalendarActivity"
     tools:showIn="@layout/app_bar_calendar">
 
-    <DatePicker
+    <TextView
+        android:id="@+id/choose_date_text"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
-    </DatePicker>
+        android:paddingTop="10dp"
+        android:text="@string/choose_a_date"
+        android:textSize="30sp"
+        />
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/choose_date_text">
+    </CalendarView>
 
     <!-- Voorbeeld (beter): https://neurobin.org/docs/android/android-date-picker-example/-->
 </RelativeLayout>

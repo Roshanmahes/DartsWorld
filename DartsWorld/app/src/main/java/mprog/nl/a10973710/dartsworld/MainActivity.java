@@ -18,10 +18,15 @@ import android.view.MenuItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    JSONObject sportItem;
+
+    String sportItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +48,28 @@ public class MainActivity extends AppCompatActivity
         asyncTask.execute("");
     }
 
-    public void fetchLiveScore(JSONObject liveScore) {
-//        try {
-//            sportItem = new JSONObject(liveScore.getJSONObject("sportItem"));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+    public void fetchLiveScore(JSONObject liveScoreObj) {
+
+        if (liveScoreObj.has("sportItem")) {
+            try {
+                sportItem = liveScoreObj.get("sportItem").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // if there are no live matches
+            if (sportItem.equals("[]")) {
+                Log.d(TAG, "HAHA geen wedstrijden");
+            } else {
+                Log.d(TAG, "Er is iets gaande");
+
+                try {
+                    liveScoreObj = (JSONObject) liveScoreObj.get("sportItem");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

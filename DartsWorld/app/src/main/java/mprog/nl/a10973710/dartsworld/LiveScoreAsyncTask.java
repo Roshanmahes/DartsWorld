@@ -44,13 +44,11 @@ class LiveScoreAsyncTask extends AsyncTask<String, Integer, String>{
         JSONObject liveScoreObj = null;
         try {
             liveScoreObj = new JSONObject(result);
-            liveScoreObj = (JSONObject) liveScoreObj.get("sportItem");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         assert liveScoreObj != null;
 
-        Log.d(TAG, "Wats gebeurd?");
         this.mainAct.fetchLiveScore(liveScoreObj);
     }
 }

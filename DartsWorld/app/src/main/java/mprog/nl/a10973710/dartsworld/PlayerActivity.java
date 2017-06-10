@@ -1,6 +1,7 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,11 +35,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import static mprog.nl.a10973710.dartsworld.Constants.FIRST_COLUMN;
+import static mprog.nl.a10973710.dartsworld.Constants.SECOND_COLUMN;
 import static mprog.nl.a10973710.dartsworld.R.id.imageView;
 
 public class PlayerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
@@ -129,12 +138,34 @@ public class PlayerActivity extends AppCompatActivity
                 TextView tv1 = (TextView) findViewById(R.id.tv1);
                 Log.d(TAG, player.fullName);
                 tv1.setText(player.twitter);
+
+//                ListView listView = (ListView) findViewById(R.id.player_info_list);
+//
+//                list = new ArrayList<HashMap<String, String>>();
+//
+//                HashMap<String, String> temp = new HashMap<String, String>();
+//                    temp.put(FIRST_COLUMN, "TEST 1");
+//                    temp.put(SECOND_COLUMN, "TEST 2");
+//                list.add(temp);
+//
+//                ListViewAdapter adapter = new ListViewAdapter(this, list);
+//                listView.setAdapter(adapter);
+//
+//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+//                {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, final View view, int position, long id)
+//                    {
+//                        int pos = position + 1;
+//                        Toast.makeText(PlayerActivity.this, Integer.toString(pos) + " Clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting the data failed, log a message
-                Log.w(TAG, "Something went worng:", databaseError.toException());
+                Log.w(TAG, "Something went wrong:", databaseError.toException());
             }
         };
         mDatabase.addValueEventListener(postListener);

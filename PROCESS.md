@@ -77,13 +77,15 @@ Tip van Renske: Inflater (oplossing voor volgende week).
 #### 22:00-24:00 Design
 Design document afgemaakt.
 
-## Dag 3 (Vr 09-06-17)
+## Dag 3 (Vr 09-06-17) + Weekend
 
 #### 11:00-12:00 Bettercodehub
 Bettercodehub toegevoegd aan README (8/10), kleine wijzigingen in logboek.
 
 #### 15:00-17:00 Presentaties
-
+Presentatie gegeven, enkele vragen beantwoord maar geen negatieve feedback
+ontvangen.
+Tip van Jaap: Livescore bijv. eens per 10 sec refreshen.
 
 ##### De planning
 Vandaag:

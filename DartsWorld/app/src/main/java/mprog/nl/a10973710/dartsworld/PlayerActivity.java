@@ -47,7 +47,7 @@ public class PlayerActivity extends AppCompatActivity
 
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
-    private String TAG;
+    private static final String TAG = "PlayerActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,27 @@ public class PlayerActivity extends AppCompatActivity
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        Log.d(TAG, "onCreate: Started.");
+        ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
+
+        // create the PlayerPropeerty objects
+        PlayerProperty name = new PlayerProperty("name", "Phil Taylor");
+        PlayerProperty nickName = new PlayerProperty("nickname", "The Power");
+        PlayerProperty twitter = new PlayerProperty("twitter", "@PhilTaylor");
+        PlayerProperty country = new PlayerProperty("country", "England");
+        PlayerProperty born = new PlayerProperty("born", "13-Aug-60");
+        PlayerProperty darts = new PlayerProperty("darts", "Target 'Phil Taylor' Power 9Five Gen4, 26g");
+        PlayerProperty money = new PlayerProperty("money", "£324,250");
+        PlayerProperty pos = new PlayerProperty("position", "8 (-1)");
+        PlayerProperty majors = new PlayerProperty("majors", "82");
+        PlayerProperty champ = new PlayerProperty("world champion", "16");
+        PlayerProperty highAvg = new PlayerProperty("highest average", "118.66");
+        PlayerProperty nineDarts = new PlayerProperty("nine darts (televised)", "21 (11)");
+
+        //
+
+
     }
 
     @Override

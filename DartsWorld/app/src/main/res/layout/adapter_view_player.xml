@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <TextView
         android:id="@+id/player_property_id"
-        android:gravity="center"
-        android:textAlignment="center"
+        android:gravity="left"
         android:textStyle="bold"
-        android:text="property"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_weight="50"/>
 
     <TextView
         android:id="@+id/player_property_value"
-        android:gravity="center"
-        android:text="value"
-        android:layout_height="50dp"
+        android:gravity="left"
+        android:layout_height="30dp"
         android:layout_width="match_parent"
         android:layout_weight="50"/>
+
 
 </LinearLayout>

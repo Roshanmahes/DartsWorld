@@ -69,43 +69,62 @@ public class PlayerActivity extends AppCompatActivity
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        Log.d(TAG, "onCreate: Started.");
-        ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
+        // retrieve player info
+        getFromDB();
+    }
 
-        // create the PlayerPropeerty objects
-        PlayerProperty name = new PlayerProperty("name", "Phil Taylor");
-        PlayerProperty nickName = new PlayerProperty("nickname", "The Power");
-        PlayerProperty twitter = new PlayerProperty("twitter", "@PhilTaylor");
-        PlayerProperty country = new PlayerProperty("country", "England");
-        PlayerProperty born = new PlayerProperty("born", "13-Aug-60");
-        PlayerProperty darts = new PlayerProperty("darts", "Target 'Phil Taylor' Power 9Five Gen4, 26g");
-        PlayerProperty money = new PlayerProperty("money", "£324,250");
-        PlayerProperty pos = new PlayerProperty("position", "8 (-1)");
-        PlayerProperty majors = new PlayerProperty("majors", "82");
-        PlayerProperty champ = new PlayerProperty("world champion", "16");
-        PlayerProperty highAvg = new PlayerProperty("highest average", "118.66");
-        PlayerProperty nineDarts = new PlayerProperty("nine darts (televised)", "21 (11)");
+    public void getFromDB() {
 
-        // add the PlayerProperty objects to an ArrayList
-        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // get our object out of the database
+                Player player = dataSnapshot.child("players").child("Anderson G").getValue(Player.class);
 
-        propertyList.add(name);
-        propertyList.add(nickName);
-        propertyList.add(twitter);
-        propertyList.add(country);
-        propertyList.add(born);
-        propertyList.add(darts);
-        propertyList.add(money);
-        propertyList.add(pos);
-        propertyList.add(majors);
-        propertyList.add(champ);
-        propertyList.add(highAvg);
-        propertyList.add(nineDarts);
+                ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
 
-        PropertyListAdapter adapter = new PropertyListAdapter(this, R.layout.adapter_view_player, propertyList);
-        playerInfoList.setAdapter(adapter);
+                PlayerProperty name = new PlayerProperty("Name", player.fullName);
+                PlayerProperty nickName = new PlayerProperty("Nickname", player.nickName);
+                PlayerProperty twitter = new PlayerProperty("Twitter", player.twitter);
+                PlayerProperty country = new PlayerProperty("Country", player.country);
+                PlayerProperty born = new PlayerProperty("Born", player.born);
+                PlayerProperty darts = new PlayerProperty("Darts", player.darts);
+                PlayerProperty money = new PlayerProperty("Money", player.money);
+                PlayerProperty pos = new PlayerProperty("Position (difference)", String.valueOf(player.currPos)
+                        + " (" + String.valueOf(player.prevPos - player.currPos) + ")");
+                PlayerProperty majors = new PlayerProperty("Majors", String.valueOf(player.majors));
+                PlayerProperty champ = new PlayerProperty("World champion", String.valueOf(player.champ));
+                PlayerProperty highAvg = new PlayerProperty("Highest average", String.valueOf(player.highAvg));
+                PlayerProperty nineDarts = new PlayerProperty("Nine darts (televised)",
+                        String.valueOf(player.nineDarts) + " (" + String.valueOf(player.nineDartsTelevised) + ")");
 
+                // add the PlayerProperty objects to an ArrayList
+                ArrayList<PlayerProperty> propertyList = new ArrayList<>();
 
+                propertyList.add(name);
+                propertyList.add(nickName);
+                propertyList.add(twitter);
+                propertyList.add(country);
+                propertyList.add(born);
+                propertyList.add(darts);
+                propertyList.add(money);
+                propertyList.add(pos);
+                propertyList.add(majors);
+                propertyList.add(champ);
+                propertyList.add(highAvg);
+                propertyList.add(nineDarts);
+
+                PropertyListAdapter adapter = new PropertyListAdapter(PlayerActivity.this, R.layout.adapter_view_player, propertyList);
+                playerInfoList.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting the data failed, log a message
+                Log.w(TAG, "Something went wrong:", databaseError.toException());
+            }
+        };
+        mDatabase.addListenerForSingleValueEvent(postListener);
     }
 
     @Override
@@ -163,27 +182,5 @@ public class PlayerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void getFromDB(View view) {
-
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // get our object out of the database
-                Player player = dataSnapshot.child("players").child("Anderson G").getValue(Player.class);
-
-                TextView tv1 = (TextView) findViewById(R.id.tv1);
-                Log.d(TAG, player.fullName);
-                tv1.setText(player.twitter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting the data failed, log a message
-                Log.w(TAG, "Something went wrong:", databaseError.toException());
-            }
-        };
-        mDatabase.addListenerForSingleValueEvent(postListener);
     }
 }

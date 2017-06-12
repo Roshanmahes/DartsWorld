@@ -8,13 +8,6 @@
     tools:context="mprog.nl.a10973710.dartsworld.PlayerActivity"
     tools:showIn="@layout/app_bar_player">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_settings"
-        android:onClick="getFromDB"/>
-
     <!--<ListView-->
         <!--android:id="@+id/player_info_list"-->
         <!--android:layout_width="match_parent"-->
@@ -26,17 +19,8 @@
     <ListView
         android:id="@+id/player_info_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:divider="@null">
     </ListView>
-
-
-    <TextView
-        android:id="@+id/tv1"
-        android:text="Test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button1"
-        android:paddingTop="200dp"/>
 
 </RelativeLayout>

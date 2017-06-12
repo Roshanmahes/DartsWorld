@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -85,7 +86,24 @@ public class PlayerActivity extends AppCompatActivity
         PlayerProperty highAvg = new PlayerProperty("highest average", "118.66");
         PlayerProperty nineDarts = new PlayerProperty("nine darts (televised)", "21 (11)");
 
-        //
+        // add the PlayerProperty objects to an ArrayList
+        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+
+        propertyList.add(name);
+        propertyList.add(nickName);
+        propertyList.add(twitter);
+        propertyList.add(country);
+        propertyList.add(born);
+        propertyList.add(darts);
+        propertyList.add(money);
+        propertyList.add(pos);
+        propertyList.add(majors);
+        propertyList.add(champ);
+        propertyList.add(highAvg);
+        propertyList.add(nineDarts);
+
+        PropertyListAdapter adapter = new PropertyListAdapter(this, R.layout.adapter_view_player, propertyList);
+        playerInfoList.setAdapter(adapter);
 
 
     }
@@ -153,34 +171,11 @@ public class PlayerActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // get our object out of the database
-
                 Player player = dataSnapshot.child("players").child("Anderson G").getValue(Player.class);
 
                 TextView tv1 = (TextView) findViewById(R.id.tv1);
                 Log.d(TAG, player.fullName);
                 tv1.setText(player.twitter);
-
-//                ListView listView = (ListView) findViewById(R.id.player_info_list);
-//
-//                list = new ArrayList<HashMap<String, String>>();
-//
-//                HashMap<String, String> temp = new HashMap<String, String>();
-//                    temp.put(FIRST_COLUMN, "TEST 1");
-//                    temp.put(SECOND_COLUMN, "TEST 2");
-//                list.add(temp);
-//
-//                ListViewAdapter adapter = new ListViewAdapter(this, list);
-//                listView.setAdapter(adapter);
-//
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//                {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, final View view, int position, long id)
-//                    {
-//                        int pos = position + 1;
-//                        Toast.makeText(PlayerActivity.this, Integer.toString(pos) + " Clicked", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
             }
 
             @Override
@@ -189,6 +184,6 @@ public class PlayerActivity extends AppCompatActivity
                 Log.w(TAG, "Something went wrong:", databaseError.toException());
             }
         };
-        mDatabase.addValueEventListener(postListener);
+        mDatabase.addListenerForSingleValueEvent(postListener);
     }
 }

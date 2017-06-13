@@ -77,7 +77,7 @@ Tip van Renske: Inflater (oplossing voor volgende week).
 #### 22:00-24:00 Design
 Design document afgemaakt.
 
-## Dag 3 (Vr 09-06-17) + Weekend
+## Dag 3 (Vr 09-06-17)
 
 #### 11:00-12:00 Bettercodehub
 Bettercodehub toegevoegd aan README (8/10), kleine wijzigingen in logboek.
@@ -86,6 +86,15 @@ Bettercodehub toegevoegd aan README (8/10), kleine wijzigingen in logboek.
 Presentatie gegeven, enkele vragen beantwoord maar geen negatieve feedback
 ontvangen.
 Tip van Jaap: Livescore bijv. eens per 10 sec refreshen.
+
+Verder heb ik het volgende uitgevoerd:
+* Ik heb een CalendarView in het Calendar-scherm geplaatst.
+* Ik heb een HttpRequestHelper en AsyncTask gemaakt voor de SofaScore API.
+De data kan nu binnengehaald worden (de data moet nog wel, eenmaal binnen,
+  verwerkt worden).
+* Ik heb een Player class aangemaakt, met alle informatie over een speler zoals
+in de Firebase database.
+* De zelfgemaakte data kan nu in de app bereikt worden d.m.v. Firebase.
 
 ##### De planning
 Vandaag:
@@ -99,3 +108,53 @@ te laden.
 
 Volgende week:
 * Beginnen aan chat (LoginActivity + ChatActivity schrijven + xmls).
+
+## Dag 4 (Ma 12-06-17)
+
+#### 10:00-11:00 Daily Standup
+Planning (vandaag en deze week):
+* Livescores in app laden vandaag, kost best veel tijd om het precies goed te
+doen, en layout mooi te maken.
+* Nadenken over hoe vaak livescores inladen, waarschijnlijk 1x per 10 seconden
+(of zelf kiezen).
+* Scores van andere dagen ook proberen op te halen (voor de kalender).
+* Spelersinformatie mooi maken
+
+#### 11:00-17:00 Data laden
+Ik heb de volgende dingen gedaan:
+* Ik heb besloten om de livescores 1 keer per 10 seconden te refreshen. Verder
+maak ik ook een refresh-button, als je daarop klikt kan je de score verversen.
+Als je rechtsboven klikt bij de drie puntjes komt er een autorefresh optie.
+Als je die aanvinkt, wordt de score automatisch per 10 seconden ververst. Zo
+niet, dan moet je handmatig verversen.
+* Ik ben vandaag toch begonnen met data ophalen vanuit mijn eigen database, omdat
+er momenteel geen darts gespeeld wordt en ik geen livescores kan zien. De data
+is opgehaald, omdat mij dit in eerste instantie niet meer lukte, heb ik een
+instructievideo gevolgd. <br>
+Ik heb gebruik gemaakt van een PlayerProperty class,
+die een id en een waarde bevat. Elk item van de database heeft een id en een
+waarde, deze wordt hiermee gestructureerd. Verder heb ik een PropertyListAdapter
+class gemaakt en twee xml-bestanden (player_item.xml en (adapter_view_player.xml).
+Dit was nodig om meerdere kolommen in 1 list item te plaatsen. Uiteindelijk is
+het gelukt, wanneer je nu klikt op Home -> Players, kan je momenteel tijdelijk
+de spelersinformatie van Gary Anderson zien.
+
+Dag 3                      |  Dag 4
+:-------------------------:|:-------------------------:
+![](/screenshots/Dag3.png) |  ![](/screenshots/Dag4.png)
+
+## Dag 5 (Di 13-06-17)
+
+#### 10:00-11:00 Daily Standup
+Planning:
+* Bij de spelersinformatie wil ik nog dat je bovenaan een foto te zien krijgt
+van het land van de speler. Deze afbeeldingen zijn al gemaakt en geüpload in
+Firebase Storage. Ik moet nog wel een manier vinden om deze afbeeldingen binnen
+te laden en op het scherm te krijgen.
+* Lijst met alle spelers maken. Als je op een speler klikt, zou je de
+spelersinformatie te zien moeten krijgen.
+
+#### 11:00-12:00 Bettercodehub
+Geluisterd naar Bettercodehub presentatie van Julian Jansen.
+
+#### 12:00-17:00

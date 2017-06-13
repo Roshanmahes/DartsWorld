@@ -44,4 +44,12 @@ public class Player {
         this.twitter = twitter;
         this.walkOn = walkOn;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 }

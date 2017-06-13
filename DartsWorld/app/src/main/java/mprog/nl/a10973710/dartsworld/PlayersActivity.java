@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +14,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class PlayersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DatabaseReference mDatabase;
+    private StorageReference mStorageRef;
+    private static final String TAG = "PlayersActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,50 @@ public class PlayersActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        // retrieve player info
+        getPlayerInfo();
+    }
+
+    public void getPlayerInfo() {
+
+        DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("players");
+
+        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    ArrayList<String> PlayerList = new ArrayList<String>();
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        Player post = postSnapshot.getValue(Player.class);
+
+                        PlayerList.add(String.valueOf(post.getFullName()));
+                    }
+
+                    setPlayerInfo(PlayerList);
+                    Log.d(TAG, "Playerlist" + PlayerList.toString());
+
+                } catch (Exception e) {
+                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.toString());
+            }
+        });
+    }
+
+    private void setPlayerInfo(ArrayList<String> playerList) {
+        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, playerList);
+
+        ListView playerListView = (ListView) findViewById(R.id.player_list_view);
+        playerListView.setAdapter(mArrayAdapter);
     }
 
     @Override

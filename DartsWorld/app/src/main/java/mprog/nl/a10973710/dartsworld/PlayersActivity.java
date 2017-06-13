@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,6 +34,7 @@ public class PlayersActivity extends AppCompatActivity
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
     private static final String TAG = "PlayersActivity";
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +68,19 @@ public class PlayersActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     ArrayList<String> PlayerList = new ArrayList<String>();
+                    ArrayList<String> PlayerKeyList = new ArrayList<String>();
+
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
 
+                        PlayerKeyList.add(postSnapshot.getKey());
                         PlayerList.add(String.valueOf(post.getFullName()));
                     }
 
                     setPlayerInfo(PlayerList);
-                    Log.d(TAG, "Playerlist" + PlayerList.toString());
+
+                    setListener(PlayerList);
+                    Log.d(TAG, "PlayerKeylist" + PlayerKeyList.toString());
 
                 } catch (Exception e) {
                     Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
@@ -103,6 +110,19 @@ public class PlayersActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void setListener(final ArrayList<String> playerList) {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               String playerPosition = playerList.get(position);
+
+               Log.d(TAG, "Dit is mijn positie: " + String.valueOf(position));
+
+           }
+
+        });
     }
 
     @Override

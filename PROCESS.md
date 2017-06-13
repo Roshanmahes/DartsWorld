@@ -154,7 +154,14 @@ te laden en op het scherm te krijgen.
 * Lijst met alle spelers maken. Als je op een speler klikt, zou je de
 spelersinformatie te zien moeten krijgen.
 
-#### 11:00-12:00 Bettercodehub
+#### 11:00-11:30 Bettercodehub
 Geluisterd naar Bettercodehub presentatie van Julian Jansen.
 
-#### 12:00-17:00
+#### 12:00-16:00 Players Activity
+Ik heb de data geladen uit Firebase en een lijst met alle volledige spelersnamen
+weergegeven op het scherm. Volgende stap: als je klikt op een speler, moet je
+de informatie over de speler te zien krijgen.
+
+Dag 5                      |  Dag 5
+:-------------------------:|:-------------------------:
+![](/screenshots/Dag5.png) |  ![](/screenshots/Dag5.png)

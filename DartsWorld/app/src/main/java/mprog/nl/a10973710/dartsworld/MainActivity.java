@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, CalendarActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_players) {
-            Intent intent = new Intent(this, PlayerActivity.class);
+            Intent intent = new Intent(this, PlayersActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_info) {
             Intent intent = new Intent(this, InfoActivity.class);

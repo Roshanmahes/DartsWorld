@@ -36,6 +36,9 @@ public class PlayersActivity extends AppCompatActivity
     private static final String TAG = "PlayersActivity";
     private ListView listView;
 
+    ArrayList<String> PlayerList = new ArrayList<String>();
+    ArrayList<String> PlayerKeyList = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +58,12 @@ public class PlayersActivity extends AppCompatActivity
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
+        ListView playerListView = (ListView) findViewById(R.id.player_list_view);
+
         // retrieve player info
         getPlayerInfo();
+
+        setListener(PlayerKeyList);
     }
 
     public void getPlayerInfo() {
@@ -67,8 +74,8 @@ public class PlayersActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
-                    ArrayList<String> PlayerList = new ArrayList<String>();
-                    ArrayList<String> PlayerKeyList = new ArrayList<String>();
+//                    ArrayList<String> PlayerList = new ArrayList<String>();
+//                    ArrayList<String> PlayerKeyList = new ArrayList<String>();
 
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
@@ -79,8 +86,8 @@ public class PlayersActivity extends AppCompatActivity
 
                     setPlayerInfo(PlayerList);
 
-                    setListener(PlayerList);
-                    Log.d(TAG, "PlayerKeylist" + PlayerKeyList.toString());
+                    //setListener(PlayerList);
+                    Log.d(TAG, "PlayerKeyList" + PlayerKeyList.toString());
 
                 } catch (Exception e) {
                     Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
@@ -99,6 +106,7 @@ public class PlayersActivity extends AppCompatActivity
                 android.R.layout.simple_list_item_1, playerList);
 
         ListView playerListView = (ListView) findViewById(R.id.player_list_view);
+
         playerListView.setAdapter(mArrayAdapter);
     }
 
@@ -112,17 +120,26 @@ public class PlayersActivity extends AppCompatActivity
         }
     }
 
-    private void setListener(final ArrayList<String> playerList) {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
+    private void setListener(final ArrayList<String> playerKeyList) {
+        ListView playerListView = (ListView) findViewById(R.id.player_list_view);
+        playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               String playerPosition = playerList.get(position);
+                String playerName =  playerKeyList.get(position);
 
-               Log.d(TAG, "Dit is mijn positie: " + String.valueOf(position));
+                Log.d(TAG, "Dit is mijn positie: " + String.valueOf(position) + playerName);
 
-           }
+                startPlayerActivity(playerName);
+
+            }
 
         });
+    }
+
+    public void startPlayerActivity(String playerName) {
+        Intent intent = new Intent(this, PlayerActivity.class);
+        intent.putExtra("playerName", playerName);
+        this.startActivity(intent);
     }
 
     @Override

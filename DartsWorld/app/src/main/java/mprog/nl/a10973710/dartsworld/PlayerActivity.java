@@ -69,17 +69,20 @@ public class PlayerActivity extends AppCompatActivity
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
+        Bundle extras = getIntent().getExtras();
+        String playerName = extras.getString("playerName");
+
         // retrieve player info
-        getFromDB();
+        getFromDB(playerName);
     }
 
-    public void getFromDB() {
+    public void getFromDB(final String playerName) {
 
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // get our object out of the database
-                Player player = dataSnapshot.child("players").child("Anderson G").getValue(Player.class);
+                Player player = dataSnapshot.child("players").child(playerName).getValue(Player.class);
 
                 ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
 

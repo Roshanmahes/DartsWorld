@@ -165,3 +165,5 @@ de informatie over de speler te zien krijgen.
 Dag 5                      |  Dag 5
 :-------------------------:|:-------------------------:
 ![](/screenshots/Dag5.png) |  ![](/screenshots/Dag5.png)
+
+TODO: Sceenshots van vandaag.

@@ -32,7 +32,17 @@ public class DateActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Bundle extras = getIntent().getExtras();
+        String date = extras.getString("date");
+
+//        loadData(date);
     }
+
+//    public void loadData(String date) {
+//        DateAsyncTask asyncTask = new DateAsyncTask(this);
+//        asyncTask.execute(date);
+//    }
 
     @Override
     public void onBackPressed() {

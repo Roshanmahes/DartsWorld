@@ -157,13 +157,22 @@ spelersinformatie te zien moeten krijgen.
 #### 11:00-11:30 Bettercodehub
 Geluisterd naar Bettercodehub presentatie van Julian Jansen.
 
-#### 12:00-16:00 Players Activity
+#### 12:00-17:00 Players Activity
 Ik heb de data geladen uit Firebase en een lijst met alle volledige spelersnamen
-weergegeven op het scherm. Volgende stap: als je klikt op een speler, moet je
-de informatie over de speler te zien krijgen.
+weergegeven op het scherm. Wanneer je klikt op een speler, krijg je de
+desbetreffende spelersinformatie te zien.
 
-Dag 5                      |  Dag 5
+Een lijst van 70 spelers   |  Informatie over een speler
 :-------------------------:|:-------------------------:
-![](/screenshots/Dag5.png) |  ![](/screenshots/Dag5.png)
+![](/screenshots/Dag5.png) |  ![](/screenshots/Dag5.1.png)
 
-TODO: Sceenshots van vandaag.
+TODO (voor beta-versie):
+* Ik moet nog wel even kijken wat ik ga
+doen meet bepaalde niet-ingevulde eigenschappen. Voor een voorbeeld: zie
+hieronder (Majors 0 kan nog, maar Highest average 0.0 niet).
+* De afbeelding van het land moet per speler nog toegevoegd worden.
+
+## Dag 6 (Wo 14-06-17)
+
+#### 10:00-11:00 Daily Standup
+Style guide:

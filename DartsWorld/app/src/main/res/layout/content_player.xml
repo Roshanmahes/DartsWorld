@@ -8,14 +8,6 @@
     tools:context="mprog.nl.a10973710.dartsworld.PlayerActivity"
     tools:showIn="@layout/app_bar_player">
 
-    <!--<ListView-->
-        <!--android:id="@+id/player_info_list"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentTop="true">-->
-    <!--</ListView>-->
-    
     <ListView
         android:id="@+id/player_info_list"
         android:layout_width="match_parent"

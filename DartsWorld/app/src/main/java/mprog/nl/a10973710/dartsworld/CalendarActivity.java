@@ -78,9 +78,9 @@ public class CalendarActivity extends AppCompatActivity
         asyncTask.execute(date);
     }
 
-    public void startDateActivity(String date) {
+    public void startDateActivity(String data) {
         Intent intent = new Intent(this, DateActivity.class);
-        intent.putExtra("date", date);
+        intent.putExtra("data", data);
         this.startActivity(intent);
     }
 

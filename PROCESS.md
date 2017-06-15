@@ -175,4 +175,12 @@ hieronder (Majors 0 kan nog, maar Highest average 0.0 niet).
 ## Dag 6 (Wo 14-06-17)
 
 #### 10:00-11:00 Daily Standup
-Style guide:
+Style guide gemaakt.
+
+## Dag 7 (Do 15-06-17)
+
+#### 10:00-11:00 Daily Standup
+
+
+
+TODO (Calendar): eerst kijken of er wedstrijden zijn, daarna pas naar een activity gaan.

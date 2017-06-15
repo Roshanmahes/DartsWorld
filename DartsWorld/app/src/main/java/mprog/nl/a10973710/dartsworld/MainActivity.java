@@ -1,6 +1,7 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
@@ -28,8 +30,10 @@ public class MainActivity extends AppCompatActivity
 
     String sportItem;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
         asyncTask.execute("");
     }
+
+
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
 

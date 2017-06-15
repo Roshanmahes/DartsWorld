@@ -87,6 +87,7 @@ public class PlayerActivity extends AppCompatActivity
                 ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
 
                 PlayerProperty name = new PlayerProperty("Name", player.fullName);
+
                 PlayerProperty nickName = new PlayerProperty("Nickname", player.nickName);
                 PlayerProperty twitter = new PlayerProperty("Twitter", player.twitter);
                 PlayerProperty country = new PlayerProperty("Country", player.country);

@@ -14,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textStyle="bold"
         android:hint="Test"/>
+
+    <ListView
+        android:id="@+id/scoreList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="30dp"
+        android:divider="@null">
+    </ListView>
 
 </RelativeLayout>

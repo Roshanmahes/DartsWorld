@@ -14,12 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class DateActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,7 +69,9 @@ public class DateActivity extends AppCompatActivity
             Toast.makeText(this, "no matches today", Toast.LENGTH_SHORT).show();
         }
 
-        Log.d(TAG, "DATA: " + data);
+        //Log.d(TAG, "DATA: " + data);
+
+
     }
 
     private void processData(JSONObject sportItem) {
@@ -74,6 +80,9 @@ public class DateActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        ListView scoreListView = (ListView) findViewById(R.id.scoreList);
+        ArrayList<Match> matchArrayList = new ArrayList<>();
 
         for (int i = 0; i < tournaments.length(); i++) {
             try {
@@ -98,12 +107,20 @@ public class DateActivity extends AppCompatActivity
 
                     Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
+
+                    Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+
+                    matchArrayList.add(match);
+
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
+
+        MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchArrayList);
+        scoreListView.setAdapter(adapter);
     }
 
     @Override

@@ -133,4 +133,9 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void goToChat(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        this.startActivity(intent);
+    }
 }

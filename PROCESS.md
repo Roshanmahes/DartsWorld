@@ -184,3 +184,10 @@ Style guide gemaakt.
 
 
 TODO (Calendar): eerst kijken of er wedstrijden zijn, daarna pas naar een activity gaan.
+
+
+# Vrijdag:
+feedback:
+- spelers sorteren op ranking, rechtsboven menu met sorteermanieren
+- lijst met komende toernooien.
+- Een punt toevoegen als er op die datum darts gespeeld wordt (check voor 1 maand).

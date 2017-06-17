@@ -39,8 +39,9 @@ public class PropertyListAdapter extends ArrayAdapter<PlayerProperty> {
         TextView propertyId = (TextView) convertView.findViewById(R.id.player_property_id);
         TextView propertyValue = (TextView) convertView.findViewById(R.id.player_property_value);
 
-        propertyId.setText(id);
         propertyValue.setText(value);
+        propertyId.setText(id);
+
 
         return convertView;
     }

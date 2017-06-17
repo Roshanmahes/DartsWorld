@@ -1,12 +1,8 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,17 +15,12 @@ import android.view.MenuItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Locale;
-import java.util.Objects;
-
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     String sportItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +42,6 @@ public class MainActivity extends AppCompatActivity
         LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
         asyncTask.execute("");
     }
-
-
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
 

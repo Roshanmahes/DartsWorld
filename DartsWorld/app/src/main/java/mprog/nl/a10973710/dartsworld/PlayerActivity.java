@@ -69,7 +69,7 @@ public class PlayerActivity extends AppCompatActivity
                 PlayerProperty country = new PlayerProperty("Country", player.country);
                 PlayerProperty born = new PlayerProperty("Born", player.born);
                 PlayerProperty darts = new PlayerProperty("Darts", player.darts);
-                PlayerProperty money = new PlayerProperty("Money", player.money);
+                PlayerProperty money = new PlayerProperty("Money", "£" + player.money);
                 PlayerProperty pos = new PlayerProperty("Position (difference)", String.valueOf(player.currPos)
                         + " (" + String.valueOf(player.prevPos - player.currPos) + ")");
                 PlayerProperty majors = new PlayerProperty("Majors", String.valueOf(player.majors));

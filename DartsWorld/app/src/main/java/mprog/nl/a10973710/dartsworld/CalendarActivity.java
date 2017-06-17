@@ -1,13 +1,9 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,7 +18,6 @@ public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "CalendarActivity";
-    private CalendarView mCalendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +35,13 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+        CalendarView mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
-                // months apparently are zero-indexed
-
-                // change selected date to API-
+                // change selected date to API-friendly version
                 String realMonth;
                 String realDay;
 
@@ -58,6 +51,7 @@ public class CalendarActivity extends AppCompatActivity
                     realMonth = String.valueOf(month + 1);
                 }
 
+                // months apparently are zero-indexed
                 if (dayOfMonth < 10) {
                     realDay = "0" + String.valueOf(dayOfMonth);
                 } else {
@@ -65,8 +59,6 @@ public class CalendarActivity extends AppCompatActivity
                 }
 
                 String date = year + "-" + realMonth + "-" + realDay;
-
-                Log.d(TAG, "onSelectedDayChange: date: " + date);
 
                 loadData(date);
             }

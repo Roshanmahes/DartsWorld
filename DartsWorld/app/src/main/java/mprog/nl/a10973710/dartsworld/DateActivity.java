@@ -2,10 +2,7 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +47,6 @@ public class DateActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Bundle extras = getIntent().getExtras();
-        //String data = extras.getString("data");
 
         try {
             data = new JSONObject(extras.getString("data"));
@@ -61,17 +56,10 @@ public class DateActivity extends AppCompatActivity
 
         try {
             sportItem = data.getJSONObject("sportItem");
-
             processData(sportItem);
         } catch (JSONException e) {
-            // if there are no live matches
-            Log.d(TAG, "Niks te beleven vandaag");
             Toast.makeText(this, "no matches today", Toast.LENGTH_SHORT).show();
         }
-
-        //Log.d(TAG, "DATA: " + data);
-
-
     }
 
     private void processData(JSONObject sportItem) {
@@ -91,9 +79,6 @@ public class DateActivity extends AppCompatActivity
 
                 TextView tvTournamentName = (TextView) findViewById(R.id.tvTournamentName);
                 tvTournamentName.setText(tournamentName);
-                // set tournammentName TextView
-                // homeScore.current, awayScore.current, homeTeam.name, awayTeam.name
-                // if not name in database => no player info available
 
                 JSONArray events = tournamentObj.getJSONArray("events");
                 for (int j = 0; j < events.length(); j++) {
@@ -107,12 +92,9 @@ public class DateActivity extends AppCompatActivity
 
                     Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
-
                     Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
 
                     matchArrayList.add(match);
-
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

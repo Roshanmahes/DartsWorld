@@ -1,7 +1,7 @@
 package mprog.nl.a10973710.dartsworld;
 
 /**
- * Created by Gebruiker on 15-6-2017.
+ * Created by Roshan Mahes on 15-6-2017.
  */
 
 public class Match {

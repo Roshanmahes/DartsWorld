@@ -1,26 +1,14 @@
 package mprog.nl.a10973710.dartsworld;
 
 /**
- * Created by Gebruiker on 9-6-2017.
+ * Created by Roshan Mahes on 9-6-2017.
  */
 
-public class Player {
+class Player {
 
-    public String born;
-    public int champ;
-    public String country;
-    public int currPos;
-    public String darts;
-    public String fullName;
-    public float highAvg;
-    public int majors;
-    public String money;
-    public String nickName;
-    public int nineDarts;
-    public int nineDartsTelevised;
-    public int prevPos;
-    public String twitter;
-    public String walkOn;
+    String born; int champ; String country; int currPos; String darts; String fullName;
+    float highAvg; int majors; String money; String nickName; int nineDarts;
+    int nineDartsTelevised; int prevPos; String twitter; String walkOn;
 
     // Default constructor for Firebase
     public Player() {}
@@ -45,11 +33,7 @@ public class Player {
         this.walkOn = walkOn;
     }
 
-    public String getFullName() {
+    String getFullName() {
         return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 }

@@ -11,15 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Gebruiker on 15-6-2017.
+ * Created by Roshan Mahes on 15-6-2017.
  */
 
 public class MatchListAdapter extends ArrayAdapter<Match> {
 
-    private static final String TAG = "MatchListAdapter";
     private Context mContext;
     int mResource;
 
@@ -72,6 +70,4 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
 
         return convertView;
     }
-
-
 }

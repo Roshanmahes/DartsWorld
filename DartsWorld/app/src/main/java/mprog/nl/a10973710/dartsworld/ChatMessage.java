@@ -3,7 +3,7 @@ package mprog.nl.a10973710.dartsworld;
 import java.util.Date;
 
 /**
- * Created by Gebruiker on 16-6-2017.
+ * Created by Roshan Mahes on 16-6-2017.
  */
 
 public class ChatMessage {

@@ -2,8 +2,6 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -41,6 +39,7 @@ public class PlayersActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,8 +57,6 @@ public class PlayersActivity extends AppCompatActivity
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        ListView playerListView = (ListView) findViewById(R.id.player_list_view);
-
         // retrieve player info
         getPlayerInfo();
 
@@ -74,8 +71,6 @@ public class PlayersActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
-//                    ArrayList<String> PlayerList = new ArrayList<String>();
-//                    ArrayList<String> PlayerKeyList = new ArrayList<String>();
 
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
@@ -85,9 +80,6 @@ public class PlayersActivity extends AppCompatActivity
                     }
 
                     setPlayerInfo(PlayerList);
-
-                    //setListener(PlayerList);
-                    Log.d(TAG, "PlayerKeyList" + PlayerKeyList.toString());
 
                 } catch (Exception e) {
                     Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
@@ -125,12 +117,9 @@ public class PlayersActivity extends AppCompatActivity
         playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String playerName =  playerKeyList.get(position);
-
-                Log.d(TAG, "Dit is mijn positie: " + String.valueOf(position) + playerName);
-
                 startPlayerActivity(playerName);
-
             }
 
         });

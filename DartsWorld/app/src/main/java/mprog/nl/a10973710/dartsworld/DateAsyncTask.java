@@ -2,16 +2,13 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.content.ContentValues.TAG;
-
 /**
- * Created by Gebruiker on 14-6-2017.
+ * Created by Roshan Mahes on 14-6-2017.
  */
 
 class DateAsyncTask extends AsyncTask<String, Integer, String>{
@@ -42,16 +39,13 @@ class DateAsyncTask extends AsyncTask<String, Integer, String>{
         super.onPostExecute(result);
 
         JSONObject scoreObj = null;
-//        JSONObject sportItem;
         try {
             scoreObj = new JSONObject(result);
-//            sportItem = scoreObj.getJSONObject("sportItem");
-//            Log.d(TAG, "De sportItem" + sportItem.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        assert scoreObj != null;
 
+        assert scoreObj != null;
         this.calendarAct.startDateActivity(result);
     }
 }

@@ -1,3 +1,5 @@
+# Logboek
+
 ## Dag 0 (Di 06-06-17)
 #### 13:00-17:00 Proposal
 Vandaag heb ik de proposal geschreven (zie [README.md](README.md)). Ik heb
@@ -58,7 +60,6 @@ Voorbeelden: <br>
 | Nederland      | Wales    | Zuid-Afrika          |
 | :------------: | :------------: | :------------: |
 | ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Netherlands.png?alt=media "Nederland") | ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/Wales.png?alt=media "Wales") | ![alt text](https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/South%20Africa.png?alt=media "Zuid-Afrika")|
-
 </center>
 
 #### 15:00-22:00 Prototype
@@ -78,7 +79,6 @@ Tip van Renske: Inflater (oplossing voor volgende week).
 Design document afgemaakt.
 
 ## Dag 3 (Vr 09-06-17)
-
 #### 11:00-12:00 Bettercodehub
 Bettercodehub toegevoegd aan README (8/10), kleine wijzigingen in logboek.
 
@@ -110,7 +110,6 @@ Volgende week:
 * Beginnen aan chat (LoginActivity + ChatActivity schrijven + xmls).
 
 ## Dag 4 (Ma 12-06-17)
-
 #### 10:00-11:00 Daily Standup
 Planning (vandaag en deze week):
 * Livescores in app laden vandaag, kost best veel tijd om het precies goed te
@@ -139,12 +138,11 @@ Dit was nodig om meerdere kolommen in 1 list item te plaatsen. Uiteindelijk is
 het gelukt, wanneer je nu klikt op Home -> Players, kan je momenteel tijdelijk
 de spelersinformatie van Gary Anderson zien.
 
-Dag 3                      |  Dag 4
+Dag 3: Een kalender        |  Dag 4: Spelersinformatie
 :-------------------------:|:-------------------------:
 ![](/screenshots/Dag3.png) |  ![](/screenshots/Dag4.png)
 
 ## Dag 5 (Di 13-06-17)
-
 #### 10:00-11:00 Daily Standup
 Planning:
 * Bij de spelersinformatie wil ik nog dat je bovenaan een foto te zien krijgt
@@ -162,7 +160,7 @@ Ik heb de data geladen uit Firebase en een lijst met alle volledige spelersnamen
 weergegeven op het scherm. Wanneer je klikt op een speler, krijg je de
 desbetreffende spelersinformatie te zien.
 
-Een lijst van 70 spelers   |  Informatie over een speler
+Dag 5: Een lijst van 70 spelers   | Dag 5: Informatie over een speler
 :-------------------------:|:-------------------------:
 ![](/screenshots/Dag5.png) |  ![](/screenshots/Dag5.1.png)
 
@@ -173,21 +171,43 @@ hieronder (Majors 0 kan nog, maar Highest average 0.0 niet).
 * De afbeelding van het land moet per speler nog toegevoegd worden.
 
 ## Dag 6 (Wo 14-06-17)
-
 #### 10:00-11:00 Daily Standup
 Style guide gemaakt.
 
+#### 11:00-17:00 CalendarActivity
+De CalendarActivity bestaat nu uit een CalendarView. Wanneer je een datum
+selecteert, wordt de juiste datum naar de Log geprint. Deze wordt doorgestuurd
+naar de DateAsyncTask, die de data van de juiste dag via de HttpRequestHelper
+ophaalt. De json-data die binnenkomt, moet nog verwerkt worden.
+
 ## Dag 7 (Do 15-06-17)
+#### 10:00-10:30 Daily Standup
+Style guide nog eens kort besproken.
 
-#### 10:00-11:00 Daily Standup
+#### 10:30-17:00
+De scores per dag worden nu via de CalendarActivity opgehaald en weergegeven op
+het scherm. Wel is het zo dat er soms ook wedstrijden van de vorige/volgende dag
+op een dag te zien zijn. Dit moet ik nog oplossen.
 
+## Dag 8 (Vr 16-06-17)
+#### 09:00-15:00 (Zie Weekend)
 
-
-TODO (Calendar): eerst kijken of er wedstrijden zijn, daarna pas naar een activity gaan.
-
-
-# Vrijdag:
-feedback:
-- spelers sorteren op ranking, rechtsboven menu met sorteermanieren
-- lijst met komende toernooien.
+#### 15:00-17:00 Presentaties
+Ik heb feedback ontvangen en zal de volgende dingen toevoegen:
+- Spelers sorteren op ranking, rechtsboven in PlayersActivity menu met sorteermanieren;
+- Een lijst of iets anders met (informatie over) toernooien toevoegen;
 - Een punt toevoegen als er op die datum darts gespeeld wordt (check voor 1 maand).
+
+### Weekend
+Dit weekend heb ik de volgende dingen gedaan:
+- Begin gemaakt aan chat (voornamelijk layout geïmplementeerd);
+- Optie toegevoegd om per wedstrijd op een dag een speler aan te klikken en de
+desbetreffende spelersinformatie te zien.
+- Vlag toegevoegd per speler in PlayerActivity.
+- Database met toernooi informatie gemaakt en geüpload op Firebase.
+
+Hieronder enkele screenshots van de app tot nu toe.
+
+Dag 7: De wedstrijden van 02-06-17|  Dag 8: Spelersinformatie: Price G.
+:-------------------------:|:-------------------------:
+![](/screenshots/Dag7.png) |  ![](/screenshots/Dag8.png)

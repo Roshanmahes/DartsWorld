@@ -11,13 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -62,8 +67,6 @@ public class PlayerActivity extends AppCompatActivity
 
                 ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
 
-                PlayerProperty name = new PlayerProperty("Name", player.fullName);
-
                 PlayerProperty nickName = new PlayerProperty("Nickname", player.nickName);
                 PlayerProperty twitter = new PlayerProperty("Twitter", player.twitter);
                 PlayerProperty country = new PlayerProperty("Country", player.country);
@@ -81,7 +84,6 @@ public class PlayerActivity extends AppCompatActivity
                 // add the PlayerProperty objects to an ArrayList
                 ArrayList<PlayerProperty> propertyList = new ArrayList<>();
 
-                propertyList.add(name);
                 propertyList.add(nickName);
                 propertyList.add(twitter);
                 propertyList.add(country);
@@ -96,11 +98,18 @@ public class PlayerActivity extends AppCompatActivity
 
                 PropertyListAdapter adapter = new PropertyListAdapter(PlayerActivity.this, R.layout.adapter_view_player, propertyList);
                 playerInfoList.setAdapter(adapter);
+
+                TextView playerName = (TextView) findViewById(R.id.playerName);
+                playerName.setText(player.fullName);
+
+                ImageView nationFlight = (ImageView) findViewById(R.id.nationFlight);
+                String nationLink = "https://firebasestorage.googleapis.com/v0/b/" +
+                        "dartsworld-e9f85.appspot.com/o/" + player.country + ".png?alt=media";
+                Picasso.with(PlayerActivity.this).load(nationLink).fit().into(nationFlight);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting the data failed, log a message
                 Log.w(TAG, "Something went wrong:", databaseError.toException());
             }
         };

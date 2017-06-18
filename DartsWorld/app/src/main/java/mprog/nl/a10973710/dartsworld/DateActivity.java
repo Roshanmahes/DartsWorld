@@ -173,10 +173,13 @@ public class DateActivity extends AppCompatActivity
     }
 
     public void playerClick(View view) {
+        Log.d(TAG, "Kom ik wel binnen?");
 
         TextView textView = (TextView) view;
         String playerName = textView.getHint().toString();
+        Log.d(TAG, "Dit is playerName: " + playerName);
         playerName = playerName.replace(".","");
+        Log.d(TAG, "Dit is playerName: " + playerName);
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         final String finalPlayerName = playerName;

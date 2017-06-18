@@ -46,10 +46,15 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         TextView tvHomeTeam = (TextView) convertView.findViewById(R.id.tvHomeTeam);
         TextView tvAwayTeam = (TextView) convertView.findViewById(R.id.tvAwayTeam);
 
-        tvHomeScore.setText(homeScore); tvHomeScore.setHint(homeTeam);
-        tvAwayScore.setText(awayScore); tvAwayScore.setHint(awayTeam);
-        tvHomeTeam.setText(homeTeam); tvHomeTeam.setHint(homeTeam);
-        tvAwayTeam.setText(awayTeam); tvHomeTeam.setHint(awayTeam);
+        tvHomeScore.setHint(homeTeam);
+        tvAwayScore.setHint(awayTeam);
+        tvHomeTeam.setHint(homeTeam);
+        tvAwayTeam.setHint(awayTeam);
+
+        tvHomeScore.setText(homeScore);
+        tvAwayScore.setText(awayScore);
+        tvHomeTeam.setText(homeTeam);
+        tvAwayTeam.setText(awayTeam);
 
         if (Integer.parseInt(homeScore) < Integer.parseInt(awayScore)) {
             tvHomeScore.setBackgroundResource(R.color.colorPrimary);

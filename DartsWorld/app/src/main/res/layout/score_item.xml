@@ -59,6 +59,7 @@
             android:background="@color/colorAccent"
             android:textColor="@color/white"
             android:onClick="playerClick"
+            android:hint="Test"
             android:gravity="center"
             android:text="Player 2" />
 

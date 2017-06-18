@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mprog.nl.a10973710.dartsworld.PlayerActivity"
-    tools:showIn="@layout/app_bar_player">
+    tools:showIn="@layout/app_bar_player"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/nationFlight"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/playerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/nationFlight"
+        android:textSize="30sp" />
 
     <ListView
         android:id="@+id/player_info_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/playerName"
         android:divider="@null">
     </ListView>
 

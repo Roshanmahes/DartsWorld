@@ -38,4 +38,5 @@
     <string name="title_activity_tournaments">TournamentsActivity</string>
     <string name="title_activity_tournament">TournamentActivity</string>
     <string name="tournaments">Tournaments</string>
+    <string name="tournament">Tournament</string>
 </resources>

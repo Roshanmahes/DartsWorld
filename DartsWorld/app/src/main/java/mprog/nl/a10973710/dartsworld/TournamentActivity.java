@@ -2,10 +2,8 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,9 +31,11 @@ public class TournamentActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.tournament);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -49,16 +48,14 @@ public class TournamentActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Bundle extras = getIntent().getExtras();
-        String tournamentName = extras.getString("tournamentName");
-
-        getTournamentInfo(tournamentName);
+        getTournamentInfo(extras.getString("tournamentName"));
     }
 
     private void getTournamentInfo(final String tournamentName) {
 
-        DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("tournaments");
+        DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
 
-        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -66,30 +63,10 @@ public class TournamentActivity extends AppCompatActivity
                     if (tournamentName.contains(postSnapshot.getKey())) {
 
                         Tournament tournament = postSnapshot.getValue(Tournament.class);
+                        PlayerProperty tournamentName = new PlayerProperty("Tournament name",
+                                postSnapshot.getKey());
 
-                        ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
-
-                        PlayerProperty sponsor = new PlayerProperty("sponsor", tournament.getSponsor());
-                        PlayerProperty venue = new PlayerProperty("venue", tournament.getVenue());
-                        PlayerProperty location = new PlayerProperty("location", tournament.getLocation());
-                        PlayerProperty country = new PlayerProperty("country", tournament.getCountry());
-                        PlayerProperty established = new PlayerProperty("established", String.valueOf(tournament.getEstablished()));
-                        PlayerProperty defendingChamp = new PlayerProperty("defending champion", tournament.getDefendingChamp());
-                        PlayerProperty prizeMoney = new PlayerProperty("Prize money", tournament.getPrizeMoney());
-                        PlayerProperty format = new PlayerProperty("format", tournament.getFormat());
-
-                        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
-
-                        propertyList.add(sponsor); propertyList.add(venue); propertyList.add(location);
-                        propertyList.add(country); propertyList.add(established); propertyList.add(defendingChamp);
-                        propertyList.add(prizeMoney); propertyList.add(format);
-
-                        PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this, R.layout.adapter_view_player, propertyList);
-                        tournamentInfoList.setAdapter(adapter);
-
-                        ImageView tournamentLogo = (ImageView) findViewById(R.id.tournamentLogo);
-                        String logoURL = tournament.getLogo();
-                        Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
+                        setTournamentInfo(tournamentName, tournament);
                     }
                 }
             }
@@ -99,36 +76,33 @@ public class TournamentActivity extends AppCompatActivity
                 Log.d(TAG, databaseError.toString());
             }
         });
+    }
 
+    private void setTournamentInfo(PlayerProperty tournamentName, Tournament tournament) {
 
+        ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
 
+        PlayerProperty sponsor = new PlayerProperty("Sponsor", tournament.getSponsor());
+        PlayerProperty venue = new PlayerProperty("Venue", tournament.getVenue());
+        PlayerProperty location = new PlayerProperty("Location", tournament.getLocation());
+        PlayerProperty country = new PlayerProperty("Country", tournament.getCountry());
+        PlayerProperty established = new PlayerProperty("Established", String.valueOf(tournament.getEstablished()));
+        PlayerProperty defendingChamp = new PlayerProperty("Defending champion", tournament.getDefendingChamp());
+        PlayerProperty prizeMoney = new PlayerProperty("Prize money", tournament.getPrizeMoney());
+        PlayerProperty format = new PlayerProperty("Format", tournament.getFormat());
 
+        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
 
-//        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                try {
-//
-//                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-//                        Player post = postSnapshot.getValue(Player.class);
-//
-//                        PlayerKeyList.add(postSnapshot.getKey());
-//                        PlayerList.add(String.valueOf(post.getFullName()));
-//                    }
-//
-//                    setPlayerInfo(PlayerList);
-//
-//                } catch (Exception e) {
-//                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Log.d(TAG, databaseError.toString());
-//            }
-//        });
+        propertyList.add(tournamentName); propertyList.add(sponsor); propertyList.add(venue);
+        propertyList.add(location); propertyList.add(country); propertyList.add(established);
+        propertyList.add(defendingChamp); propertyList.add(prizeMoney); propertyList.add(format);
 
+        PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this, R.layout.adapter_view_player, propertyList);
+        tournamentInfoList.setAdapter(adapter);
+
+        ImageView tournamentLogo = (ImageView) findViewById(R.id.tournamentLogo);
+        String logoURL = tournament.getLogo();
+        Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
     }
 
     @Override
@@ -150,9 +124,6 @@ public class TournamentActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -165,8 +136,7 @@ public class TournamentActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {

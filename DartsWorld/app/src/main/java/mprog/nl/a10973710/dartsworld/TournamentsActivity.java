@@ -32,6 +32,7 @@ public class TournamentsActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournaments);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

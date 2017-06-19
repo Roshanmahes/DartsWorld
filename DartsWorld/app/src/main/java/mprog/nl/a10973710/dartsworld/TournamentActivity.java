@@ -64,12 +64,11 @@ public class TournamentActivity extends AppCompatActivity
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
                     if (tournamentName.contains(postSnapshot.getKey())) {
-                        Log.d(TAG, "toernooi: " + postSnapshot.getKey());
+
                         Tournament tournament = postSnapshot.getValue(Tournament.class);
 
                         ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
 
-                        // logo
                         PlayerProperty sponsor = new PlayerProperty("sponsor", tournament.getSponsor());
                         PlayerProperty venue = new PlayerProperty("venue", tournament.getVenue());
                         PlayerProperty location = new PlayerProperty("location", tournament.getLocation());

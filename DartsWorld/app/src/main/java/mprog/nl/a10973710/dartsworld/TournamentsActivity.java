@@ -2,8 +2,7 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,31 +13,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class TournamentsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "Tournaments Activity";
+    private static final String TAG = "TournamentsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournaments);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Tournaments");
+        toolbar.setTitle(R.string.tournaments);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -55,31 +52,18 @@ public class TournamentsActivity extends AppCompatActivity
 
     public void getTournaments() {
 
-        DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("tournaments");
+        DatabaseReference tourRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
 
-        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        tourRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
 
-                    ArrayList<PlayerProperty> propertyList = new ArrayList<>();
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Log.d(TAG, "Volgens mij gaat t hier mis");
-                        Tournament post = postSnapshot.getValue(Tournament.class);
-                        // dit hoeft niet, gwn get("sponsor") doen
-
-                        PlayerProperty property = new PlayerProperty(post.getSponsor(),postSnapshot.getKey());
-                        propertyList.add(property);
-                    }
-
-                    ListView tournamentsView = (ListView) findViewById(R.id.tournamentsView);
-                    TournamentsListAdapter adapter = new TournamentsListAdapter(TournamentsActivity.this, R.layout.adapter_view_tournaments, propertyList);
-                    tournamentsView.setAdapter(adapter);
-
-                } catch (Exception e) {
-                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
+                ArrayList<String> tournamentsList = new ArrayList<>();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    tournamentsList.add(postSnapshot.getKey());
                 }
+
+                setTournaments(tournamentsList);
             }
 
             @Override
@@ -108,9 +92,6 @@ public class TournamentsActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -123,8 +104,7 @@ public class TournamentsActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -149,11 +129,29 @@ public class TournamentsActivity extends AppCompatActivity
         return true;
     }
 
-    public void tournamentClick(View view) {
-        TextView tournamentName = (TextView) view.findViewById(R.id.tournamentName);
+    public void setTournaments(ArrayList<String> tournamentsList) {
+        ListView tournamentsView = (ListView) findViewById(R.id.tournamentsView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(TournamentsActivity.this,
+                android.R.layout.simple_list_item_1, tournamentsList);
+        tournamentsView.setAdapter(adapter);
 
+        setListener(tournamentsList);
+    }
+
+    private void setListener(final ArrayList<String> tournamentsList) {
+        ListView tournamentsView = (ListView) findViewById(R.id.tournamentsView);
+        tournamentsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tournamentName = tournamentsList.get(position);
+                startPlayerActivity(tournamentName);
+            }
+        });
+    }
+
+    public void startPlayerActivity(String tournamentName) {
         Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName.getText());
+        intent.putExtra("tournamentName", tournamentName);
         this.startActivity(intent);
     }
 }

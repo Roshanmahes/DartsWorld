@@ -113,8 +113,6 @@ public class DateActivity extends AppCompatActivity
         scoreListView.setAdapter(adapter);
     }
 
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

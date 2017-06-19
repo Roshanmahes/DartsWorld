@@ -46,7 +46,6 @@ public class TournamentsListAdapter extends ArrayAdapter<PlayerProperty> {
         ImageView sponsorLogo = (ImageView) convertView.findViewById(R.id.sponsorLogo);
 
         String sponsorLink = "https://firebasestorage.googleapis.com/v0/b/dartsworld-e9f85.appspot.com/o/sponsors%2F" + sponsor + ".png?alt=media";
-
         Picasso.with(mContext).load(sponsorLink).fit().into(sponsorLogo);
 
         tournament.setText(tournamentName);

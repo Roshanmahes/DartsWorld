@@ -4,25 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mprog.nl.a10973710.dartsworld.DateActivity"
     tools:showIn="@layout/app_bar_date">
 
     <TextView
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:id="@+id/tvTournamentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@android:color/black"
         android:hint="Test"/>
+    <!--android:onClick=""-->
 
     <ListView
         android:id="@+id/scoreList"
         android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"
+        android:layout_below="@id/tvTournamentName"
         android:layout_height="match_parent"
-        android:paddingTop="30dp"
         android:divider="@null">
     </ListView>
 

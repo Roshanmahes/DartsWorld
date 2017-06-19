@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:onClick="tournamentClick">
 
     <ImageView
         android:paddingLeft="10dp"
@@ -16,6 +17,7 @@
 
     <TextView
         android:id="@+id/tournamentName"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="20sp"

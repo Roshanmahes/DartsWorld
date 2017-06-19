@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,34 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-
-public class TournamentsActivity extends AppCompatActivity
+public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String TAG = "Tournaments Activity";
-    ArrayList<String> TournamentsList = new ArrayList<String>();
-    ArrayList<String> SponsorList = new ArrayList<String>();
-    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tournaments);
+        setContentView(R.layout.activity_tournament);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Tournaments");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,47 +30,8 @@ public class TournamentsActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        getTournaments();
-    }
-
-    public void getTournaments() {
-
-        DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
-        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
-
-                    ArrayList<PlayerProperty> propertyList = new ArrayList<>();
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Log.d(TAG, "Volgens mij gaat t hier mis");
-                        Tournament post = postSnapshot.getValue(Tournament.class);
-
-                        PlayerProperty property = new PlayerProperty(post.getSponsor(),postSnapshot.getKey());
-                        propertyList.add(property);
-                    }
-
-                    ListView tournamentsView = (ListView) findViewById(R.id.tournamentsView);
-                    TournamentsListAdapter adapter = new TournamentsListAdapter(TournamentsActivity.this, R.layout.adapter_view_tournaments, propertyList);
-                    tournamentsView.setAdapter(adapter);
-
-                } catch (Exception e) {
-                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
-        });
     }
 
     @Override
@@ -106,7 +47,7 @@ public class TournamentsActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.tournaments, menu);
+        getMenuInflater().inflate(R.menu.tournament, menu);
         return true;
     }
 
@@ -151,13 +92,5 @@ public class TournamentsActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void tournamentClick(View view) {
-        TextView tournamentName = (TextView) view.findViewById(R.id.tournamentName);
-
-        Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName.getText());
-        this.startActivity(intent);
     }
 }

@@ -59,6 +59,10 @@
         <activity
             android:name=".TournamentsActivity"
             android:label="@string/title_activity_tournaments"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TournamentActivity"
+            android:label="@string/title_activity_tournament"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

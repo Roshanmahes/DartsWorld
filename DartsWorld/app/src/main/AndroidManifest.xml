@@ -55,6 +55,10 @@
         <activity
             android:name=".RankingActivity"
             android:label="@string/title_activity_ranking"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TournamentsActivity"
+            android:label="@string/title_activity_tournaments"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

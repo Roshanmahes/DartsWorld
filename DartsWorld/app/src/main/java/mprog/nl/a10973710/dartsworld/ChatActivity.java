@@ -126,6 +126,9 @@ public class ChatActivity extends AppCompatActivity
         } else if (id == R.id.nav_info) {
             Intent intent = new Intent(this, InfoActivity.class);
             this.startActivity(intent);
+        } else if (id == R.id.nav_tournaments) {
+            Intent intent = new Intent(this, TournamentsActivity.class);
+            this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

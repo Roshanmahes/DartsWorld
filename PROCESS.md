@@ -211,3 +211,20 @@ Hieronder enkele screenshots van de app tot nu toe.
 Dag 7: De wedstrijden van 02-06-17|  Dag 8: Spelersinformatie: Price G.
 :-------------------------:|:-------------------------:
 ![](/screenshots/Dag7.png) |  ![](/screenshots/Dag8.png)
+
+## Dag 9 (Ma 19-06-17)
+#### 10:00-11:00 Daily Standup
+Planning (vandaag):
+- (Calendar): Eerst kijken of er wedstrijden zijn, daarna pas naar een activity gaan;
+- (Main): De livescores inladen en verwerken;
+- (Players): De spelers op basis van ranking tonen;
+- (Tournaments): Nieuwe optie 'Tournaments' met de desbetreffende toernooi
+informatie toevoegen.
+
+Planning (week):
+- Refresh optie implementeren in MainActivity;
+- Ervoor zorgen dat de juiste wedstrijden (en dus niet teveel) weergegeven worden
+ op een dag;
+- Toernooien met spelers connecten;
+- Verdergaan met chat;
+- Bettercodehub goed gebruiken en de app/code alvast opschonen + bugs fixen.

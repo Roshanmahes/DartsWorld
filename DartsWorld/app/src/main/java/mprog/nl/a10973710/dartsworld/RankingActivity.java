@@ -1,5 +1,6 @@
 package mprog.nl.a10973710.dartsworld;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -86,18 +87,21 @@ public class RankingActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.nav_calendar) {
+            Intent intent = new Intent(this, CalendarActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.nav_players) {
+            Intent intent = new Intent(this, PlayersActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.nav_info) {
+            Intent intent = new Intent(this, InfoActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.nav_tournaments) {
+            Intent intent = new Intent(this, TournamentsActivity.class);
+            this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

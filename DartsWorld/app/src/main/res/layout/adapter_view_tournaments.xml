@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:weightSum="100">
+
+    <ImageView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/sponsorLogo"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="70"/>
+
+    <TextView
+        android:id="@+id/tournamentName"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20sp"
+        android:layout_weight="30"/>
+
+</LinearLayout>

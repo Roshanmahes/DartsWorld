@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this, CalendarActivity.class);
             this.startActivity(intent);
@@ -115,6 +116,9 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(intent);
         } else if (id == R.id.nav_info) {
             Intent intent = new Intent(this, InfoActivity.class);
+            this.startActivity(intent);
+        } else if (id == R.id.nav_tournaments) {
+            Intent intent = new Intent(this, TournamentsActivity.class);
             this.startActivity(intent);
         }
 

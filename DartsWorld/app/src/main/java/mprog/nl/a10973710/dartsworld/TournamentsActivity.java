@@ -32,9 +32,6 @@ public class TournamentsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "Tournaments Activity";
-    ArrayList<String> TournamentsList = new ArrayList<String>();
-    ArrayList<String> SponsorList = new ArrayList<String>();
-    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +46,6 @@ public class TournamentsActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -72,6 +67,7 @@ public class TournamentsActivity extends AppCompatActivity
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Log.d(TAG, "Volgens mij gaat t hier mis");
                         Tournament post = postSnapshot.getValue(Tournament.class);
+                        // dit hoeft niet, gwn get("sponsor") doen
 
                         PlayerProperty property = new PlayerProperty(post.getSponsor(),postSnapshot.getKey());
                         propertyList.add(property);

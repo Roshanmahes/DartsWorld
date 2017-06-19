@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
+        android:onClick="tournamentInfoClick"
         android:textColor="@color/white"
         android:background="@android:color/black"
         android:hint="Test"/>

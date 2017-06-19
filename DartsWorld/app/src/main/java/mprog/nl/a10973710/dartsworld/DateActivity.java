@@ -207,4 +207,12 @@ public class DateActivity extends AppCompatActivity
         intent.putExtra("playerName", playerName);
         this.startActivity(intent);
     }
+
+    public void tournamentInfoClick(View view) {
+        TextView tournamentName = (TextView) findViewById(R.id.tvTournamentName);
+
+        Intent intent = new Intent(this, TournamentActivity.class);
+        intent.putExtra("tournamentName", tournamentName.getText());
+        this.startActivity(intent);
+    }
 }

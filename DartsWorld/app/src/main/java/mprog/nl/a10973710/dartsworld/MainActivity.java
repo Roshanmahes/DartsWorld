@@ -1,6 +1,9 @@
 package mprog.nl.a10973710.dartsworld;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -11,60 +14,90 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String sportItem;
+    private static final String TAG = "MainActivity";
+
+    JSONObject sportItem;
+
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (NetworkInfo anInfo : info)
+                    if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        if (isConnectedToInternet()) {
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
 
-        LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
-        asyncTask.execute("");
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+
+            LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
+            asyncTask.execute("");
+//        } else {
+//            /// Als internet niet aan staat
+//            Log.d(TAG, "Je bent niet verbonden!! :S");
+//            finish();
+//        }
     }
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
+        Log.d(TAG, "Livescore wordt nu opgehaald");
+        Log.d(TAG, liveScoreObj.toString());
 
-        if (liveScoreObj.has("sportItem")) {
-            try {
-                sportItem = liveScoreObj.get("sportItem").toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        TextView liveTournamentName = (TextView) findViewById(R.id.liveTournamentName);
+        ListView liveScoreList = (ListView) findViewById(R.id.liveScoreList);
 
-            // if there are no live matches
-            if (sportItem.equals("[]")) {
-                Log.d(TAG, "HAHA geen wedstrijden");
-            } else {
-                Log.d(TAG, "Er is iets gaande");
+        try {
+            JSONObject sportItem = liveScoreObj.getJSONObject("sportItem");
 
-                try {
-                    liveScoreObj = (JSONObject) liveScoreObj.get("sportItem");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
+            liveTournamentName.setText("Live: ");
+
+        } catch (JSONException e) {
+            liveTournamentName.setText("No live matches");
         }
+    }
+
+    public void tournamentInfoClick(View view) {
+
+        TextView tournamentName = (TextView) view;
+        Intent intent = new Intent(this, TournamentActivity.class);
+        intent.putExtra("tournamentName", tournamentName.getText());
+        this.startActivity(intent);
     }
 
     @Override

@@ -9,13 +9,6 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/chat"
-        android:icon="@mipmap/ic_chat_white_24dp"
-        android:title="@string/chat"
-        android:onClick="goToChat"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

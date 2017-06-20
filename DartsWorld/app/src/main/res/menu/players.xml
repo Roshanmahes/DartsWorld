@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/chat"
-        android:icon="@mipmap/ic_chat_white_24dp"
-        android:title="@string/chat"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

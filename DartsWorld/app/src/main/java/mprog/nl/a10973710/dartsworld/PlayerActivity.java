@@ -72,12 +72,18 @@ public class PlayerActivity extends AppCompatActivity
                 PlayerProperty country = new PlayerProperty("Country", player.country);
                 PlayerProperty born = new PlayerProperty("Born", player.born);
                 PlayerProperty darts = new PlayerProperty("Darts", player.darts);
+                PlayerProperty walkOn = new PlayerProperty("Walk-on", player.walkOn);
                 PlayerProperty money = new PlayerProperty("Money", "£" + player.money);
                 PlayerProperty pos = new PlayerProperty("Position (difference)", String.valueOf(player.currPos)
                         + " (" + String.valueOf(player.prevPos - player.currPos) + ")");
                 PlayerProperty majors = new PlayerProperty("Majors", String.valueOf(player.majors));
                 PlayerProperty champ = new PlayerProperty("World champion", String.valueOf(player.champ));
-                PlayerProperty highAvg = new PlayerProperty("Highest average", String.valueOf(player.highAvg));
+                PlayerProperty highAvg;
+                if (player.highAvg == 0) {
+                    highAvg = new PlayerProperty("Highest average", "N/A");
+                } else {
+                    highAvg = new PlayerProperty("Highest average", String.valueOf(player.highAvg));
+                }
                 PlayerProperty nineDarts = new PlayerProperty("Nine darts (televised)",
                         String.valueOf(player.nineDarts) + " (" + String.valueOf(player.nineDartsTelevised) + ")");
 
@@ -89,6 +95,7 @@ public class PlayerActivity extends AppCompatActivity
                 propertyList.add(country);
                 propertyList.add(born);
                 propertyList.add(darts);
+                propertyList.add(walkOn);
                 propertyList.add(money);
                 propertyList.add(pos);
                 propertyList.add(majors);

@@ -224,7 +224,36 @@ informatie toevoegen.
 Planning (week):
 - Refresh optie implementeren in MainActivity;
 - Ervoor zorgen dat de juiste wedstrijden (en dus niet teveel) weergegeven worden
- op een dag;
+ op een dag [gelukt];
 - Toernooien met spelers connecten;
 - Verdergaan met chat;
 - Bettercodehub goed gebruiken en de app/code alvast opschonen + bugs fixen.
+
+#### 11:00-17:00 TournamentsActivity & TournamentActivity
+Vandaag heb ik twee nieuwe activities gemaakt. De eerste, TournamentsActivity,
+bevat een lijst met toernooien. Je kan op een toernooi klikken, en dan zie je
+de toernooi-informatie. Verder kan je vanuit de kalender een datum selecteren.
+Wanneer je op deze datum klikt, dan zie je de wedstrijden. Bovenaan staat het
+toernooi. Als je op het toernooi klikt, dan krijg je, indien beschikbaar, de
+toernooi-informatie te zien.
+
+Screenshots:
+
+Dag 9: Lijst met toernooien|  Dag 9: Toernooi-informatie
+:-------------------------:|:-------------------------:
+![](/screenshots/Dag9.png) |  ![](/screenshots/Dag9.1.png)
+
+## Dag 10 (Di 20-06-17)
+#### 10:00-11:00 Daily Standup
+Planning voor vandaag:
+- App crasht wanneer internet uitstaat;
+- MainActivity met livescores moet nog gemaakt worden;
+- In CalendarActivity onder de kalender een lijst met toernooien van de maand;
+- Month played toevoegen aan elk toernooi.
+
+#### 11:00-17:00
+
+## Dag 11 (Wo 21-06-17)
+TODO:
+- Een puntje toevoegen als er op die datum een toernooi is;
+- Spelers op basis van ranking tonen.

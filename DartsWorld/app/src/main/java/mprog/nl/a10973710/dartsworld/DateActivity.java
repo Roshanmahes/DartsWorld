@@ -55,6 +55,7 @@ public class DateActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Bundle extras = getIntent().getExtras();
+        String date = extras.getString("date");
 
         try {
             data = new JSONObject(extras.getString("data"));
@@ -64,13 +65,13 @@ public class DateActivity extends AppCompatActivity
 
         try {
             sportItem = data.getJSONObject("sportItem");
-            processData(sportItem);
+            processData(sportItem, date);
         } catch (JSONException e) {
             Toast.makeText(this, "no matches today", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void processData(JSONObject sportItem) {
+    private void processData(JSONObject sportItem, String date) {
         try {
             tournaments = sportItem.getJSONArray("tournaments");
         } catch (JSONException e) {
@@ -92,17 +93,19 @@ public class DateActivity extends AppCompatActivity
                 for (int j = 0; j < events.length(); j++) {
                     JSONObject eventObj = events.getJSONObject(j);
 
-                    String homeScore = eventObj.getJSONObject("homeScore").getString("current");
-                    String awayScore = eventObj.getJSONObject("awayScore").getString("current");
+                    if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
+                        String homeScore = eventObj.getJSONObject("homeScore").getString("current");
+                        String awayScore = eventObj.getJSONObject("awayScore").getString("current");
 
-                    String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
-                    String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+                        String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+                        String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
 
-                    Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
+                        Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
-                    Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
 
-                    matchArrayList.add(match);
+                        matchArrayList.add(match);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

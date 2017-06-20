@@ -3,13 +3,13 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100"
-    android:paddingTop="10dp"
+    android:paddingTop="5dp"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp">
 
     <TextView
         android:id="@+id/player_property_id"
-        android:gravity="left"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -17,8 +17,7 @@
 
     <TextView
         android:id="@+id/player_property_value"
-        android:gravity="left"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_weight="50"/>
 

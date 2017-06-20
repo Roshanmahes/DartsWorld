@@ -66,13 +66,14 @@ public class CalendarActivity extends AppCompatActivity
     }
 
     public void loadData(String date) {
-        DateAsyncTask asyncTask = new DateAsyncTask(this);
+        DateAsyncTask asyncTask = new DateAsyncTask(this, date);
         asyncTask.execute(date);
     }
 
-    public void startDateActivity(String data) {
+    public void startDateActivity(String data, String date) {
         Intent intent = new Intent(this, DateActivity.class);
         intent.putExtra("data", data);
+        intent.putExtra("date", date);
         this.startActivity(intent);
     }
 

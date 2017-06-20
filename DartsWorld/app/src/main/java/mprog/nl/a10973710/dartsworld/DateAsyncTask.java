@@ -2,10 +2,13 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Roshan Mahes on 14-6-2017.
@@ -15,10 +18,12 @@ class DateAsyncTask extends AsyncTask<String, Integer, String>{
 
     private Context context;
     private CalendarActivity calendarAct;
+    private String date;
 
-    DateAsyncTask(CalendarActivity calendarActivity) {
+    DateAsyncTask(CalendarActivity calendarActivity, String date) {
         this.calendarAct = calendarActivity;
         this.context = this.calendarAct.getApplicationContext();
+        this.date = date;
     }
 
     @Override
@@ -28,7 +33,6 @@ class DateAsyncTask extends AsyncTask<String, Integer, String>{
 
     @Override
     protected String doInBackground(String... params) {
-
         String link = "http://www.sofascore.com/darts//" + params[0] + "/json";
         return HttpRequestHelper.downloadFromServer(link);
     }
@@ -46,6 +50,6 @@ class DateAsyncTask extends AsyncTask<String, Integer, String>{
         }
 
         assert scoreObj != null;
-        this.calendarAct.startDateActivity(result);
+        calendarAct.startDateActivity(result, date);
     }
 }

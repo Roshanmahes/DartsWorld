@@ -17,12 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -68,12 +71,14 @@ public class MainActivity extends AppCompatActivity
 
             LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");
+        
 //        } else {
 //            /// Als internet niet aan staat
 //            Log.d(TAG, "Je bent niet verbonden!! :S");
 //            finish();
 //        }
     }
+
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
         Log.d(TAG, "Livescore wordt nu opgehaald");
@@ -158,10 +163,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void goToChat(MenuItem item) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivity(intent);
     }
 }

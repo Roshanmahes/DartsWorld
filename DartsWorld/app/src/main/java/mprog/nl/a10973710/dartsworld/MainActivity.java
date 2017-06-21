@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
             LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");
-        
+
 //        } else {
 //            /// Als internet niet aan staat
 //            Log.d(TAG, "Je bent niet verbonden!! :S");

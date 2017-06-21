@@ -12,5 +12,8 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="Auto refresh"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:checkable="true"
+        android:checked="true" />
+
 </menu>

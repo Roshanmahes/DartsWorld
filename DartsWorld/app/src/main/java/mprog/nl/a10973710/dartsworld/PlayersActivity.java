@@ -67,11 +67,10 @@ public class PlayersActivity extends AppCompatActivity
 
         DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("players");
 
-        playersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        playersDatabase.orderByChild("currPos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
-
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
 

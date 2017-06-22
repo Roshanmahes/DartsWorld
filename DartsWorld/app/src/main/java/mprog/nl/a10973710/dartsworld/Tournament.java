@@ -3,10 +3,10 @@ package mprog.nl.a10973710.dartsworld;
 import java.util.HashMap;
 
 /**
- * Created by Gebruiker on 19-6-2017.
+ * Created by Roshan Mahes on 19-6-2017.
  */
 
-public class Tournament {
+class Tournament {
     private HashMap<String, String> champs;
     private String country;
     private String defendingChamp;
@@ -35,80 +35,43 @@ public class Tournament {
         this.venue = venue;
     }
 
-    public HashMap<String, String> getChamps() {
+    HashMap<String, String> getChamps() {
         return champs;
     }
 
-    public void setChamps(HashMap<String, String> champs) {
-        this.champs = champs;
-    }
-
-    public String getCountry() {
+    String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getDefendingChamp() {
+    String getDefendingChamp() {
         return defendingChamp;
     }
 
-    public void setDefendingChamp(String defendingChamp) {
-        this.defendingChamp = defendingChamp;
-    }
-
-    public int getEstablished() {
+    int getEstablished() {
         return established;
     }
 
-
-    public String getFormat() {
+    String getFormat() {
         return format;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
-
-    public String getLocation() {
+    String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getLogo() {
+    String getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getPrizeMoney() {
+    String getPrizeMoney() {
         return prizeMoney;
     }
 
-    public void setPrizeMoney(String prizeMoney) {
-        this.prizeMoney = prizeMoney;
-    }
-
-    public String getSponsor() {
+    String getSponsor() {
         return sponsor;
     }
 
-    public void setSponsor(String sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    public String getVenue() {
+    String getVenue() {
         return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
     }
 }

@@ -207,8 +207,42 @@ public class DateActivity extends AppCompatActivity
     public void tournamentInfoClick(View view) {
         TextView tournamentName = (TextView) findViewById(R.id.tvTournamentName);
 
+        existsTournamentInfo(tournamentName.getText().toString());
+    }
+
+    public void existsTournamentInfo(final String tournamentName) {
+
+        DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
+
+
+        playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    if (tournamentName.contains(postSnapshot.getKey())) {
+                        tournamentClick(tournamentName);
+                    }
+                }
+//                noTournamentInfo();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.toString());
+            }
+        });
+
+    }
+
+//    private void noTournamentInfo() {
+//        Toast.makeText(this, "No tournament info available", Toast.LENGTH_SHORT).show();
+//    }
+
+    private void tournamentClick(String tournamentName) {
         Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName.getText());
+        intent.putExtra("tournamentName", tournamentName);
         this.startActivity(intent);
     }
 }

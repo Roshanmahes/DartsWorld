@@ -19,6 +19,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,14 +100,48 @@ public class MainActivity extends AppCompatActivity
 
         } catch (JSONException e) {
             liveTournamentName.setText("No live matches");
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.openDrawer(GravityCompat.START);
         }
     }
 
     public void tournamentInfoClick(View view) {
 
         TextView tournamentName = (TextView) view;
+        existsTournamentInfo(tournamentName.getText().toString());
+    }
+
+    public void existsTournamentInfo(final String tournamentName) {
+
+        DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
+
+        playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    if (tournamentName.contains(postSnapshot.getKey())) {
+                        tournamentClick(tournamentName);
+                    }
+                }
+//                noTournamentInfo();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.toString());
+            }
+        });
+
+    }
+
+//    private void noTournamentInfo() {
+//        Toast.makeText(this, "No tournament info available", Toast.LENGTH_SHORT).show();
+//    }
+
+    private void tournamentClick(String tournamentName) {
         Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName.getText());
+        intent.putExtra("tournamentName", tournamentName);
         this.startActivity(intent);
     }
 

@@ -16,8 +16,8 @@
             android:title="@string/players" />
         <item
             android:id="@+id/nav_ranking"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="Ranking" />
+            android:icon="@drawable/ic_pdc"
+            android:title="PDC Order of Merit" />
         <item
             android:id="@+id/nav_tournaments"
             android:icon="@drawable/ic_people_black_24dp"

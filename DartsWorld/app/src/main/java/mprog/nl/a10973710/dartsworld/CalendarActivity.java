@@ -40,6 +40,7 @@ public class CalendarActivity extends AppCompatActivity
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Log.d(TAG, "DE MAAND IS:" + String.valueOf(month));
 
                 // change selected date to API-friendly version
                 String realMonth;
@@ -64,6 +65,8 @@ public class CalendarActivity extends AppCompatActivity
             }
         });
     }
+
+
 
     public void loadData(String date) {
         DateAsyncTask asyncTask = new DateAsyncTask(this, date);

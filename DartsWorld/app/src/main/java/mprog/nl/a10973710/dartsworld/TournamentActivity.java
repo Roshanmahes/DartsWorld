@@ -12,7 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,7 +57,7 @@ public class TournamentActivity extends AppCompatActivity
         getTournamentInfo(extras.getString("tournamentName"));
     }
 
-    private void getTournamentInfo(final String tournamentName) {
+    public void getTournamentInfo(final String tournamentName) {
 
         DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
 
@@ -91,6 +97,8 @@ public class TournamentActivity extends AppCompatActivity
         PlayerProperty prizeMoney = new PlayerProperty("Prize money", tournament.getPrizeMoney());
         PlayerProperty format = new PlayerProperty("Format", tournament.getFormat());
 
+        HashMap<String, String> hash = tournament.getChamps();
+
         ArrayList<PlayerProperty> propertyList = new ArrayList<>();
 
         propertyList.add(tournamentName); propertyList.add(sponsor); propertyList.add(venue);
@@ -103,6 +111,33 @@ public class TournamentActivity extends AppCompatActivity
         ImageView tournamentLogo = (ImageView) findViewById(R.id.tournamentLogo);
         String logoURL = tournament.getLogo();
         Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
+
+        setListener(hash);
+    }
+
+    private void setListener(final HashMap<String, String> hash) {
+        final ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
+        tournamentInfoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // to view all champions
+                if (position == 5 || position == 6) {
+                    ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+
+                    for (Map.Entry<String,String> entry : hash.entrySet()) {
+                        PlayerProperty property = new PlayerProperty(entry.getKey(), entry.getValue());
+                        propertyList.add(property);
+
+                        PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this,
+                                R.layout.adapter_view_player, propertyList);
+                        tournamentInfoList.setAdapter(adapter);
+
+//                        playerListener();
+                    }
+                }
+            }
+        });
     }
 
     @Override

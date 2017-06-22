@@ -9,25 +9,25 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:id="@+id/liveTournamentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:onClick="tournamentInfoClick"
-        android:textColor="@color/white"
         android:background="@android:color/black"
-        android:hint="Test"/>
+        android:gravity="center"
+        android:hint="Test"
+        android:onClick="tournamentInfoClick"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/liveScoreList"
-        android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_below="@id/liveTournamentName"
         android:layout_height="match_parent"
-        android:divider="@null">
+        android:layout_below="@id/liveTournamentName"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent">
     </ListView>
 
 </RelativeLayout>

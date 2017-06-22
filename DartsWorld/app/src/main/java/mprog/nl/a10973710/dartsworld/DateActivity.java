@@ -162,6 +162,9 @@ public class DateActivity extends AppCompatActivity
         } else if (id == R.id.nav_tournaments) {
             Intent intent = new Intent(this, TournamentsActivity.class);
             this.startActivity(intent);
+        } else if (id == R.id.nav_ranking) {
+            Intent intent = new Intent(this, RankingActivity.class);
+            this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

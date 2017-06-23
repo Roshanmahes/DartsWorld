@@ -14,18 +14,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class RankingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "RankingActivity";
+    ArrayList<String> PlayerList = new ArrayList<String>();
+    ArrayList<String> PlayerKeyList = new ArrayList<String>();
+    ArrayList<Integer> DifferenceList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PDC Order of Merit");
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -35,7 +50,59 @@ public class RankingActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getPlayerInfo();
     }
+
+    public void getPlayerInfo() {
+
+        DatabaseReference playersDatabase = FirebaseDatabase.getInstance().getReference().child("players");
+
+        playersDatabase.orderByChild("currPos").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<PlayerProperty> pList = new ArrayList<>();
+                Log.d(TAG, "ik ga nu naar binnen");
+                try {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        Player post = postSnapshot.getValue(Player.class);
+
+                        PlayerKeyList.add(postSnapshot.getKey());
+                        PlayerList.add(String.valueOf(post.getFullName()));
+                        DifferenceList.add(post.getCurrPos() - post.getPrevPos());
+                        int difference = post.getCurrPos() - post.getPrevPos();
+                        PlayerProperty player = new PlayerProperty(String.valueOf(difference), post.getFullName());
+                        pList.add(player);
+                    }
+
+                    RankingListAdapter adapter = new RankingListAdapter(RankingActivity.this, R.layout.adapter_view_ranking, pList);
+                    Log.d(TAG, "mis?");
+                    ListView rankingList = (ListView) findViewById(R.id.rankingList);
+                    rankingList.setAdapter(adapter);
+                    Log.d(TAG,"ben ik hier?");
+
+//                    setPlayerInfo(PlayerList, DifferenceList);
+
+                } catch (Exception e) {
+                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.toString());
+            }
+        });
+    }
+
+//    private void setPlayerInfo(ArrayList<String> playerList, ArrayList<Integer> differenceList) {
+//        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(this,
+//                R.layout.adapter_view_ranking, playerList);
+//
+//        ListView playerListView = (ListView) findViewById(R.id.rankingListView);
+//
+//        playerListView.setAdapter(mArrayAdapter);
+//    }
 
 //    playersDatabase = (DatabaseReference) playersDatabase.orderByChild("currPos");
 //        Log.d(TAG, "my databse: " + playersDatabase.orderByChild("currPos").toString());

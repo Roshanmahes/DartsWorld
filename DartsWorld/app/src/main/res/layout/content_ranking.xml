@@ -19,7 +19,7 @@
 
     <ListView
         android:layout_below="@id/position"
-        android:id="@+id/rankingListView"
+        android:id="@+id/rankingList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

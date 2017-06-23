@@ -36,4 +36,20 @@ class Player {
     String getFullName() {
         return fullName;
     }
+
+    public int getCurrPos() {
+        return currPos;
+    }
+
+    public void setCurrPos(int currPos) {
+        this.currPos = currPos;
+    }
+
+    public int getPrevPos() {
+        return prevPos;
+    }
+
+    public void setPrevPos(int prevPos) {
+        this.prevPos = prevPos;
+    }
 }

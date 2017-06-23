@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.logging.Handler;
 
 import static android.content.ContentValues.TAG;
+import static mprog.nl.a10973710.dartsworld.R.id.liveTournamentName;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,8 +96,39 @@ public class MainActivity extends AppCompatActivity
 
         try {
             JSONObject sportItem = liveScoreObj.getJSONObject("sportItem");
+            JSONArray tournaments = sportItem.getJSONArray("tournaments");
+            ArrayList<Match> matchArrayList = new ArrayList<>();
 
-            liveTournamentName.setText("Live: ");
+            for (int i = 0; i < tournaments.length(); i++) {
+                try {
+                    JSONObject tournamentObj = tournaments.getJSONObject(i);
+                    String tournamentName = tournamentObj.getJSONObject("tournament").getString("name");
+
+                    liveTournamentName.setText("Live: " + tournamentName);
+
+                    JSONArray events = tournamentObj.getJSONArray("events");
+                    for (int j = 0; j < events.length(); j++) {
+                        JSONObject eventObj = events.getJSONObject(j);
+
+                        String homeScore = eventObj.getJSONObject("homeScore").getString("current");
+                        String awayScore = eventObj.getJSONObject("awayScore").getString("current");
+
+                        String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+                        String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+
+                        Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
+
+                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+
+                        matchArrayList.add(match);
+                        }
+                    } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchArrayList);
+            liveScoreList.setAdapter(adapter);
 
         } catch (JSONException e) {
             liveTournamentName.setText("No live matches");

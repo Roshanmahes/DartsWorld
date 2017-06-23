@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -30,7 +31,7 @@ public class RankingActivity extends AppCompatActivity
 
     private static final String TAG = "RankingActivity";
     ArrayList<String> PlayerList = new ArrayList<String>();
-    ArrayList<String> PlayerKeyList = new ArrayList<String>();
+    ArrayList<String> playerKeyList = new ArrayList<String>();
     ArrayList<Integer> DifferenceList = new ArrayList<>();
 
     @Override
@@ -52,6 +53,8 @@ public class RankingActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getPlayerInfo();
+
+        setListener(playerKeyList);
     }
 
     public void getPlayerInfo() {
@@ -67,7 +70,7 @@ public class RankingActivity extends AppCompatActivity
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
 
-                        PlayerKeyList.add(postSnapshot.getKey());
+                        playerKeyList.add(postSnapshot.getKey());
                         PlayerList.add(String.valueOf(post.getFullName()));
                         DifferenceList.add(post.getCurrPos() - post.getPrevPos());
                         int difference = post.getCurrPos() - post.getPrevPos();
@@ -90,6 +93,25 @@ public class RankingActivity extends AppCompatActivity
                 Log.d(TAG, databaseError.toString());
             }
         });
+    }
+
+    private void setListener(final ArrayList<String> playerKeyList) {
+        ListView rankingList = (ListView) findViewById(R.id.rankingList);
+        rankingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String playerName =  playerKeyList.get(position);
+                startPlayerActivity(playerName);
+            }
+
+        });
+    }
+
+    public void startPlayerActivity(String playerName) {
+        Intent intent = new Intent(this, PlayerActivity.class);
+        intent.putExtra("playerName", playerName);
+        this.startActivity(intent);
     }
 
 //    private void setPlayerInfo(ArrayList<String> playerList, ArrayList<Integer> differenceList) {

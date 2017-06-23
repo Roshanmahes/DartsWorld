@@ -45,9 +45,9 @@ public class RankingListAdapter extends ArrayAdapter<PlayerProperty>{
         nameTextView.setText(name);
 
         ImageView diffImg = (ImageView) convertView.findViewById(R.id.diffImg);
-        if (Integer.parseInt(difference) > 0) {
+        if (Integer.parseInt(difference) < 0) {
             diffImg.setImageResource(R.drawable.ic_rise);
-        } else if (Integer.parseInt(difference) < 0) {
+        } else if (Integer.parseInt(difference) > 0) {
             diffImg.setImageResource(R.drawable.ic_drop);
         } else {
             diffImg.setImageResource(R.drawable.ic_stable);

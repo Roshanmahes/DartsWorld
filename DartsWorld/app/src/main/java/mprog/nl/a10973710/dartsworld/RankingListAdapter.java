@@ -38,16 +38,21 @@ public class RankingListAdapter extends ArrayAdapter<PlayerProperty>{
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        TextView diffTextView = (TextView) convertView.findViewById(R.id.position);
+        TextView positionTextView = (TextView) convertView.findViewById(R.id.position);
         TextView nameTextView = (TextView) convertView.findViewById(R.id.name);
 
-        diffTextView.setText(String.valueOf(position+1));
+        positionTextView.setText(String.valueOf(position+1));
         nameTextView.setText(name);
 
         ImageView diffImg = (ImageView) convertView.findViewById(R.id.diffImg);
-        diffImg.setImageResource(R.drawable.ic_rise);
+        if (Integer.parseInt(difference) > 0) {
+            diffImg.setImageResource(R.drawable.ic_rise);
+        } else if (Integer.parseInt(difference) < 0) {
+            diffImg.setImageResource(R.drawable.ic_drop);
+        } else {
+            diffImg.setImageResource(R.drawable.ic_stable);
+        }
 
-        Log.d(TAG, "Wat doe ik hier?");
         return convertView;
     }
 }

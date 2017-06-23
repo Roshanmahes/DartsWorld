@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="10dp"
-    android:paddingLeft="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mprog.nl.a10973710.dartsworld.RankingActivity"
     tools:showIn="@layout/app_bar_ranking">
 
     <TextView
+        android:paddingLeft="10dp"
         android:id="@+id/position"
-        android:layout_width="match_parent"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="#"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/position"
+        android:textStyle="bold"
+        android:text="Name"/>
+
     <ListView
+        android:paddingTop="5dp"
         android:layout_below="@id/position"
         android:id="@+id/rankingList"
         android:layout_width="match_parent"

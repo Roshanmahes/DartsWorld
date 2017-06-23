@@ -62,7 +62,7 @@ public class RankingActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<PlayerProperty> pList = new ArrayList<>();
-                Log.d(TAG, "ik ga nu naar binnen");
+
                 try {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Player post = postSnapshot.getValue(Player.class);
@@ -76,12 +76,9 @@ public class RankingActivity extends AppCompatActivity
                     }
 
                     RankingListAdapter adapter = new RankingListAdapter(RankingActivity.this, R.layout.adapter_view_ranking, pList);
-                    Log.d(TAG, "mis?");
                     ListView rankingList = (ListView) findViewById(R.id.rankingList);
                     rankingList.setAdapter(adapter);
-                    Log.d(TAG,"ben ik hier?");
 
-//                    setPlayerInfo(PlayerList, DifferenceList);
 
                 } catch (Exception e) {
                     Log.e(TAG, "Exception e = " + e.getLocalizedMessage());

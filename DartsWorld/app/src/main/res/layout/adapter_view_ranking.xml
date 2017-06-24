@@ -17,8 +17,9 @@
     <ImageView
         android:layout_toRightOf="@id/position"
         android:id="@+id/diffImg"
-        android:layout_width="20dp"
-        android:layout_height="20dp" />
+        android:paddingTop="4dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp" />
 
     <TextView
         android:id="@+id/name"

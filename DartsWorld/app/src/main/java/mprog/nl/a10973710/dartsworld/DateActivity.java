@@ -93,30 +93,52 @@ public class DateActivity extends AppCompatActivity
                 for (int j = 0; j < events.length(); j++) {
                     JSONObject eventObj = events.getJSONObject(j);
 
-                    if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
-                        String homeScore = eventObj.getJSONObject("homeScore").getString("current");
-                        String awayScore = eventObj.getJSONObject("awayScore").getString("current");
 
-                        String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
-                        String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+                    try {
+                        if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
+                            String homeScore = eventObj.getJSONObject("homeScore").getString("current");
+                            String awayScore = eventObj.getJSONObject("awayScore").getString("current");
 
-                        Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
+                            String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+                            String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
 
-                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+                            Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
-                        matchArrayList.add(match);
+                            String startTime = eventObj.getString("startTime");
+
+                            Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
+
+                            matchArrayList.add(match);
+                        }
+                    } catch (JSONException e) {
+                        try {
+                            if (!eventObj.getJSONObject("changes").has("changeDate")) {
+                                String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+                                String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+
+                                String startTime = eventObj.getString("startTime");
+
+                                Log.d(TAG, "HIERRR" + homeTeam + awayTeam + startTime);
+
+                                Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
+
+                                matchArrayList.add(match);
+                            }
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
+
+                MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchArrayList);
+                scoreListView.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-        MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchArrayList);
-        scoreListView.setAdapter(adapter);
     }
 
-    @Override
+            @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {

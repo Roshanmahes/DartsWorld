@@ -257,3 +257,12 @@ Planning voor vandaag:
 TODO:
 - Een puntje toevoegen als er op die datum een toernooi is;
 - Spelers op basis van ranking tonen.
+
+## Dag 12 (Do 22-06-17)
+
+
+## Dag 13 (Vr 23-06-17)
+
+
+#### 15:00-17:00 Presentaties
+-

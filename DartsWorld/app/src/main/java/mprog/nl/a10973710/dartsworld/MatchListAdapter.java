@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -36,7 +38,9 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         String homeTeam = getItem(position).getHomeTeam();
         String awayTeam = getItem(position).getAwayTeam();
 
-        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+        String startTime = getItem(position).getStartTime();
+
+        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -45,6 +49,7 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         TextView tvAwayScore = (TextView) convertView.findViewById(R.id.tvAwayScore);
         TextView tvHomeTeam = (TextView) convertView.findViewById(R.id.tvHomeTeam);
         TextView tvAwayTeam = (TextView) convertView.findViewById(R.id.tvAwayTeam);
+        TextView tvStartTime = (TextView) convertView.findViewById(R.id.tvStartTime);
 
         tvHomeScore.setHint(homeTeam);
         tvAwayScore.setHint(awayTeam);
@@ -55,22 +60,25 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         tvAwayScore.setText(awayScore);
         tvHomeTeam.setText(homeTeam);
         tvAwayTeam.setText(awayTeam);
+        tvStartTime.setText(startTime);
 
-        if (Integer.parseInt(homeScore) < Integer.parseInt(awayScore)) {
-            tvHomeScore.setBackgroundResource(R.color.colorPrimary);
-            tvHomeTeam.setBackgroundResource(R.color.colorPrimary);
-            tvAwayScore.setBackgroundResource(R.color.colorAccent);
-            tvAwayTeam.setBackgroundResource(R.color.colorAccent);
-        } else if (Integer.parseInt(homeScore) > Integer.parseInt(awayScore)) {
-            tvHomeScore.setBackgroundResource(R.color.colorAccent);
-            tvHomeTeam.setBackgroundResource(R.color.colorAccent);
-            tvAwayScore.setBackgroundResource(R.color.colorPrimary);
-            tvAwayTeam.setBackgroundResource(R.color.colorPrimary);
-        } else {
-            tvHomeScore.setBackgroundResource(R.color.yellow);
-            tvHomeTeam.setBackgroundResource(R.color.yellow);
-            tvAwayScore.setBackgroundResource(R.color.yellow);
-            tvAwayTeam.setBackgroundResource(R.color.yellow);
+        if (homeScore != "-" && awayScore != "-") {
+            if (Integer.parseInt(homeScore) < Integer.parseInt(awayScore)) {
+                tvHomeScore.setBackgroundResource(R.color.colorPrimary);
+                tvHomeTeam.setBackgroundResource(R.color.colorPrimary);
+                tvAwayScore.setBackgroundResource(R.color.colorAccent);
+                tvAwayTeam.setBackgroundResource(R.color.colorAccent);
+            } else if (Integer.parseInt(homeScore) > Integer.parseInt(awayScore)) {
+                tvHomeScore.setBackgroundResource(R.color.colorAccent);
+                tvHomeTeam.setBackgroundResource(R.color.colorAccent);
+                tvAwayScore.setBackgroundResource(R.color.colorPrimary);
+                tvAwayTeam.setBackgroundResource(R.color.colorPrimary);
+            } else {
+                tvHomeScore.setBackgroundResource(R.color.yellow);
+                tvHomeTeam.setBackgroundResource(R.color.yellow);
+                tvAwayScore.setBackgroundResource(R.color.yellow);
+                tvAwayTeam.setBackgroundResource(R.color.yellow);
+            }
         }
 
         return convertView;

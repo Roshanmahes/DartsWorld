@@ -34,6 +34,7 @@ import java.util.logging.Handler;
 
 import static android.content.ContentValues.TAG;
 import static mprog.nl.a10973710.dartsworld.R.id.liveTournamentName;
+import static mprog.nl.a10973710.dartsworld.R.id.start;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -118,7 +119,9 @@ public class MainActivity extends AppCompatActivity
 
                         Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
-                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
+                        String startTime = eventObj.getString("startTime");
+
+                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
 
                         matchArrayList.add(match);
                         }
@@ -135,6 +138,41 @@ public class MainActivity extends AppCompatActivity
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.START);
         }
+    }
+
+    public void playerClick(View view) {
+        Log.d(TAG, "Kom ik wel binnen?");
+
+        TextView textView = (TextView) view;
+        String playerName = textView.getHint().toString();
+        Log.d(TAG, "Dit is playerName: " + playerName);
+        playerName = playerName.replace(".","");
+        Log.d(TAG, "Dit is playerName: " + playerName);
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        final String finalPlayerName = playerName;
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.child("players").hasChild(finalPlayerName)) {
+                    startPlayerActivity(finalPlayerName);
+                } else {
+                    Context context = getApplicationContext();
+                    Toast.makeText(context, "No player information available.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "Something went wrong:", databaseError.toException());
+            }
+        });
+    }
+
+    public void startPlayerActivity(String playerName) {
+        Intent intent = new Intent(this, PlayerActivity.class);
+        intent.putExtra("playerName", playerName);
+        this.startActivity(intent);
     }
 
     public void tournamentInfoClick(View view) {

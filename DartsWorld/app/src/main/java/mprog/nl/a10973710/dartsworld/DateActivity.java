@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -34,7 +33,6 @@ public class DateActivity extends AppCompatActivity
 
     private static final String TAG = "DateActivity";
     JSONObject data;
-    JSONObject sportItem;
     JSONArray tournaments;
     String tournamentName;
 
@@ -59,26 +57,23 @@ public class DateActivity extends AppCompatActivity
 
         try {
             data = new JSONObject(extras.getString("data"));
+            tournaments = data.getJSONObject("sportItem").getJSONArray("tournaments");
+            processData(tournaments, date);
         } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            sportItem = data.getJSONObject("sportItem");
-            processData(sportItem, date);
-        } catch (JSONException e) {
-            Toast.makeText(this, "no matches today", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "There are no matches today.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void processData(JSONObject sportItem, String date) {
-        try {
-            tournaments = sportItem.getJSONArray("tournaments");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    private void processData(JSONArray tournaments, String date) {
 
-        ListView scoreListView = (ListView) findViewById(R.id.scoreList);
+        ListView scoreList = (ListView) findViewById(R.id.scoreList);
+        ArrayList<Match> matchList = getMatches(tournaments, date);
+        MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchList);
+        scoreList.setAdapter(adapter);
+    }
+
+    private ArrayList<Match> getMatches(JSONArray tournaments, String date) {
+
         ArrayList<Match> matchArrayList = new ArrayList<>();
 
         for (int i = 0; i < tournaments.length(); i++) {
@@ -91,54 +86,35 @@ public class DateActivity extends AppCompatActivity
 
                 JSONArray events = tournamentObj.getJSONArray("events");
                 for (int j = 0; j < events.length(); j++) {
+
                     JSONObject eventObj = events.getJSONObject(j);
 
+                    String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+                    String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+                    String startTime = eventObj.getString("startTime");
 
-                    try {
-                        if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
-                            String homeScore = eventObj.getJSONObject("homeScore").getString("current");
-                            String awayScore = eventObj.getJSONObject("awayScore").getString("current");
+                    if (!eventObj.getJSONObject("changes").has("changeDate")) {
 
-                            String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
-                            String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+                        Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
+                        matchArrayList.add(match);
 
-                            Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
+                    } else if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
 
-                            String startTime = eventObj.getString("startTime");
+                        String homeScore = eventObj.getJSONObject("homeScore").getString("current");
+                        String awayScore = eventObj.getJSONObject("awayScore").getString("current");
 
-                            Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
-
-                            matchArrayList.add(match);
-                        }
-                    } catch (JSONException e) {
-                        try {
-                            if (!eventObj.getJSONObject("changes").has("changeDate")) {
-                                String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
-                                String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
-
-                                String startTime = eventObj.getString("startTime");
-
-                                Log.d(TAG, "HIERRR" + homeTeam + awayTeam + startTime);
-
-                                Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
-
-                                matchArrayList.add(match);
-                            }
-                        } catch (JSONException e1) {
-                            e1.printStackTrace();
-                        }
+                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
+                        matchArrayList.add(match);
                     }
                 }
-
-                MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchArrayList);
-                scoreListView.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+        return matchArrayList;
     }
 
-            @Override
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -146,21 +122,6 @@ public class DateActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -195,13 +156,10 @@ public class DateActivity extends AppCompatActivity
     }
 
     public void playerClick(View view) {
-        Log.d(TAG, "Kom ik wel binnen?");
 
         TextView textView = (TextView) view;
         String playerName = textView.getHint().toString();
-        Log.d(TAG, "Dit is playerName: " + playerName);
         playerName = playerName.replace(".","");
-        Log.d(TAG, "Dit is playerName: " + playerName);
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         final String finalPlayerName = playerName;
@@ -239,7 +197,6 @@ public class DateActivity extends AppCompatActivity
 
         DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
 
-
         playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -250,7 +207,6 @@ public class DateActivity extends AppCompatActivity
                         tournamentClick(tournamentName);
                     }
                 }
-//                noTournamentInfo();
             }
 
             @Override
@@ -260,10 +216,6 @@ public class DateActivity extends AppCompatActivity
         });
 
     }
-
-//    private void noTournamentInfo() {
-//        Toast.makeText(this, "No tournament info available", Toast.LENGTH_SHORT).show();
-//    }
 
     private void tournamentClick(String tournamentName) {
         Intent intent = new Intent(this, TournamentActivity.class);

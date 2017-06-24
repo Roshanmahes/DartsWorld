@@ -2,6 +2,7 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -10,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,18 +21,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+
+/**
+ * Created by Roshan Mahes on 8-6-2017.
+ */
 
 public class PlayersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private DatabaseReference mDatabase;
-    private StorageReference mStorageRef;
     private static final String TAG = "PlayersActivity";
-    private ListView listView;
 
     ArrayList<String> PlayerList = new ArrayList<String>();
     ArrayList<String> PlayerKeyList = new ArrayList<String>();
@@ -54,10 +53,6 @@ public class PlayersActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-
-        // retrieve player info
         getPlayerInfo();
 
         setListener(PlayerKeyList);
@@ -130,24 +125,9 @@ public class PlayersActivity extends AppCompatActivity
         this.startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -160,17 +140,16 @@ public class PlayersActivity extends AppCompatActivity
         } else if (id == R.id.nav_players) {
             Intent intent = new Intent(this, PlayersActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.nav_info) {
-            Intent intent = new Intent(this, InfoActivity.class);
+        } else if (id == R.id.nav_ranking) {
+            Intent intent = new Intent(this, RankingActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_tournaments) {
             Intent intent = new Intent(this, TournamentsActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
-            Intent intent = new Intent(this, RankingActivity.class);
+        } else if (id == R.id.nav_info) {
+            Intent intent = new Intent(this, InfoActivity.class);
             this.startActivity(intent);
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

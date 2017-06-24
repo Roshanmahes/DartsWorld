@@ -1,5 +1,6 @@
 # DartsWorld
-Programmeerproject: Darts app - Roshan Mahes [![BCH compliance](https://bettercodehub.com/edge/badge/Roshanmahes/dartsWorld?branch=master)](https://bettercodehub.com/)
+Programmeerproject: Darts app - Roshan Mahes <br>
+[![BCH compliance](https://bettercodehub.com/edge/badge/Roshanmahes/dartsWorld?branch=master)](https://bettercodehub.com/)
 
 Deze app is bedoeld voor mensen die veel van darts houden. Ze willen naar de
 wedstrijd kijken, maar kunnen dit om een of andere reden niet doen. Of ze zijn

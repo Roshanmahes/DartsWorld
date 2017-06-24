@@ -251,18 +251,67 @@ Planning voor vandaag:
 - In CalendarActivity onder de kalender een lijst met toernooien van de maand;
 - Month played toevoegen aan elk toernooi.
 
-#### 11:00-17:00
+#### 11:00-16:00 MainActivity (1)
+- Ik heb met Wouter een oplossing bedacht om de app niet te laten crashen. Het
+begin van de code staat weggecomment in de MainActivity, dit ga ik volgende week
+afmaken;
+- Begin gemaakt aan de MainActivity.
 
 ## Dag 11 (Wo 21-06-17)
-TODO:
-- Een puntje toevoegen als er op die datum een toernooi is;
-- Spelers op basis van ranking tonen.
+#### 10:00-11:00 Daily Standup
+Bettercodehub gecheckt, feedback (voor volgende week):
+- Voortaan in 1 taal committen (Nederlands);
+- Kopjes toevoegen in DESIGN.md;
+- De namen in de map 'doc' veranderen;
+- De namen van de classes TournamentsActivity en PlayersActivity veranderen in TournamentListActivity en PlayerListActivity;
+- Code verbeteren (5/10).
 
-## Dag 12 (Do 22-06-17)
+#### 11:00-16:00 Logo
+- Verder gewwerkt aan MainActivity;
+- Ik heb de logo van mijn app gemaakt;
+- De kleuren van mijn app heb ik een beetje aangepast;
+- Het logo is nu ook te zien in het Hamburger-menu.
 
+Dag 11: Het logo van mijn app, DartsWorld|
+:-------------------------:|
+![](/screenshots/Dag11.png) |
 
-## Dag 13 (Vr 23-06-17)
+ Dag 11: Het bijgewerkte Hamburger-menu.|
+ :-------------------------:|
+ ![](/screenshots/Dag11.1.png)|
 
+## Dag 12 (Do 22-06-17) MainActivity en RankingActivity
+- Ik heb besloten toch de chat niet te implementeren, aangezien de tutorial wat
+verouderd was en ik mogelijk tegen veel problemen aan zou kijken. Verder was
+deze chat een extra feature, dus minder belangrijk. Diverse stukken code voor de
+chat heb ik dan ook verwijderd;
+- De MainActivity laat nu als het goed is livescores zien (ik kan dit nog niet
+  checken omdat er pas vrijdag darts is).
+- Begin gemaakt aan RankingActivity, waar de spelers op basis van hun rang getoond
+dienen te worden;
+- Een probleem met Bettercodehub is nu verholpen.
+
+## Dag 13 (Vr 23-06-17) Beta-versie
+Ik heb de volgende dingen gedaan:
+- Een lijst PDC Order of Merit gemaakt. Als je deze optie selecteert, krijg je
+nu de laatst ingevoerde ranking te zien (wordt opgehaald uit Firebase).
+- Begin gemaakt aan auto-refresh optie;
+- Alle functionaliteit zit nu in mijn app, behalve de auto refresh optie, en
+een lijst met toernooien van de maand onder de kalender;
+- Livescore bleek niet te werken, ik heb het aangepast, maar na ongeveer 1 minuut
+werkt het niet meer.
+
+Screenshots:
+
+Dag 13: PDC Order of Merit|  Dag 13: De Livescore doet het even!
+:-------------------------:|:-------------------------:
+![](/screenshots/Dag13.png) |  ![](/screenshots/Dag13.1.png)
 
 #### 15:00-17:00 Presentaties
--
+Feedback:
+- Ik moet een nieuwe kalender uitzoeken die de maand bijhoudt, opdat ik daaronder
+een lijst met alle toernooien van die maand kan laten zien.
+- Oriëntatie moet vastgezet worden op Portrait i.v.m. lelijke layout in
+Landscape-modus.
+
+## Weekend

@@ -3,17 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/refresh"
-        android:icon="@mipmap/ic_refresh_white_24dp"
-        android:title="@string/refresh"
-        app:showAsAction="always"/>
-
-    <item
-        android:id="@+id/action_settings"
+        android:id="@+id/saveData"
         android:orderInCategory="100"
-        android:title="Auto refresh"
+        android:title="Save Data Usage"
         app:showAsAction="never"
         android:checkable="true"
-        android:checked="true" />
+        android:onClick="switchDataSaver" />
 
 </menu>

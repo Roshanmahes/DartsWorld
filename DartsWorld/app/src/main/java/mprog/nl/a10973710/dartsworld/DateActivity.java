@@ -54,25 +54,26 @@ public class DateActivity extends AppCompatActivity
 
         Bundle extras = getIntent().getExtras();
         String date = extras.getString("date");
+        String formatedDate = extras.getString("formatedDate");
 
         try {
             data = new JSONObject(extras.getString("data"));
             tournaments = data.getJSONObject("sportItem").getJSONArray("tournaments");
-            processData(tournaments, date);
+            processData(tournaments, date, formatedDate);
         } catch (JSONException e) {
             Toast.makeText(this, "There are no matches today.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void processData(JSONArray tournaments, String date) {
+    private void processData(JSONArray tournaments, String date, String formatedDate) {
 
         ListView scoreList = (ListView) findViewById(R.id.scoreList);
-        ArrayList<Match> matchList = getMatches(tournaments, date);
+        ArrayList<Match> matchList = getMatches(tournaments, date, formatedDate);
         MatchListAdapter adapter = new MatchListAdapter(this, R.layout.score_item, matchList);
         scoreList.setAdapter(adapter);
     }
 
-    private ArrayList<Match> getMatches(JSONArray tournaments, String date) {
+    private ArrayList<Match> getMatches(JSONArray tournaments, String date, String formatedDate) {
 
         ArrayList<Match> matchArrayList = new ArrayList<>();
 
@@ -89,28 +90,47 @@ public class DateActivity extends AppCompatActivity
 
                     JSONObject eventObj = events.getJSONObject(j);
 
-                    String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
-                    String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
-                    String startTime = eventObj.getString("startTime");
-
-                    if (!eventObj.getJSONObject("changes").has("changeDate")) {
-
-                        Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
-                        matchArrayList.add(match);
-
-                    } else if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
-
-                        String homeScore = eventObj.getJSONObject("homeScore").getString("current");
-                        String awayScore = eventObj.getJSONObject("awayScore").getString("current");
-
-                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
-                        matchArrayList.add(match);
+                    if (eventObj.has("formatedDate")) {
+                        if (eventObj.get("formatedDate").toString().contains(formatedDate)) {
+                            matchArrayList = setMatch(eventObj, matchArrayList, date);
+                        }
+                    } else if (eventObj.has("formatedStartDate")) {
+                        if (eventObj.get("formatedStartDate").toString().contains(formatedDate)) {
+                            matchArrayList = setMatch(eventObj, matchArrayList, date);
+                        }
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+        return matchArrayList;
+    }
+
+    private ArrayList<Match> setMatch(JSONObject eventObj, ArrayList<Match> matchArrayList, String date) {
+
+        try {
+            String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
+            String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
+            String startTime = eventObj.getString("startTime");
+
+            if (!eventObj.getJSONObject("changes").has("changeDate")) {
+
+                Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
+                matchArrayList.add(match);
+
+            } else if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
+
+                String homeScore = eventObj.getJSONObject("homeScore").getString("current");
+                String awayScore = eventObj.getJSONObject("awayScore").getString("current");
+
+                Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
+                matchArrayList.add(match);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return matchArrayList;
     }
 

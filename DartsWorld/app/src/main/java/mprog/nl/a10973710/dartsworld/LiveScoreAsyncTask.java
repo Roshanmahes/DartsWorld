@@ -16,17 +16,14 @@ import static android.content.ContentValues.TAG;
 
 class LiveScoreAsyncTask extends AsyncTask<String, Integer, String>{
 
-    private Context context;
     private MainActivity mainAct;
 
     LiveScoreAsyncTask(MainActivity main) {
         this.mainAct = main;
-        this.context = this.mainAct.getApplicationContext();
     }
 
     @Override
     protected void onPreExecute() {
-        Toast.makeText(context, "retrieving data...", Toast.LENGTH_SHORT).show();
     }
 
     @Override

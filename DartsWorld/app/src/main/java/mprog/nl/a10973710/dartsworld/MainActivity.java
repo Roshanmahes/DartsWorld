@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
+    int refreshTime = 1000;
 
     JSONObject sportItem;
 
@@ -77,8 +78,35 @@ public class MainActivity extends AppCompatActivity
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
+            final LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");
+
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(refreshTime);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(MainActivity.this);
+                                asyncTask.execute("");
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
+
+//        finish();
+//        startActivity(getIntent());
 
 //        } else {
 //            /// Als internet niet aan staat
@@ -135,8 +163,6 @@ public class MainActivity extends AppCompatActivity
 
         } catch (JSONException e) {
             liveTournamentName.setText("No live matches");
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.openDrawer(GravityCompat.START);
         }
     }
 
@@ -232,20 +258,20 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -276,5 +302,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void switchDataSaver(MenuItem item) {
+        if (item.isChecked()) {
+            item.setChecked(false);
+        } else {
+            refreshTime = 10000;
+            item.setChecked(true);
+
+        }
     }
 }

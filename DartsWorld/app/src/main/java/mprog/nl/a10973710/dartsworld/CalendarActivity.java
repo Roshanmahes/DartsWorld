@@ -18,6 +18,7 @@ public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "CalendarActivity";
+    String formatedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class CalendarActivity extends AppCompatActivity
                 }
 
                 String date = year + "-" + realMonth + "-" + realDay;
+                formatedDate = realDay + "." + realMonth + "." + year + ".";
 
                 loadData(date);
             }
@@ -77,6 +79,7 @@ public class CalendarActivity extends AppCompatActivity
         Intent intent = new Intent(this, DateActivity.class);
         intent.putExtra("data", data);
         intent.putExtra("date", date);
+        intent.putExtra("formatedDate", formatedDate);
         this.startActivity(intent);
     }
 
@@ -90,20 +93,20 @@ public class CalendarActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

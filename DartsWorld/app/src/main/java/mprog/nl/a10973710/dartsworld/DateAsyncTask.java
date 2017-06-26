@@ -2,13 +2,10 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Roshan Mahes on 14-6-2017.

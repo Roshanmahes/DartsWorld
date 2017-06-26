@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     int refreshTime = 1000;
 
-    JSONObject sportItem;
-
     public boolean isConnectedToInternet(){
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null)

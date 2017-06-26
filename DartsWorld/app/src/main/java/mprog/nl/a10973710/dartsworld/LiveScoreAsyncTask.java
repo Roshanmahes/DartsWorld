@@ -1,9 +1,7 @@
 package mprog.nl.a10973710.dartsworld;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,17 +16,10 @@ class LiveScoreAsyncTask extends AsyncTask<String, Integer, String>{
 
     private MainActivity mainAct;
 
-    LiveScoreAsyncTask(MainActivity main) {
-        this.mainAct = main;
-    }
-
-    @Override
-    protected void onPreExecute() {
-    }
+    LiveScoreAsyncTask(MainActivity main) { this.mainAct = main; }
 
     @Override
     protected String doInBackground(String... params) {
-
         String link = "http://www.sofascore.com/darts/livescore/json";
         return HttpRequestHelper.downloadFromServer(link);
     }

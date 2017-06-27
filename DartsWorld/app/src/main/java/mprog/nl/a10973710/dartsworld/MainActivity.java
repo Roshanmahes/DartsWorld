@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.logging.Handler;
 
 import static android.content.ContentValues.TAG;
+import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 import static mprog.nl.a10973710.dartsworld.R.id.liveTournamentName;
 import static mprog.nl.a10973710.dartsworld.R.id.start;
@@ -201,43 +202,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void tournamentInfoClick(View view) {
-
         TextView tournamentName = (TextView) view;
-        existsTournamentInfo(tournamentName.getText().toString());
-    }
-
-    public void existsTournamentInfo(final String tournamentName) {
-
-        DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
-        playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    if (tournamentName.contains(postSnapshot.getKey())) {
-                        tournamentClick(tournamentName);
-                    }
-                }
-//                noTournamentInfo();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
-        });
-
-    }
-
-//    private void noTournamentInfo() {
-//        Toast.makeText(this, "No tournament info available", Toast.LENGTH_SHORT).show();
-//    }
-
-    private void tournamentClick(String tournamentName) {
-        Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName);
-        this.startActivity(intent);
+        existsTournamentInfo(tournamentName.getText().toString(), MainActivity.this);
     }
 
     @Override
@@ -273,7 +239,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             refreshTime = 10000;
             item.setChecked(true);
-
         }
     }
 }

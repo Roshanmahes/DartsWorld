@@ -1,5 +1,6 @@
 package mprog.nl.a10973710.dartsworld;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 
@@ -107,6 +109,7 @@ public class DateActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         }
+
         return matchArrayList;
     }
 
@@ -191,37 +194,6 @@ public class DateActivity extends AppCompatActivity
 
     public void tournamentInfoClick(View view) {
         TextView tournamentName = (TextView) findViewById(R.id.tvTournamentName);
-
-        existsTournamentInfo(tournamentName.getText().toString());
-    }
-
-    public void existsTournamentInfo(final String tournamentName) {
-
-        DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
-        playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    if (tournamentName.contains(postSnapshot.getKey())) {
-                        tournamentClick(tournamentName);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
-        });
-
-    }
-
-    private void tournamentClick(String tournamentName) {
-        Intent intent = new Intent(this, TournamentActivity.class);
-        intent.putExtra("tournamentName", tournamentName);
-        this.startActivity(intent);
+        existsTournamentInfo(tournamentName.getText().toString(), DateActivity.this);
     }
 }

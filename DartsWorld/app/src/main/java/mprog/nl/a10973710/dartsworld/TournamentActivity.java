@@ -1,9 +1,7 @@
 package mprog.nl.a10973710.dartsworld;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,15 +22,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 19-6-2017.
+ */
+
 public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String TAG = "TournamentActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,58 +66,60 @@ public class TournamentActivity extends AppCompatActivity
         playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                    if (tournamentName.contains(postSnapshot.getKey())) {
-
-                        Tournament tournament = postSnapshot.getValue(Tournament.class);
-                        PlayerProperty tournamentName = new PlayerProperty("Tournament name",
-                                postSnapshot.getKey());
-
-                        setTournamentInfo(tournamentName, tournament);
-                    }
-                }
+                Tournament tournament = dataSnapshot.child(tournamentName).getValue(Tournament.class);
+                KeyValuePair tourName = new KeyValuePair("Tournament name", tournamentName);
+                setTournamentInfo(tourName, tournament);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
 
-    private void setTournamentInfo(PlayerProperty tournamentName, Tournament tournament) {
+    private void setTournamentInfo(KeyValuePair tournamentName, Tournament tournament) {
+
+        ArrayList<KeyValuePair> propertyList = new ArrayList<>();
 
         ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
 
-        PlayerProperty sponsor = new PlayerProperty("Sponsor", tournament.getSponsor());
-        PlayerProperty venue = new PlayerProperty("Venue", tournament.getVenue());
-        PlayerProperty location = new PlayerProperty("Location", tournament.getLocation());
-        PlayerProperty country = new PlayerProperty("Country", tournament.getCountry());
-        PlayerProperty established = new PlayerProperty("Established", String.valueOf(tournament.getEstablished()));
-        PlayerProperty defendingChamp = new PlayerProperty("Defending champion", tournament.getDefendingChamp());
-        PlayerProperty prizeMoney = new PlayerProperty("Prize money", tournament.getPrizeMoney());
-        PlayerProperty format = new PlayerProperty("Format", tournament.getFormat());
+        KeyValuePair sponsor = new KeyValuePair("Sponsor", tournament.getSponsor());
+        KeyValuePair venue = new KeyValuePair("Venue", tournament.getVenue());
+        KeyValuePair location = new KeyValuePair("Location", tournament.getLocation());
+        KeyValuePair country = new KeyValuePair("Country", tournament.getCountry());
+        KeyValuePair established = new KeyValuePair("Established",
+                String.valueOf(tournament.getEstablished()));
+        KeyValuePair defendingChamp = new KeyValuePair("Defending champion",
+                tournament.getDefendingChamp());
+        KeyValuePair prizeMoney = new KeyValuePair("Prize money", tournament.getPrizeMoney());
+        KeyValuePair format = new KeyValuePair("Format", tournament.getFormat());
 
         HashMap<String, String> hash = tournament.getChamps();
 
-        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+        List<String> sortedKeys = new ArrayList<>(hash.keySet());
+        Collections.sort(sortedKeys);
+
+        Map<String, String> treeMap = new TreeMap<>(hash);
 
         propertyList.add(tournamentName); propertyList.add(sponsor); propertyList.add(venue);
         propertyList.add(location); propertyList.add(country); propertyList.add(established);
         propertyList.add(defendingChamp); propertyList.add(prizeMoney); propertyList.add(format);
 
-        PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this, R.layout.adapter_view_player, propertyList);
+        PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this,
+                R.layout.adapter_view_player, propertyList);
         tournamentInfoList.setAdapter(adapter);
 
-        ImageView tournamentLogo = (ImageView) findViewById(R.id.tournamentLogo);
-        String logoURL = tournament.getLogo();
-        Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
+        setTournamentImage(tournament.getLogo());
 
-        setListener(hash);
+        setListener(treeMap);
     }
 
-    private void setListener(final HashMap<String, String> hash) {
+    private void setTournamentImage(String logoURL) {
+        ImageView tournamentLogo = (ImageView) findViewById(R.id.tournamentLogo);
+        Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
+    }
+
+    private void setListener(final Map<String, String> hash) {
         final ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
         tournamentInfoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -122,10 +127,10 @@ public class TournamentActivity extends AppCompatActivity
 
                 // to view all champions
                 if (position == 5 || position == 6) {
-                    ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+                    ArrayList<KeyValuePair> propertyList = new ArrayList<>();
 
                     for (Map.Entry<String,String> entry : hash.entrySet()) {
-                        PlayerProperty property = new PlayerProperty(entry.getKey(), entry.getValue());
+                        KeyValuePair property = new KeyValuePair(entry.getKey(), entry.getValue());
                         propertyList.add(property);
 
                         PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this,

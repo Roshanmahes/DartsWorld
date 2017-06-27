@@ -13,6 +13,10 @@ import android.view.MenuItem;
 
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 8-6-2017.
+ */
+
 public class InfoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

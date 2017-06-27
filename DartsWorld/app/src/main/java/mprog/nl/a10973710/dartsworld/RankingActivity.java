@@ -28,6 +28,10 @@ import java.util.ArrayList;
 
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 17-6-2017.
+ */
+
 public class RankingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,7 +70,7 @@ public class RankingActivity extends AppCompatActivity
         playersDatabase.orderByChild("currPos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<PlayerProperty> pList = new ArrayList<>();
+                ArrayList<KeyValuePair> pList = new ArrayList<>();
 
                 try {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -76,7 +80,7 @@ public class RankingActivity extends AppCompatActivity
                         PlayerList.add(String.valueOf(post.getFullName()));
                         DifferenceList.add(post.getCurrPos() - post.getPrevPos());
                         int difference = post.getCurrPos() - post.getPrevPos();
-                        PlayerProperty player = new PlayerProperty(String.valueOf(difference), post.getFullName());
+                        KeyValuePair player = new KeyValuePair(String.valueOf(difference), post.getFullName());
                         pList.add(player);
                     }
 
@@ -84,16 +88,11 @@ public class RankingActivity extends AppCompatActivity
                     ListView rankingList = (ListView) findViewById(R.id.rankingList);
                     rankingList.setAdapter(adapter);
 
-
-                } catch (Exception e) {
-                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
-                }
+                } catch (Exception ignored) {}
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
 

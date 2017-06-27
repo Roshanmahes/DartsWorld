@@ -14,12 +14,12 @@ import java.util.ArrayList;
  * Created by Roshan Mahes on 12-6-2017.
  */
 
-class PropertyListAdapter extends ArrayAdapter<PlayerProperty> {
+class PropertyListAdapter extends ArrayAdapter<KeyValuePair> {
 
     private Context mContext;
     private int mResource;
 
-    PropertyListAdapter(Context context, int resource, ArrayList<PlayerProperty> objects) {
+    PropertyListAdapter(Context context, int resource, ArrayList<KeyValuePair> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

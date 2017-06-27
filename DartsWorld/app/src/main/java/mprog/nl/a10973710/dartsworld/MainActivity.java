@@ -1,8 +1,6 @@
 package mprog.nl.a10973710.dartsworld;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,27 +16,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
-import static android.content.ContentValues.TAG;
 import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
-import static mprog.nl.a10973710.dartsworld.R.id.liveTournamentName;
-import static mprog.nl.a10973710.dartsworld.R.id.start;
+
+/**
+ * Created by Roshan Mahes on 7-6-2017.
+ */
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -119,8 +110,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
-        Log.d(TAG, "Livescore wordt nu opgehaald");
-        Log.d(TAG, liveScoreObj.toString());
 
         TextView liveTournamentName = (TextView) findViewById(R.id.liveTournamentName);
         ListView liveScoreList = (ListView) findViewById(R.id.liveScoreList);
@@ -146,8 +135,6 @@ public class MainActivity extends AppCompatActivity
 
                         String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
                         String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
-
-                        Log.d(TAG, "Score: " + homeScore + "-" + awayScore + " " + homeTeam + " " + awayTeam);
 
                         String startTime = eventObj.getString("startTime");
 
@@ -194,7 +181,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

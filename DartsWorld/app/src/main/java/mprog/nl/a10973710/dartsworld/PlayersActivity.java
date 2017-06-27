@@ -78,15 +78,11 @@ public class PlayersActivity extends AppCompatActivity
 
                     setPlayerInfo(PlayerList);
 
-                } catch (Exception e) {
-                    Log.e(TAG, "Exception e = " + e.getLocalizedMessage());
-                }
+                } catch (Exception ignored) {}
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
 
@@ -95,7 +91,6 @@ public class PlayersActivity extends AppCompatActivity
                 android.R.layout.simple_list_item_1, playerList);
 
         ListView playerListView = (ListView) findViewById(R.id.player_list_view);
-
         playerListView.setAdapter(mArrayAdapter);
     }
 

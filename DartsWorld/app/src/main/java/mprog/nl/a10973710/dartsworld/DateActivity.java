@@ -33,6 +33,9 @@ import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 8-6-2017.
+ */
 
 public class DateActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

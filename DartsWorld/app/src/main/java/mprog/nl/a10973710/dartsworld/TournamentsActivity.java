@@ -26,6 +26,10 @@ import java.util.ArrayList;
 
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 19-6-2017.
+ */
+
 public class TournamentsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

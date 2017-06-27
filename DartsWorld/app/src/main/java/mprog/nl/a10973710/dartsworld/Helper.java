@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -55,7 +56,7 @@ public class Helper {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
                     if (tournamentName.contains(postSnapshot.getKey())) {
-                        tournamentClick(tournamentName, activity);
+                        tournamentClick(postSnapshot.getKey(), activity);
                     }
                 }
             }
@@ -68,6 +69,7 @@ public class Helper {
     private static void tournamentClick(String tournamentName, Activity activity) {
         Intent intent = new Intent(activity, TournamentActivity.class);
         intent.putExtra("tournamentName", tournamentName);
+        Log.d("TOURNAMENTNAME", "TOURNAMENT NAME" + tournamentName);
         activity.startActivity(intent);
     }
 

@@ -67,7 +67,7 @@ public class PlayerActivity extends AppCompatActivity
                 Player player = dataSnapshot.child("players").child(playerName).getValue(Player.class);
 
                 ListView playerInfoList = (ListView) findViewById(R.id.player_info_list);
-                ArrayList<PlayerProperty> propertyList = processPlayerInfo(player);
+                ArrayList<KeyValuePair> propertyList = processPlayerInfo(player);
 
                 PropertyListAdapter adapter = new PropertyListAdapter(PlayerActivity.this,
                         R.layout.adapter_view_player, propertyList);
@@ -97,29 +97,29 @@ public class PlayerActivity extends AppCompatActivity
         Picasso.with(PlayerActivity.this).load(nationLink).fit().into(nationFlight);
     }
 
-    private ArrayList<PlayerProperty> processPlayerInfo(Player player) {
+    private ArrayList<KeyValuePair> processPlayerInfo(Player player) {
 
-        ArrayList<PlayerProperty> propertyList = new ArrayList<>();
+        ArrayList<KeyValuePair> propertyList = new ArrayList<>();
 
-        PlayerProperty nickName = new PlayerProperty("Nickname", player.nickName);
-        PlayerProperty twitter = new PlayerProperty("Twitter", player.twitter);
-        PlayerProperty country = new PlayerProperty("Country", player.country);
-        PlayerProperty born = new PlayerProperty("Born", player.born);
-        PlayerProperty darts = new PlayerProperty("Darts", player.darts);
-        PlayerProperty walkOn = new PlayerProperty("Walk-on", player.walkOn);
-        PlayerProperty money = new PlayerProperty("Money", "£" + player.money);
-        PlayerProperty pos = new PlayerProperty("Position (difference)", String.valueOf(player.currPos)
+        KeyValuePair nickName = new KeyValuePair("Nickname", player.nickName);
+        KeyValuePair twitter = new KeyValuePair("Twitter", player.twitter);
+        KeyValuePair country = new KeyValuePair("Country", player.country);
+        KeyValuePair born = new KeyValuePair("Born", player.born);
+        KeyValuePair darts = new KeyValuePair("Darts", player.darts);
+        KeyValuePair walkOn = new KeyValuePair("Walk-on", player.walkOn);
+        KeyValuePair money = new KeyValuePair("Prize Money", "£" + player.money);
+        KeyValuePair pos = new KeyValuePair("Position (difference)", String.valueOf(player.currPos)
                 + " (" + String.valueOf(player.prevPos - player.currPos) + ")");
-        PlayerProperty majors = new PlayerProperty("Majors", String.valueOf(player.majors));
-        PlayerProperty champ = new PlayerProperty("World champion", String.valueOf(player.champ));
-        PlayerProperty nineDarts = new PlayerProperty("Nine darts (televised)",
+        KeyValuePair majors = new KeyValuePair("Majors", String.valueOf(player.majors));
+        KeyValuePair champ = new KeyValuePair("World champion", String.valueOf(player.champ));
+        KeyValuePair nineDarts = new KeyValuePair("Nine darts (televised)",
                 String.valueOf(player.nineDarts) + " (" + String.valueOf(player.nineDartsTelevised) + ")");
 
-        PlayerProperty highAvg;
+        KeyValuePair highAvg;
         if (player.highAvg == 0) {
-            highAvg = new PlayerProperty("Highest average", "N/A");
+            highAvg = new KeyValuePair("Highest average", "N/A");
         } else {
-            highAvg = new PlayerProperty("Highest average", String.valueOf(player.highAvg));
+            highAvg = new KeyValuePair("Highest average", String.valueOf(player.highAvg));
         }
 
         propertyList.add(nickName); propertyList.add(twitter); propertyList.add(country);

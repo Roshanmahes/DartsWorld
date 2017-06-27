@@ -321,3 +321,8 @@ toch even een wedstrijd zien (erg raar).
 ## Dag 14 (Ma 26-06-17) Code opschonen
 Vandaag heb ik voornamelijk code opgeschoond en de PDC Order of Merit bijgewerkt
 naar de huidige ranking.
+
+##  Dag 15 (Di 27-06-17) Duplicated code verwijderd
+Ik had heel veel dubbele code, waaronder in de navigatie, bij het ophalen van
+spelersinformatie, toernooi-informatie etc. Deze heb ik allemaal verwijderd.
+Doel (vandaag): 6 op BCH ipv 5. (duplicated code verhelpen)

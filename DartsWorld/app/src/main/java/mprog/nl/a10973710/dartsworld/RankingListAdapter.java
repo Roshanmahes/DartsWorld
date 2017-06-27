@@ -17,13 +17,13 @@ import java.util.ArrayList;
  * Created by Gebruiker on 23-6-2017.
  */
 
-public class RankingListAdapter extends ArrayAdapter<PlayerProperty>{
+public class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
 
     private static final String TAG = "RankingListAdapter";
     private Context mContext;
     int mResource;
 
-    public RankingListAdapter(Context context, int resource, ArrayList<PlayerProperty> objects) {
+    public RankingListAdapter(Context context, int resource, ArrayList<KeyValuePair> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

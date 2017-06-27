@@ -1,5 +1,6 @@
 package mprog.nl.a10973710.dartsworld;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 public class InfoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,31 +46,10 @@ public class InfoActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_players) {
-            Intent intent = new Intent(this, PlayersActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_info) {
-            Intent intent = new Intent(this, InfoActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_tournaments) {
-            Intent intent = new Intent(this, TournamentsActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
-            Intent intent = new Intent(this, RankingActivity.class);
-            this.startActivity(intent);
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        navigateTo(InfoActivity.this, id, drawer);
         return true;
     }
 }

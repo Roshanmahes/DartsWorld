@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.CalendarView;
 
+import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
+
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -93,31 +95,10 @@ public class CalendarActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_players) {
-            Intent intent = new Intent(this, PlayersActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_info) {
-            Intent intent = new Intent(this, InfoActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_tournaments) {
-            Intent intent = new Intent(this, TournamentsActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
-            Intent intent = new Intent(this, RankingActivity.class);
-            this.startActivity(intent);
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        navigateTo(CalendarActivity.this, id, drawer);
         return true;
     }
 }

@@ -315,3 +315,9 @@ een lijst met alle toernooien van die maand kan laten zien.
 Landscape-modus.
 
 ## Weekend
+- De livescore werkt nu volledig, alleen soms als er geen wedstrijd is, laat ie
+toch even een wedstrijd zien (erg raar).
+
+## Dag 14 (Ma 26-06-17) Code opschonen
+Vandaag heb ik voornamelijk code opgeschoond en de PDC Order of Merit bijgewerkt
+naar de huidige ranking.

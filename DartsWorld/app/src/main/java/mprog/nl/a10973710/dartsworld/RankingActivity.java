@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
+
 public class RankingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -136,49 +138,13 @@ public class RankingActivity extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_players) {
-            Intent intent = new Intent(this, PlayersActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_info) {
-            Intent intent = new Intent(this, InfoActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_tournaments) {
-            Intent intent = new Intent(this, TournamentsActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
-            Intent intent = new Intent(this, RankingActivity.class);
-            this.startActivity(intent);
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        navigateTo(RankingActivity.this, id, drawer);
         return true;
     }
 }

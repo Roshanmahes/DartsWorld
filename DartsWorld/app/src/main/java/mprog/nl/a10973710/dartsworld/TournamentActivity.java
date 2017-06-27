@@ -10,12 +10,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,9 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -149,46 +148,14 @@ public class TournamentActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_players) {
-            Intent intent = new Intent(this, PlayersActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_info) {
-            Intent intent = new Intent(this, InfoActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_tournaments) {
-            Intent intent = new Intent(this, TournamentsActivity.class);
-            this.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
-            Intent intent = new Intent(this, RankingActivity.class);
-            this.startActivity(intent);
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        navigateTo(TournamentActivity.this, id, drawer);
         return true;
     }
 }

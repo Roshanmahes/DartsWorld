@@ -2,9 +2,6 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +9,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +30,6 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 public class RankingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "RankingActivity";
     ArrayList<String> PlayerList = new ArrayList<String>();
     ArrayList<String> playerKeyList = new ArrayList<String>();
     ArrayList<Integer> DifferenceList = new ArrayList<>();
@@ -84,7 +78,8 @@ public class RankingActivity extends AppCompatActivity
                         pList.add(player);
                     }
 
-                    RankingListAdapter adapter = new RankingListAdapter(RankingActivity.this, R.layout.adapter_view_ranking, pList);
+                    RankingListAdapter adapter = new RankingListAdapter(RankingActivity.this,
+                            R.layout.adapter_view_ranking, pList);
                     ListView rankingList = (ListView) findViewById(R.id.rankingList);
                     rankingList.setAdapter(adapter);
 

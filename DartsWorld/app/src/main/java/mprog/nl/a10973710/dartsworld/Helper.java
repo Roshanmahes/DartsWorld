@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,4 +70,30 @@ public class Helper {
         intent.putExtra("tournamentName", tournamentName);
         activity.startActivity(intent);
     }
+
+    static void loadPlayerInfo(final Activity activity, String playerName) {
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        final String finalPlayerName = playerName;
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.child("players").hasChild(finalPlayerName)) {
+                    startPlayerActivity(finalPlayerName, activity);
+                } else {
+                    Toast.makeText(activity, "No player information available.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+    }
+
+    private static void startPlayerActivity(String playerName, Activity activity) {
+        Intent intent = new Intent(activity, PlayerActivity.class);
+        intent.putExtra("playerName", playerName);
+        activity.startActivity(intent);
+    }
+
+
 }

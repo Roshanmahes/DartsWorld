@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
+import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 
@@ -160,36 +161,12 @@ public class DateActivity extends AppCompatActivity
         return true;
     }
 
-    public void playerClick(View view) {
-
+    public void retrievePlayerInfo(View view) {
         TextView textView = (TextView) view;
         String playerName = textView.getHint().toString();
         playerName = playerName.replace(".","");
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        final String finalPlayerName = playerName;
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.child("players").hasChild(finalPlayerName)) {
-                    startPlayerActivity(finalPlayerName);
-                } else {
-                    Context context = getApplicationContext();
-                    Toast.makeText(context, "No player information available.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "Something went wrong:", databaseError.toException());
-            }
-        });
-    }
-
-    public void startPlayerActivity(String playerName) {
-        Intent intent = new Intent(DateActivity.this, PlayerActivity.class);
-        intent.putExtra("playerName", playerName);
-        this.startActivity(intent);
+        loadPlayerInfo(DateActivity.this, playerName);
     }
 
     public void tournamentInfoClick(View view) {

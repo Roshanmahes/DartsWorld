@@ -20,7 +20,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:text="10"
-            android:onClick="playerClick"
+            android:onClick="retrievePlayerInfo"
             android:textSize="40sp" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_below="@id/tvHomeScore"
             android:background="@color/colorAccent"
             android:textColor="@color/white"
-            android:onClick="playerClick"
+            android:onClick="retrievePlayerInfo"
             android:gravity="center"
             android:text="Player 1" />
 
@@ -48,7 +48,7 @@
             android:background="@color/colorPrimary"
             android:textColor="@color/white"
             android:gravity="center"
-            android:onClick="playerClick"
+            android:onClick="retrievePlayerInfo"
             android:text="0"
             android:textSize="40sp" />
 
@@ -59,7 +59,7 @@
             android:layout_below="@id/tvAwayScore"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"
-            android:onClick="playerClick"
+            android:onClick="retrievePlayerInfo"
             android:hint="Test"
             android:gravity="center"
             android:text="Player 2" />

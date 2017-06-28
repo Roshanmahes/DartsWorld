@@ -37,10 +37,7 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         String awayScore = getItem(position).getAwayScore();
         String homeTeam = getItem(position).getHomeTeam();
         String awayTeam = getItem(position).getAwayTeam();
-
         String startTime = getItem(position).getStartTime();
-
-        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);

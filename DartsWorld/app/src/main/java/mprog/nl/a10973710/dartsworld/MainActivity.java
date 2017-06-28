@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
             final LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");
 
-        Thread t = new Thread() {
+        Thread thread = new Thread() {
 
             @Override
             public void run() {
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
-        t.start();
+        thread.start();
 
 //        finish();
 //        startActivity(getIntent());

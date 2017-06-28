@@ -54,7 +54,7 @@ public class RankingActivity extends AppCompatActivity
 
         getPlayerInfo();
 
-        setListener(playerKeyList);
+        setPlayerClickListener(playerKeyList);
     }
 
     public void getPlayerInfo() {
@@ -91,7 +91,7 @@ public class RankingActivity extends AppCompatActivity
         });
     }
 
-    private void setListener(final ArrayList<String> playerKeyList) {
+    private void setPlayerClickListener(final ArrayList<String> playerKeyList) {
         ListView rankingList = (ListView) findViewById(R.id.rankingList);
         rankingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

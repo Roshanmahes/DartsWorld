@@ -6,9 +6,21 @@ package mprog.nl.a10973710.dartsworld;
 
 class Player {
 
-    String born; int champ; String country; int currPos; String darts; String fullName;
-    float highAvg; int majors; String money; String nickName; int nineDarts;
-    int nineDartsTelevised; int prevPos; String twitter; String walkOn;
+    String born;
+    int champ;
+    String country;
+    int currPos;
+    String darts;
+    String fullName;
+    float highAvg;
+    int majors;
+    String money;
+    String nickName;
+    int nineDarts;
+    int nineDartsTelevised;
+    int prevPos;
+    String twitter;
+    String walkOn;
 
     // Default constructor for FireBase
     public Player() {}

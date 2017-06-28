@@ -70,7 +70,7 @@ public class PlayersActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Player post = postSnapshot.getValue(Player.class);
+                        Player post = postSnapshot.getValue(Player.class); // dit veranderen in playerSnapshot
 
                         PlayerKeyList.add(postSnapshot.getKey());
                         PlayerList.add(String.valueOf(post.getFullName()));

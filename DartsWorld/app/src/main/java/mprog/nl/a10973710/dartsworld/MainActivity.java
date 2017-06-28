@@ -1,15 +1,9 @@
 package mprog.nl.a10973710.dartsworld;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +17,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static mprog.nl.a10973710.dartsworld.Helper.displayAlertDialog;
 import static mprog.nl.a10973710.dartsworld.Helper.existsTournamentInfo;
+import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
@@ -34,30 +30,15 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener{
 
-    private static final String TAG = "MainActivity";
     int refreshTime = 1000;
-
-    public boolean isConnectedToInternet(){
-        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null)
-        {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null)
-                for (NetworkInfo anInfo : info)
-                    if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
-        }
-        return false;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-//        if (isConnectedToInternet()) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+        if (isConnectedToInternet(MainActivity.this)) {
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -74,6 +55,14 @@ public class MainActivity extends BaseActivity implements
             final LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");
 
+            refreshActivity();
+
+        } else {
+            displayAlertDialog(MainActivity.this);
+        }
+    }
+
+    public void refreshActivity() {
         Thread thread = new Thread() {
 
             @Override
@@ -87,7 +76,6 @@ public class MainActivity extends BaseActivity implements
                             public void run() {
                                 LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(MainActivity.this);
                                 asyncTask.execute("");
-
                             }
                         });
                     }
@@ -96,15 +84,6 @@ public class MainActivity extends BaseActivity implements
         };
 
         thread.start();
-
-//        finish();
-//        startActivity(getIntent());
-
-//        } else {
-//            /// Als internet niet aan staat
-//            Log.d(TAG, "Je bent niet verbonden!! :S");
-//            finish();
-//        }
     }
 
     @Override

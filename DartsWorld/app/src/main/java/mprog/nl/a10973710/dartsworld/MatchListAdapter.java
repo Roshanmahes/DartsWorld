@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class MatchListAdapter extends ArrayAdapter<Match> {
 
     private Context mContext;
-    int mResource;
+    private int mResource;
 
-    public MatchListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<Match> objects) {
+    MatchListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<Match> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -67,11 +67,6 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
                 tvHomeTeam.setBackgroundResource(R.color.colorAccent);
                 tvAwayScore.setBackgroundResource(R.color.colorPrimary);
                 tvAwayTeam.setBackgroundResource(R.color.colorPrimary);
-            } else {
-                tvHomeScore.setBackgroundResource(R.color.yellow);
-                tvHomeTeam.setBackgroundResource(R.color.yellow);
-                tvAwayScore.setBackgroundResource(R.color.yellow);
-                tvAwayTeam.setBackgroundResource(R.color.yellow);
             }
         }
 

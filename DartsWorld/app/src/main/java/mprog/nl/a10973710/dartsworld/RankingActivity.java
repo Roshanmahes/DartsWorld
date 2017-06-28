@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import static mprog.nl.a10973710.dartsworld.Helper.displayAlertDialog;
 import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
+import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
 
 /**
  * Created by Roshan Mahes on 17-6-2017.
@@ -106,28 +107,9 @@ public class RankingActivity extends BaseActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String playerName =  playerKeyList.get(position);
-                startPlayerActivity(playerName);
+                startPlayerActivity(playerName, RankingActivity.this);
             }
 
         });
     }
-
-    public void startPlayerActivity(String playerName) {
-        Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra("playerName", playerName);
-        this.startActivity(intent);
-    }
-
-//    private void setPlayerInfo(ArrayList<String> playerList, ArrayList<Integer> differenceList) {
-//        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(this,
-//                R.layout.adapter_view_ranking, playerList);
-//
-//        ListView playerListView = (ListView) findViewById(R.id.rankingListView);
-//
-//        playerListView.setAdapter(mArrayAdapter);
-//    }
-
-//    playersDatabase = (DatabaseReference) playersDatabase.orderByChild("currPos");
-//        Log.d(TAG, "my databse: " + playersDatabase.orderByChild("currPos").toString());
-
 }

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import static mprog.nl.a10973710.dartsworld.Helper.displayAlertDialog;
 import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
+import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
 
 
 /**
@@ -109,15 +110,9 @@ public class PlayersActivity extends BaseActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String playerName =  playerKeyList.get(position);
-                startPlayerActivity(playerName);
+                startPlayerActivity(playerName, PlayersActivity.this);
             }
 
         });
-    }
-
-    public void startPlayerActivity(String playerName) {
-        Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra("playerName", playerName);
-        this.startActivity(intent);
     }
 }

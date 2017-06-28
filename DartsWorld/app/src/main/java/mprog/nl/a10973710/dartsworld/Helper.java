@@ -134,7 +134,7 @@ public class Helper {
         });
     }
 
-    private static void startPlayerActivity(String playerName, Activity activity) {
+    static void startPlayerActivity(String playerName, Activity activity) {
         Intent intent = new Intent(activity, PlayerActivity.class);
         intent.putExtra("playerName", playerName);
         activity.startActivity(intent);

@@ -21,9 +21,9 @@ public class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
 
     private static final String TAG = "RankingListAdapter";
     private Context mContext;
-    int mResource;
+    private int mResource;
 
-    public RankingListAdapter(Context context, int resource, ArrayList<KeyValuePair> objects) {
+    RankingListAdapter(Context context, int resource, ArrayList<KeyValuePair> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -32,6 +32,7 @@ public class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         String difference = getItem(position).getId();
         String name = getItem(position).getValue();
 

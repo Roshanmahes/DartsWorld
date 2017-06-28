@@ -28,7 +28,7 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  */
 
 public class MainActivity extends BaseActivity implements
-        NavigationView.OnNavigationItemSelectedListener{
+        NavigationView.OnNavigationItemSelectedListener {
 
     int refreshTime = 1000;
 
@@ -40,17 +40,7 @@ public class MainActivity extends BaseActivity implements
 
         if (isConnectedToInternet(MainActivity.this)) {
 
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
-
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
+            setUpBars(MainActivity.this, "DartsWorld");
 
             final LiveScoreAsyncTask asyncTask = new LiveScoreAsyncTask(this);
             asyncTask.execute("");

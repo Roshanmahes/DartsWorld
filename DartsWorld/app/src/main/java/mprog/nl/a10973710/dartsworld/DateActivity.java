@@ -42,7 +42,6 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 public class DateActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "DateActivity";
     JSONObject data;
     JSONArray tournaments;
     String tournamentName;
@@ -55,17 +54,7 @@ public class DateActivity extends BaseActivity implements
 
         if (isConnectedToInternet(DateActivity.this)) {
 
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
-
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
+            setUpBars(DateActivity.this, "DartsWorld");
 
             Bundle extras = getIntent().getExtras();
             String date = extras.getString("date");

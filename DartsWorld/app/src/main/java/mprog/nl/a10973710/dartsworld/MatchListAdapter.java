@@ -18,12 +18,12 @@ import java.util.ArrayList;
  * Created by Roshan Mahes on 15-6-2017.
  */
 
-public class MatchListAdapter extends ArrayAdapter<Match> {
+class MatchListAdapter extends ArrayAdapter<Match> {
 
     private Context mContext;
     private int mResource;
 
-    MatchListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<Match> objects) {
+    MatchListAdapter(Context context, int resource, ArrayList<Match> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

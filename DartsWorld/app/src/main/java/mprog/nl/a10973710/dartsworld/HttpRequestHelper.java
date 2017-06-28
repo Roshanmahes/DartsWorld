@@ -37,7 +37,7 @@ class HttpRequestHelper {
                     while ((line = bReader.readLine()) != null) {
                         result += line;
                     }
-                } // else couldn't load data
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

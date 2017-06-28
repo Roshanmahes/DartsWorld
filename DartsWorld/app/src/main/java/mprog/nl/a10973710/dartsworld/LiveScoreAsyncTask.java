@@ -1,12 +1,9 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Roshan Mahes on 10-6-2017.
@@ -36,7 +33,6 @@ class LiveScoreAsyncTask extends AsyncTask<String, Integer, String>{
         }
         assert liveScoreObj != null;
 
-        Log.d(TAG, liveScoreObj.toString());
         this.mainAct.fetchLiveScore(liveScoreObj);
     }
 }

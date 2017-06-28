@@ -6,15 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +22,6 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class Helper {
-
-
 
 // wordt overal gebruikt
     public static void navigateTo(Activity activity, int id, DrawerLayout drawer) {
@@ -112,7 +104,6 @@ public class Helper {
     private static void tournamentClick(String tournamentName, Activity activity) {
         Intent intent = new Intent(activity, TournamentActivity.class);
         intent.putExtra("tournamentName", tournamentName);
-        Log.d("TOURNAMENTNAME", "TOURNAMENT NAME" + tournamentName);
         activity.startActivity(intent);
     }
 
@@ -139,9 +130,4 @@ public class Helper {
         intent.putExtra("playerName", playerName);
         activity.startActivity(intent);
     }
-
-
-
-
-
 }

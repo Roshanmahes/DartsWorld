@@ -326,3 +326,20 @@ naar de huidige ranking.
 Ik had heel veel dubbele code, waaronder in de navigatie, bij het ophalen van
 spelersinformatie, toernooi-informatie etc. Deze heb ik allemaal verwijderd.
 Doel (vandaag): 6 op BCH ipv 5. (duplicated code verhelpen)
+
+## Dag 16 (Wo 18-06-17) Duplicated code verwijderd (2)
+Vandaag ben ik verder gegaan met dubbele code verwijderen. Ik heb nu alle
+dubbele code verwijderd en een Helper-class en BaseActivity-class aangemaakt.
+Hierin staan functies die door meerdere classes worden aangeroepen.
+Ik heb nu op Bettercodehub een 6 (van de 8).
+
+Verder heb ik een splash screen gemaakt, die 3 seconden lang wordt weergegeven
+bij het openen van de app.
+
+Screenshots:
+
+Dag 16: Splash Screen|
+:-------------------------:|
+![](/screenshots/Dag16.png) |
+
+## Dag 17 (Do 19-06-17) Final cleanup

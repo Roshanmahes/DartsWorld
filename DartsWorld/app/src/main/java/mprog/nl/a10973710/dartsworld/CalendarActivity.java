@@ -3,11 +3,8 @@ package mprog.nl.a10973710.dartsworld;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.CalendarView;
 
@@ -22,7 +19,6 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 public class CalendarActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "CalendarActivity";
     String formatedDate;
 
     @Override
@@ -40,8 +36,6 @@ public class CalendarActivity extends BaseActivity implements
             mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                    Log.d(TAG, "DE MAAND IS:" + String.valueOf(month));
-
                     // change selected date to API-friendly version
                     String realMonth;
                     String realDay;
@@ -86,6 +80,7 @@ public class CalendarActivity extends BaseActivity implements
     }
 
     public void startDateActivity(String data, String date) {
+
         Intent intent = new Intent(this, DateActivity.class);
         intent.putExtra("data", data);
         intent.putExtra("date", date);

@@ -7,13 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 /**
- * Created by Gebruiker on 28-6-2017.
+ * Created by Roshan Mahes on 28-6-2017.
  */
 
 public class BaseActivity extends AppCompatActivity {
@@ -41,6 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) activity);
+        navigationView.setNavigationItemSelectedListener(
+                (NavigationView.OnNavigationItemSelectedListener) activity);
     }
 }

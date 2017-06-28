@@ -1,7 +1,6 @@
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -41,6 +38,8 @@ class MatchListAdapter extends ArrayAdapter<Match> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
+//        setText(homeScore, awayScore, homeTeam, awayTea)
+
         TextView tvHomeScore = (TextView) convertView.findViewById(R.id.tvHomeScore);
         TextView tvAwayScore = (TextView) convertView.findViewById(R.id.tvAwayScore);
         TextView tvHomeTeam = (TextView) convertView.findViewById(R.id.tvHomeTeam);
@@ -56,6 +55,14 @@ class MatchListAdapter extends ArrayAdapter<Match> {
         tvHomeTeam.setText(homeTeam);
         tvAwayTeam.setText(awayTeam);
 
+        setMatchColors(homeScore, awayScore, tvHomeScore, tvAwayScore, tvHomeTeam, tvAwayTeam);
+
+        return convertView;
+    }
+
+    private void setMatchColors(String homeScore, String awayScore, TextView tvHomeScore,
+                                TextView tvAwayScore, TextView tvHomeTeam, TextView tvAwayTeam) {
+
         if (homeScore != "-" && awayScore != "-") {
             if (Integer.parseInt(homeScore) < Integer.parseInt(awayScore)) {
                 tvHomeScore.setBackgroundResource(R.color.colorPrimary);
@@ -69,7 +76,5 @@ class MatchListAdapter extends ArrayAdapter<Match> {
                 tvAwayTeam.setBackgroundResource(R.color.colorPrimary);
             }
         }
-
-        return convertView;
     }
 }

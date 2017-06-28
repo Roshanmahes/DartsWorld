@@ -31,8 +31,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 7-6-2017.
  */
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG = "MainActivity";
     int refreshTime = 1000;
@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity
                             }
                         });
                     }
-                } catch (InterruptedException e) {
-                }
+                } catch (InterruptedException e) {}
             }
         };
 
@@ -108,6 +107,21 @@ public class MainActivity extends AppCompatActivity
 //        }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(MainActivity.this, id, drawer);
+        return true;
+    }
 
     public void fetchLiveScore(JSONObject liveScoreObj) {
 
@@ -136,9 +150,7 @@ public class MainActivity extends AppCompatActivity
                         String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
                         String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
 
-                        String startTime = eventObj.getString("startTime");
-
-                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
+                        Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
 
                         matchArrayList.add(match);
                         }
@@ -167,32 +179,6 @@ public class MainActivity extends AppCompatActivity
     public void tournamentInfoClick(View view) {
         TextView tournamentName = (TextView) view;
         existsTournamentInfo(tournamentName.getText().toString(), MainActivity.this);
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(MainActivity.this, id, drawer);
-        return true;
     }
 
     public void switchDataSaver(MenuItem item) {

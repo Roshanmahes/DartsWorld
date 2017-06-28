@@ -37,8 +37,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 8-6-2017.
  */
 
-public class DateActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class DateActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "DateActivity";
     JSONObject data;
@@ -72,6 +72,17 @@ public class DateActivity extends AppCompatActivity
         } catch (JSONException e) {
             Toast.makeText(this, "There are no matches today.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(DateActivity.this, id, drawer);
+        return true;
     }
 
     private void processData(JSONArray tournaments, String date, String formatedDate) {
@@ -122,11 +133,10 @@ public class DateActivity extends AppCompatActivity
         try {
             String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
             String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
-            String startTime = eventObj.getString("startTime");
 
             if (!eventObj.getJSONObject("changes").has("changeDate")) {
 
-                Match match = new Match("-", "-", homeTeam, awayTeam, startTime);
+                Match match = new Match("-", "-", homeTeam, awayTeam);
                 matchArrayList.add(match);
 
             } else if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
@@ -134,7 +144,7 @@ public class DateActivity extends AppCompatActivity
                 String homeScore = eventObj.getJSONObject("homeScore").getString("current");
                 String awayScore = eventObj.getJSONObject("awayScore").getString("current");
 
-                Match match = new Match(homeScore, awayScore, homeTeam, awayTeam, startTime);
+                Match match = new Match(homeScore, awayScore, homeTeam, awayTeam);
                 matchArrayList.add(match);
             }
         } catch (JSONException e) {
@@ -142,26 +152,6 @@ public class DateActivity extends AppCompatActivity
         }
 
         return matchArrayList;
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(DateActivity.this, id, drawer);
-        return true;
     }
 
     public void retrievePlayerInfo(View view) {

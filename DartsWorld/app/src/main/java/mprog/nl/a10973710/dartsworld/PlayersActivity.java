@@ -31,8 +31,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 8-6-2017.
  */
 
-public class PlayersActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class PlayersActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG = "PlayersActivity";
 
@@ -59,6 +59,16 @@ public class PlayersActivity extends AppCompatActivity
         getPlayerInfo();
 
         setListener(PlayerKeyList);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(PlayersActivity.this, id, drawer);
+        return true;
     }
 
     public void getPlayerInfo() {
@@ -94,16 +104,6 @@ public class PlayersActivity extends AppCompatActivity
         playerListView.setAdapter(mArrayAdapter);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
     private void setListener(final ArrayList<String> playerKeyList) {
         ListView playerListView = (ListView) findViewById(R.id.player_list_view);
         playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,15 +121,5 @@ public class PlayersActivity extends AppCompatActivity
         Intent intent = new Intent(this, PlayerActivity.class);
         intent.putExtra("playerName", playerName);
         this.startActivity(intent);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(PlayersActivity.this, id, drawer);
-        return true;
     }
 }

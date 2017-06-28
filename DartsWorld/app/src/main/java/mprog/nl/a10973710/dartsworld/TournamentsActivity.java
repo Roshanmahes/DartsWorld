@@ -30,8 +30,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 19-6-2017.
  */
 
-public class TournamentsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class TournamentsActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "TournamentsActivity";
 
@@ -56,6 +56,16 @@ public class TournamentsActivity extends AppCompatActivity
         getTournaments();
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(TournamentsActivity.this, id, drawer);
+        return true;
+    }
+
     public void getTournaments() {
 
         DatabaseReference tourRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
@@ -77,26 +87,6 @@ public class TournamentsActivity extends AppCompatActivity
                 Log.d(TAG, databaseError.toString());
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(TournamentsActivity.this, id, drawer);
-        return true;
     }
 
     public void setTournaments(ArrayList<String> tournamentsList) {

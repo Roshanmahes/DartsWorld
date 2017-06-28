@@ -2,9 +2,13 @@ package mprog.nl.a10973710.dartsworld;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +22,9 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class Helper {
+
+
+
 // wordt overal gebruikt
     public static void navigateTo(Activity activity, int id, DrawerLayout drawer) {
 
@@ -96,6 +103,9 @@ public class Helper {
         intent.putExtra("playerName", playerName);
         activity.startActivity(intent);
     }
+
+
+
 
 
 }

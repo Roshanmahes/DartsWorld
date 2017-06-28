@@ -19,8 +19,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 8-6-2017.
  */
 
-public class CalendarActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class CalendarActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "CalendarActivity";
     String formatedDate;
@@ -73,6 +73,16 @@ public class CalendarActivity extends AppCompatActivity
         });
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(CalendarActivity.this, id, drawer);
+        return true;
+    }
+
     public void loadData(String date) {
         DateAsyncTask asyncTask = new DateAsyncTask(this, date);
         asyncTask.execute(date);
@@ -84,25 +94,5 @@ public class CalendarActivity extends AppCompatActivity
         intent.putExtra("date", date);
         intent.putExtra("formatedDate", formatedDate);
         this.startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(CalendarActivity.this, id, drawer);
-        return true;
     }
 }

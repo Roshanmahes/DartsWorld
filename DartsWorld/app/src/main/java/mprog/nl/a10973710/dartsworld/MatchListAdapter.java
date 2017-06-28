@@ -37,7 +37,6 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         String awayScore = getItem(position).getAwayScore();
         String homeTeam = getItem(position).getHomeTeam();
         String awayTeam = getItem(position).getAwayTeam();
-        String startTime = getItem(position).getStartTime();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -46,7 +45,6 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         TextView tvAwayScore = (TextView) convertView.findViewById(R.id.tvAwayScore);
         TextView tvHomeTeam = (TextView) convertView.findViewById(R.id.tvHomeTeam);
         TextView tvAwayTeam = (TextView) convertView.findViewById(R.id.tvAwayTeam);
-        TextView tvStartTime = (TextView) convertView.findViewById(R.id.tvStartTime);
 
         tvHomeScore.setHint(homeTeam);
         tvAwayScore.setHint(awayTeam);
@@ -57,7 +55,6 @@ public class MatchListAdapter extends ArrayAdapter<Match> {
         tvAwayScore.setText(awayScore);
         tvHomeTeam.setText(homeTeam);
         tvAwayTeam.setText(awayTeam);
-        tvStartTime.setText(startTime);
 
         if (homeScore != "-" && awayScore != "-") {
             if (Integer.parseInt(homeScore) < Integer.parseInt(awayScore)) {

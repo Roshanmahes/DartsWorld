@@ -27,8 +27,8 @@ import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
  * Created by Roshan Mahes on 17-6-2017.
  */
 
-public class RankingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class RankingActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<String> PlayerList = new ArrayList<String>();
     ArrayList<String> playerKeyList = new ArrayList<String>();
@@ -42,7 +42,6 @@ public class RankingActivity extends AppCompatActivity
         toolbar.setTitle("PDC Order of Merit");
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -55,6 +54,16 @@ public class RankingActivity extends AppCompatActivity
         getPlayerInfo();
 
         setPlayerClickListener(playerKeyList);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigateTo(RankingActivity.this, id, drawer);
+        return true;
     }
 
     public void getPlayerInfo() {
@@ -122,23 +131,4 @@ public class RankingActivity extends AppCompatActivity
 //    playersDatabase = (DatabaseReference) playersDatabase.orderByChild("currPos");
 //        Log.d(TAG, "my databse: " + playersDatabase.orderByChild("currPos").toString());
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(RankingActivity.this, id, drawer);
-        return true;
-    }
 }

@@ -15,7 +15,6 @@
             android:id="@+id/tvHomeScore"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingRight="2dp"
             android:background="@color/colorAccent"
             android:textColor="@color/white"
             android:gravity="center"
@@ -63,17 +62,6 @@
             android:hint="Test"
             android:gravity="center"
             android:text="Player 2" />
-
-        <TextView
-            android:id="@+id/tvStartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="115dp"
-            android:layout_marginStart="115dp"
-            android:textColor="@color/white" />
 
     </RelativeLayout>
 

@@ -1,11 +1,7 @@
-/*
- * Created by Roshan Mahes on 12-6-2017.
- */
-
 package mprog.nl.a10973710.dartsworld;
 
 /**
- * Default class with properties.
+ * Created by Roshan Mahes on 12-6-2017.
  */
 
 class KeyValuePair {

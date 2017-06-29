@@ -1,25 +1,19 @@
-/*
- * Created by Roshan Mahes on 12-6-2017.
- */
-
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 
-/**
- * Shows some nice splash screen (on startup).
- */
-
 public class LauncherActivity extends BaseActivity {
 
-    int splashTimeOut = 2500;
+    int splashTimeOut = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
         showSplashScreen();
     }
 

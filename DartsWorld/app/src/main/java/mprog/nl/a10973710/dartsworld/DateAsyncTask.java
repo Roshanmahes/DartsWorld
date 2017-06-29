@@ -1,7 +1,3 @@
-/*
- * Created by Roshan Mahes on 14-6-2017.
- */
-
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
@@ -12,8 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Loads all matches of a selected date using the SofaScore API.
- * Starts the DateActivity while giving these data.
+ * Created by Roshan Mahes on 14-6-2017.
  */
 
 class DateAsyncTask extends AsyncTask<String, Integer, String>{

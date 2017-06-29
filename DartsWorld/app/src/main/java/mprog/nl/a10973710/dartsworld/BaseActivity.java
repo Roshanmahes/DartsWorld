@@ -1,7 +1,3 @@
-/*
- * Created by Roshan Mahes on 28-6-2017.
- */
-
 package mprog.nl.a10973710.dartsworld;
 
 import android.app.Activity;
@@ -13,14 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 /**
- * Contains methods which are used in all activities.
+ * Created by Roshan Mahes on 28-6-2017.
  */
 
 public class BaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -29,9 +24,6 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Sets up the toolbar and navigation drawer for some activity.
-     */
     public void setUpBars(Activity activity, String title) {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

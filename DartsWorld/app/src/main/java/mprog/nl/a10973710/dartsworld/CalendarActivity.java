@@ -1,7 +1,3 @@
-/*
- * Created by Roshan Mahes on 8-6-2017.
- */
-
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Intent;
@@ -16,12 +12,14 @@ import static mprog.nl.a10973710.dartsworld.Helper.displayAlertDialog;
 import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Created by Roshan Mahes on 8-6-2017.
+ */
+
 public class CalendarActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
-    String date;
     String formatedDate;
-    int singleDigits = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +28,37 @@ public class CalendarActivity extends BaseActivity implements
         setContentView(R.layout.activity_calendar);
 
         if (isConnectedToInternet(CalendarActivity.this)) {
-            setUpBars(CalendarActivity.this, "Calendar");
-            CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
-            dateListener(calendarView);
 
+            setUpBars(CalendarActivity.this, "Calendar");
+
+            CalendarView mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+
+            mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                @Override
+                public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                    // change selected date to API-friendly version
+                    String realMonth;
+                    String realDay;
+
+                    if (month < 9) { // magic numbers weg
+                        realMonth = "0" + String.valueOf(month + 1);
+                    } else {
+                        realMonth = String.valueOf(month + 1);
+                    }
+
+                    // months apparently are zero-indexed
+                    if (dayOfMonth < 10) {
+                        realDay = "0" + String.valueOf(dayOfMonth);
+                    } else {
+                        realDay = String.valueOf(dayOfMonth);
+                    }
+
+                    String date = year + "-" + realMonth + "-" + realDay;
+                    formatedDate = realDay + "." + realMonth + "." + year + ".";
+
+                    loadData(date);
+                }
+            });
         } else {
             displayAlertDialog(CalendarActivity.this);
         }
@@ -49,48 +74,11 @@ public class CalendarActivity extends BaseActivity implements
         return true;
     }
 
-    /**
-     * Listens for date clicks and converts the selected date to API-friendly versions.
-     * Loads data if date is selected.
-     */
-    private void dateListener(CalendarView calView) {
-
-        calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
-                String realMonth;
-                String realDay;
-
-                // months apparently are zero-indexed
-                if (month < singleDigits - 1) {
-                    realMonth = "0" + String.valueOf(month + 1);
-                } else {
-                    realMonth = String.valueOf(month + 1);
-                }
-
-                if (dayOfMonth < singleDigits) {
-                    realDay = "0" + String.valueOf(dayOfMonth);
-                } else {
-                    realDay = String.valueOf(dayOfMonth);
-                }
-
-                date = year + "-" + realMonth + "-" + realDay;
-                formatedDate = realDay + "." + realMonth + "." + year + ".";
-
-                loadData(date);
-            }
-        });
-    }
-
     public void loadData(String date) {
         DateAsyncTask asyncTask = new DateAsyncTask(this, date);
         asyncTask.execute(date);
     }
 
-    /**
-     * Starts the DateActivity giving the data and the selected date.
-     */
     public void startDateActivity(String data, String date) {
 
         Intent intent = new Intent(this, DateActivity.class);

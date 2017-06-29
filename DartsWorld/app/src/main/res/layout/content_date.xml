@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="No matches today"
         android:onClick="tournamentInfoClick"
         android:textColor="@color/white"
         android:background="@android:color/black"

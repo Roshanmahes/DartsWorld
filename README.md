@@ -19,9 +19,9 @@ in het Hamburger-menu. Verder is er ook nog toernooi-informatie te zien. Zo kan
 je bijvoorbeeld zien wie het toernooi de afgelopen jaren heeft gewonnen.
 
 ## Screenshots
-<img src="/doc/hamburger_menu.png" alt="Drawing" style="width: 300px;"/>
-<img src="/doc/world_cup.png" alt="Drawing" style="width: 300px;"/>
-<img src="/doc/order_of_merit.png" alt="Drawing" style="width: 300px;"/>
+Hamburger-menu|  Scores op een dag | Ranking
+:-------------------------:|:-------------------------:|:-------------------------:
+![](/doc/hamburger_menu.png) |  ![](/doc/world_cup.png) |![](/doc/order_of_merit.png)
 
 ## Bronnen
 Opstarticoontje: Target by David from the Noun Project

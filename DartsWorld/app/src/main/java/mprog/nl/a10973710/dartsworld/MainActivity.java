@@ -25,6 +25,9 @@ import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
+/**
+ * Shows live scores if there are live matches.
+ */
 
 public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
@@ -51,6 +54,9 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+    /**
+     * Reloads live data every time in some refresh time.
+     */
     public void refreshActivity() {
         Thread thread = new Thread() {
 
@@ -92,6 +98,9 @@ public class MainActivity extends BaseActivity implements
         return true;
     }
 
+    /**
+     * Fetches the live scores and displays them properly on screen.
+     */
     public void fetchLiveScore(JSONObject liveScoreObj) {
 
         TextView liveTournamentName = (TextView) findViewById(R.id.liveTournamentName);
@@ -136,6 +145,9 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+    /*
+     * Converts player name to an API-friendly version.
+     */
     public void retrievePlayerInfo(View view) {
 
         TextView textView = (TextView) view;
@@ -150,7 +162,11 @@ public class MainActivity extends BaseActivity implements
         existsTournamentInfo(tournamentName.getText().toString(), MainActivity.this);
     }
 
+    /*
+     * Refreshes once in 10 secs instead of every sec if turned on.
+     */
     public void switchDataSaver(MenuItem item) {
+
         if (item.isChecked()) {
             item.setChecked(false);
         } else {

@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 15-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
@@ -12,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Roshan Mahes on 15-6-2017.
+ * A
  */
 
 class MatchListAdapter extends ArrayAdapter<Match> {
@@ -37,8 +41,6 @@ class MatchListAdapter extends ArrayAdapter<Match> {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
-
-//        setText(homeScore, awayScore, homeTeam, awayTea)
 
         TextView tvHomeScore = (TextView) convertView.findViewById(R.id.tvHomeScore);
         TextView tvAwayScore = (TextView) convertView.findViewById(R.id.tvAwayScore);

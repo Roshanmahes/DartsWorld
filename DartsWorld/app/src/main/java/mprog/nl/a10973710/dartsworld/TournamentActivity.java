@@ -59,14 +59,15 @@ public class TournamentActivity extends BaseActivity implements
         return true;
     }
 
+    /**
+     * Loads tournament info from Firebase.
+     */
     public void getTournamentInfo(final String tournamentName) {
 
         DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
         playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 Tournament tournament = dataSnapshot.child(tournamentName).getValue(Tournament.class);
                 KeyValuePair tourName = new KeyValuePair("Tournament name", tournamentName);
                 setTournamentInfo(tourName, tournament);
@@ -77,10 +78,12 @@ public class TournamentActivity extends BaseActivity implements
         });
     }
 
+    /**
+     * Determines tournament info to be displayed and displays it on screen.
+     */
     private void setTournamentInfo(KeyValuePair tournamentName, Tournament tournament) {
 
         ArrayList<KeyValuePair> propertyList = new ArrayList<>();
-
         ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
 
         KeyValuePair sponsor = new KeyValuePair("Sponsor", tournament.getSponsor());
@@ -110,7 +113,6 @@ public class TournamentActivity extends BaseActivity implements
         tournamentInfoList.setAdapter(adapter);
 
         setTournamentImage(tournament.getLogo());
-
         setListener(treeMap);
     }
 
@@ -119,14 +121,21 @@ public class TournamentActivity extends BaseActivity implements
         Picasso.with(TournamentActivity.this).load(logoURL).fit().into(tournamentLogo);
     }
 
+    /*
+     * Displays all previous champs of some tournament.
+     */
     private void setListener(final Map<String, String> hash) {
         final ListView tournamentInfoList = (ListView) findViewById(R.id.tournamentInfoList);
         tournamentInfoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // to view all champions
-                if (position == 5 || position == 6) {
+                int established = 5;
+                int defendingChamp = 6;
+
+                if (position == established || position == defendingChamp) {
+
+                    // view all champions
                     ArrayList<KeyValuePair> propertyList = new ArrayList<>();
 
                     for (Map.Entry<String,String> entry : hash.entrySet()) {

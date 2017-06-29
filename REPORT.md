@@ -33,7 +33,8 @@ Wanneer je de app opstart, wordt de LauncherActivity aangeroepen. Deze toont enk
 De MainActivity toont livescores indien er live wedstrijden zijn. Als dit niet het
 geval is, dan staat er 'No live matches' bovenaan. Aangezien er nooit veel wedstrijden
 tegelijk zijn en het laden van de data zeer snel gaat, was het niet nodig om de
-data in de LauncherActivity te laden en in een mee te geven.
+data in de LauncherActivity te laden en in een mee te geven.<br>
+De wedstrijden worden verwerkt met de Match class.
 - refreshActivity: functie die eens in de refreshTime de livescores opnieuw laadt.
 De refreshActivity-functie laadt de data in m.b.v. de LiveScoreAsyncTask en de
 HttpRequestHelper.
@@ -101,7 +102,13 @@ Deze activity bestaat uit een lijst met alle grote toernooien.
 
 #### TournamentActivity
 Hierin wordt er informatie over één toernooi getoond.
-
+- getTournamentInfo: Haalt toernooi-informatie op uit Firebase en stopt het in
+een Tournament class.
+- setTournamentInfo: Verwerkt de toernooi-informatie en toont het met de
+PropertyListAdapter op het scherm.
+- setTournamentImage.
+- setListener: Als je op 'established' of 'defending champion' klikt, laat deze
+functie alle kampioenen tot nu toe van het toernooi op de lijst zien.
 
 #### InfoActivity
 Hier staat alleen maar wat informatie in.

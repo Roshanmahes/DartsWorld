@@ -338,8 +338,10 @@ bij het openen van de app.
 
 Screenshots:
 
-Dag 16: Splash Screen|
-:-------------------------:|
-![](/screenshots/Dag16.png) |
+Dag 16: Splash Screen <br>
+<img src="/screenshots/Dag16.png" alt="Drawing" style="width: 400px;"/>
+
 
 ## Dag 17 (Do 19-06-17) Final cleanup
+Vandaag heb ik alle code gecomment en opgeschoond. Verder heb ik de README.md
+bijgewerkt en het verslag in REPORT.md gemaakt.

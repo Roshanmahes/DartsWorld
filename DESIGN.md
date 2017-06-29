@@ -9,13 +9,15 @@ vandaag, aangezien er vaak niet veel wedstrijden op een dag zijn, en vaak max. 1
 tegelijk). Hiervoor is een AsyncTask vereist, die, afhankelijk van de huidige datum,
 de juiste data binnen zal laden. Verder is er een HttpRequestHelper nodig,
 waarmee de data wordt opgevraagd. De data die hiermee opgevraagd zal worden, komt
-uit de onofficiële SofaScore API, zie http://www.sofascore.com/darts/livescore/json. <br>
+uit de onofficiële SofaScore API, zie http://www.sofascore.com/darts/livescore/json.
+
 Vanuit dit scherm kan je, wanneer er op één van de spelers geklikt wordt, naar
 de PlayerActivity gaan, die informatie geeft over de aangeklikte speler. Deze
 informatie zal komen uit een zelfgemaakte database, die inmiddels online staat op
 Firebase. Hetzelfde geldt voor de bijbehorende afbeeldingen. Aangezien deze
 database in Firebase staat, is hier geen HttpRequestHelper en/of AsyncTask voor
-nodig. <br>
+nodig.
+
 Verder is er in de Action Bar een refresh-knop, die de activiteit opnieuw zal
 laden, en een bericht-knop, om naar de chat te gaan.
 

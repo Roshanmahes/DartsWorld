@@ -58,7 +58,7 @@ public class TournamentActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(TournamentActivity.this, id, drawer);
+        navigateTo("TournamentActivity", TournamentActivity.this, id, drawer);
         return true;
     }
 

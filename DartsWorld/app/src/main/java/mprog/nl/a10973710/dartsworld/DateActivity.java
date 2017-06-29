@@ -65,7 +65,7 @@ public class DateActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(DateActivity.this, id, drawer);
+        navigateTo("DateActivity", DateActivity.this, id, drawer);
         return true;
     }
 

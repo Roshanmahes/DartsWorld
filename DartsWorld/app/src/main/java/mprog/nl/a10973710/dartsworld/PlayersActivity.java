@@ -59,7 +59,7 @@ public class PlayersActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(PlayersActivity.this, id, drawer);
+        navigateTo("PlayersActivity", PlayersActivity.this, id, drawer);
         return true;
     }
 

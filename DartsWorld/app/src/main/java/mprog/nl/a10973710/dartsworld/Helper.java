@@ -24,24 +24,24 @@ import com.google.firebase.database.ValueEventListener;
 public class Helper {
 
 // wordt overal gebruikt
-    public static void navigateTo(Activity activity, int id, DrawerLayout drawer) {
+    public static void navigateTo(String activityName, Activity activity, int id, DrawerLayout drawer) {
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_home && activityName != "MainActivity") {
             Intent intent = new Intent(activity, MainActivity.class);
             activity.startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
+        } else if (id == R.id.nav_calendar && activityName != "CalendarActivity") {
             Intent intent = new Intent(activity, CalendarActivity.class);
             activity.startActivity(intent);
-        } else if (id == R.id.nav_players) {
+        } else if (id == R.id.nav_players && activityName != "PlayersActivity") {
             Intent intent = new Intent(activity, PlayersActivity.class);
             activity.startActivity(intent);
-        } else if (id == R.id.nav_info) {
+        } else if (id == R.id.nav_info && activityName != "InfoActivity") {
             Intent intent = new Intent(activity, InfoActivity.class);
             activity.startActivity(intent);
-        } else if (id == R.id.nav_tournaments) {
+        } else if (id == R.id.nav_tournaments && activityName != "TournamentsActivity") {
             Intent intent = new Intent(activity, TournamentsActivity.class);
             activity.startActivity(intent);
-        } else if (id == R.id.nav_ranking) {
+        } else if (id == R.id.nav_ranking && activityName != "RankingActivity") {
             Intent intent = new Intent(activity, RankingActivity.class);
             activity.startActivity(intent);
         }

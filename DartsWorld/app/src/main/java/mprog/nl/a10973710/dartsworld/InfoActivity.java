@@ -29,7 +29,7 @@ public class InfoActivity extends BaseActivity
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(InfoActivity.this, id, drawer);
+        navigateTo("InfoActivity", InfoActivity.this, id, drawer);
         return true;
     }
 }

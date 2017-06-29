@@ -19,43 +19,53 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".PlayersActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_players"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InfoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PlayerActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_player"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CalendarActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_calendar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DateActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_date"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RankingActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_ranking"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TournamentsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tournaments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TournamentActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tournament"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LauncherActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

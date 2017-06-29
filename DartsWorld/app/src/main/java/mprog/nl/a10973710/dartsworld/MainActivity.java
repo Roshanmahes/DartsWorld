@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(MainActivity.this, id, drawer);
+        navigateTo("MainActivity", MainActivity.this, id, drawer);
         return true;
     }
 

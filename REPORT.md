@@ -10,3 +10,14 @@ Clearly describe challenges that your have met during development. Document all 
 Defend your decisions by writing an argument of a most a single paragraph. Why was it good to do it different than you thought before? Are there trade-offs for your current solution? In an ideal world, given much more time, would you choose another solution?
 
 Make sure the document is complete and reflects the final state of the application. The document will be an important part of your grade. -->
+
+## Inleiding
+De app DartsWorld is bedoeld voor mensen die graag naar darts willen kijken, maar
+dat niet kunnen. Deze app laat namelijk de livescores zien als er darts is. Verder
+is deze app ook geschikt voor kijkers, aangezien er veel spelers- en toernooi-informatie
+te vinden is.
+
+![](/screenshots/Dag13.1.png)
+
+
+## Technische Design

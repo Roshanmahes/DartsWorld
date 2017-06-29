@@ -70,7 +70,7 @@ public class CalendarActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(CalendarActivity.this, id, drawer);
+        navigateTo("CalendarActivity", CalendarActivity.this, id, drawer);
         return true;
     }
 

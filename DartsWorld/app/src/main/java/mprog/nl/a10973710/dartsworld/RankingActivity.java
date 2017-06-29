@@ -57,7 +57,7 @@ public class RankingActivity extends BaseActivity implements
 
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigateTo(RankingActivity.this, id, drawer);
+        navigateTo("RankingActivity", RankingActivity.this, id, drawer);
         return true;
     }
 

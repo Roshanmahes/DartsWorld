@@ -36,6 +36,10 @@ De MainActivity toont livescores indien er live wedstrijden zijn. Als dit niet h
 geval is, dan staat er 'No live matches' bovenaan. Aangezien er nooit veel wedstrijden
 tegelijk zijn en het laden van de data zeer snel gaat, was het niet nodig om de
 data in de LauncherActivity te laden en in een mee te geven.
+- refreshActivity: functie die eens in de refreshTime de livescores opnieuw laadt.
+- fetchLiveScore:
+- retrievePlayerInfo:
+- tournamentInfoClick:
 
 #### CalendarActivity
 De eerste optie in het menu is de Kalender. Hierin krijg je een kalender te zien.

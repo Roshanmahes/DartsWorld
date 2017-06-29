@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 27-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import android.app.Activity;
@@ -9,6 +13,7 @@ import android.net.NetworkInfo;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,12 +23,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by Roshan Mahes on 27-6-2017.
+ * Consists of methods which are used in several activities.
  */
 
 public class Helper {
 
-// wordt overal gebruikt
+    private static final String TAG = "Helper";
+
+    /**
+     * Controls the navigation drawer.
+     * Starts the right activity if that one is selected.
+     */
     public static void navigateTo(String activityName, Activity activity, int id, DrawerLayout drawer) {
 
         if (id == R.id.nav_home && activityName != "MainActivity") {
@@ -49,8 +59,13 @@ public class Helper {
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    /// SOURCE!
+    /**
+     * Checks internet connection. Returns true if connected.
+     * Source:
+     * https://stackoverflow.com/questions/15714122/checking-internet-connection-in-every-activity
+     */
     static boolean isConnectedToInternet(Context context){
+
         ConnectivityManager connectivity = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null)
@@ -65,7 +80,9 @@ public class Helper {
         return false;
     }
 
-    //////////
+    /**
+     * Displays an alert dialog, saying that there is no internet connection available.
+     */
     static void displayAlertDialog(final Context context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -79,11 +96,14 @@ public class Helper {
         builder.show();
     }
 
+    /**
+     * Only used in MainActivity and DateActivity.
+     * Checks whether some string, containing a tournament name,
+     * can be (partly) found in the Firebase database.
+     */
     static void existsTournamentInfo(final String tournamentName, final Activity activity) {
-        // alleen in MainActivity en DateActivity
 
         DatabaseReference playersRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
         playersRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -97,34 +117,47 @@ public class Helper {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, databaseError.toString());
+            }
         });
     }
 
+    /**
+     * Starts the TournamentActivity giving the tournament name as inserted in Firebase.
+     */
     private static void tournamentClick(String tournamentName, Activity activity) {
         Intent intent = new Intent(activity, TournamentActivity.class);
         intent.putExtra("tournamentName", tournamentName);
         activity.startActivity(intent);
     }
 
-    static void loadPlayerInfo(final Activity activity, String playerName) {
+    /**
+     * Checks whether there is some player info available of a player in Firebase.
+     */
+    static void loadPlayerInfo(final Activity activity, final String playerName) {
+
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        final String finalPlayerName = playerName;
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.child("players").hasChild(finalPlayerName)) {
-                    startPlayerActivity(finalPlayerName, activity);
+                if (snapshot.child("players").hasChild(playerName)) {
+                    startPlayerActivity(playerName, activity);
                 } else {
                     Toast.makeText(activity, "No player information available.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, databaseError.toString());
+            }
         });
     }
 
+    /**
+     * Starts the PlayerActivity giving the player name as inserted in Firebase.
+     */
     static void startPlayerActivity(String playerName, Activity activity) {
         Intent intent = new Intent(activity, PlayerActivity.class);
         intent.putExtra("playerName", playerName);

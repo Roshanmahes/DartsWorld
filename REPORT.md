@@ -1,7 +1,6 @@
 <!-- Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done. -->
 
-<!-- Start with a short description of your application (like in the README.md, but very short, including a single screen shot).
-
+<!--
 Clearly describe the technical design: how is the functionality implemented in your code? This should be like your DESIGN.md but updated to reflect the final application. First, give a high level overview, which helps us navigate and understand the total of your code (which components are there?).
 Second, go into detail, and describe the modules/classes/functions and how they relate.
 
@@ -21,3 +20,15 @@ te vinden is.
 
 
 ## Technische Design
+
+
+## Uitdagingen tijdens het ontwikkelen van de app
+
+#### Chat
+De eerste twee weken was ik van plan om een chat toe te voegen aan de app.
+Uiteindelijk heb ik dit idee laten varen, aangezien deze chat niet noodzakelijk
+is voor mijn app. Dit was een verstandig besluit.
+
+#### Toernooien
+Na de eerste presentatie werd er als feedback gegeven dat ik wat met toernooien
+moest doen. Het was voorheen namelijk erg onduidelijk wanneer er

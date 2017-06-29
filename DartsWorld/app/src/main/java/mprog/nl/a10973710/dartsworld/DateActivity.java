@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 8-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import android.os.Bundle;
@@ -7,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +25,7 @@ import static mprog.nl.a10973710.dartsworld.Helper.loadPlayerInfo;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 
 /**
- * Created by Roshan Mahes on 8-6-2017.
+ * Shows all matches of a given date.
  */
 
 public class DateActivity extends BaseActivity implements
@@ -31,6 +34,7 @@ public class DateActivity extends BaseActivity implements
     JSONObject data;
     JSONArray tournaments;
     String tournamentName;
+    TextView tvTournamentName = (TextView) findViewById(R.id.tvTournamentName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +44,19 @@ public class DateActivity extends BaseActivity implements
 
         if (isConnectedToInternet(DateActivity.this)) {
 
-            setUpBars(DateActivity.this, "DartsWorld");
-
             Bundle extras = getIntent().getExtras();
             String date = extras.getString("date");
             String formatedDate = extras.getString("formatedDate");
+
+            setUpBars(DateActivity.this, formatedDate);
 
             try {
                 data = new JSONObject(extras.getString("data"));
                 tournaments = data.getJSONObject("sportItem").getJSONArray("tournaments");
                 processData(tournaments, date, formatedDate);
             } catch (JSONException e) {
-                Toast.makeText(this, "There are no matches today.", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
-
         } else {
             displayAlertDialog(DateActivity.this);
         }
@@ -69,6 +72,9 @@ public class DateActivity extends BaseActivity implements
         return true;
     }
 
+    /**
+     * Processes match data and puts it on screen.
+     */
     private void processData(JSONArray tournaments, String date, String formatedDate) {
 
         ListView scoreList = (ListView) findViewById(R.id.scoreList);
@@ -77,6 +83,9 @@ public class DateActivity extends BaseActivity implements
         scoreList.setAdapter(adapter);
     }
 
+    /**
+     * Shows all matches of a given date.
+     */
     private ArrayList<Match> getMatches(JSONArray tournaments, String date, String formatedDate) {
 
         ArrayList<Match> matchArrayList = new ArrayList<>();
@@ -86,9 +95,6 @@ public class DateActivity extends BaseActivity implements
                 JSONObject tournamentObj = tournaments.getJSONObject(i);
                 tournamentName = tournamentObj.getJSONObject("tournament").getString("name");
 
-                TextView tvTournamentName = (TextView) findViewById(R.id.tvTournamentName);
-                tvTournamentName.setText(tournamentName);
-
                 JSONArray events = tournamentObj.getJSONArray("events");
                 for (int j = 0; j < events.length(); j++) {
 
@@ -97,10 +103,12 @@ public class DateActivity extends BaseActivity implements
                     if (eventObj.has("formatedDate")) {
                         if (eventObj.get("formatedDate").toString().contains(formatedDate)) {
                             matchArrayList = setMatch(eventObj, matchArrayList, date);
+                            tvTournamentName.setText(tournamentName);
                         }
                     } else if (eventObj.has("formatedStartDate")) {
                         if (eventObj.get("formatedStartDate").toString().contains(formatedDate)) {
                             matchArrayList = setMatch(eventObj, matchArrayList, date);
+                            tvTournamentName.setText(tournamentName);
                         }
                     }
                 }
@@ -108,21 +116,20 @@ public class DateActivity extends BaseActivity implements
                 e.printStackTrace();
             }
         }
-
         return matchArrayList;
     }
 
+    /**
+     * Determines how match data should be displayed on screen.
+     */
     private ArrayList<Match> setMatch(JSONObject eventObj, ArrayList<Match> matchArrayList, String date) {
-
         try {
             String homeTeam = eventObj.getJSONObject("homeTeam").getString("name");
             String awayTeam = eventObj.getJSONObject("awayTeam").getString("name");
 
             if (!eventObj.getJSONObject("changes").has("changeDate")) {
-
                 Match match = new Match("-", "-", homeTeam, awayTeam);
                 matchArrayList.add(match);
-
             } else if (eventObj.getJSONObject("changes").getString("changeDate").contains(date)) {
 
                 String homeScore = eventObj.getJSONObject("homeScore").getString("current");
@@ -134,11 +141,14 @@ public class DateActivity extends BaseActivity implements
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return matchArrayList;
     }
 
+    /*
+     * Converts the given playername to a Firebase-friendly name.
+     */
     public void retrievePlayerInfo(View view) {
+
         TextView textView = (TextView) view;
         String playerName = textView.getHint().toString();
         playerName = playerName.replace(".","");

@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 10-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import java.io.BufferedReader;
@@ -8,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Roshan Mahes on 10-6-2017.
+ * Downloads all available data using an inserted link.
  */
 
 class HttpRequestHelper {

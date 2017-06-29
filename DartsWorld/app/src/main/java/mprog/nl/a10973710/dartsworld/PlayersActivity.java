@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 8-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import android.os.Bundle;
@@ -21,11 +25,6 @@ import static mprog.nl.a10973710.dartsworld.Helper.displayAlertDialog;
 import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
-
-
-/**
- * Created by Roshan Mahes on 8-6-2017.
- */
 
 public class PlayersActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener{

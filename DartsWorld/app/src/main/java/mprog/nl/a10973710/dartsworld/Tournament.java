@@ -1,10 +1,10 @@
+/*
+ * Created by Roshan Mahes on 19-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import java.util.HashMap;
-
-/**
- * Created by Roshan Mahes on 19-6-2017.
- */
 
 class Tournament {
     private HashMap<String, String> champs;

@@ -15,10 +15,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * A
- */
-
 class MatchListAdapter extends ArrayAdapter<Match> {
 
     private Context mContext;

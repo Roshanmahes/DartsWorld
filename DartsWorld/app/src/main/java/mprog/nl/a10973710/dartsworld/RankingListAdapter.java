@@ -1,3 +1,7 @@
+/*
+ * Created by Roshan Mahes on 23-6-2017.
+ */
+
 package mprog.nl.a10973710.dartsworld;
 
 import android.content.Context;
@@ -11,10 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-/**
- * Created by Roshan Mahes on 23-6-2017.
- */
 
 public class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
 

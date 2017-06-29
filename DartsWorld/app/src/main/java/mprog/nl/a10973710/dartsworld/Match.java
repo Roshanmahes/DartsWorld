@@ -1,8 +1,8 @@
-package mprog.nl.a10973710.dartsworld;
-
-/**
+/*
  * Created by Roshan Mahes on 15-6-2017.
  */
+
+package mprog.nl.a10973710.dartsworld;
 
 class Match {
     private String homeScore;

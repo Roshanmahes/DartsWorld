@@ -50,11 +50,17 @@ naar de Helper-functie existsTournamentInfo.
 De eerste optie in het menu is de Kalender. Hierin krijg je een kalender te zien.
 Je kan naar de gewenste datum gaan om te kijken wat voor wedstrijden er op die dag
 gespeeld worden/werden.
+- dateListener: Als er op een datum wordt geklikt, past deze functie de datum zo
+aan, dat de data met een bepaalde link met de SofaScore API m.b.v. de functie
+loadData opgehaald kan worden.
+- loadData: Haalt de scores van de datum op met de DateAsyncTask.
+- startDateActivity.
 
 #### DateActivity
 Hiermee zie je alle wedstrijden van een bepaalde datum. In het groen staat wie
 er gewonnen heeft. Indien er een wedstrijd bezig is, dan zie je deze ook. Wanneer
 je op een speler klikt, word je verwezen naar de PlayerActivity.
+
 
 #### PlayersActivity
 Dit is de tweede optie in het Hamburger-menu. Hier zie je een lijst, alfabetisch

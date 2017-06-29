@@ -39,11 +39,8 @@ public class TournamentsActivity extends BaseActivity implements
         setContentView(R.layout.activity_tournaments);
 
         if (isConnectedToInternet(TournamentsActivity.this)) {
-
             setUpBars(TournamentsActivity.this, "Tournaments");
-
             getTournaments();
-
         } else {
             displayAlertDialog(TournamentsActivity.this);
         }
@@ -59,10 +56,12 @@ public class TournamentsActivity extends BaseActivity implements
         return true;
     }
 
+    /**
+     * Loads all tournaments into a tournament list.
+     */
     public void getTournaments() {
 
         DatabaseReference tourRef = FirebaseDatabase.getInstance().getReference().child("tournaments");
-
         tourRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -71,7 +70,6 @@ public class TournamentsActivity extends BaseActivity implements
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     tournamentsList.add(postSnapshot.getKey());
                 }
-
                 setTournaments(tournamentsList);
             }
 
@@ -82,7 +80,11 @@ public class TournamentsActivity extends BaseActivity implements
         });
     }
 
+    /**
+     * Sets a list of all tournaments on screen.
+     */
     public void setTournaments(ArrayList<String> tournamentsList) {
+
         ListView tournamentsView = (ListView) findViewById(R.id.tournamentsView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(TournamentsActivity.this,
                 android.R.layout.simple_list_item_1, tournamentsList);

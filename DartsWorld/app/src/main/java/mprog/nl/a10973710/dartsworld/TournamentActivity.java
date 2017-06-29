@@ -41,12 +41,9 @@ public class TournamentActivity extends BaseActivity implements
         setContentView(R.layout.activity_tournament);
 
         if (isConnectedToInternet(TournamentActivity.this)) {
-
             setUpBars(TournamentActivity.this, "DartsWorld");
-
             Bundle extras = getIntent().getExtras();
             getTournamentInfo(extras.getString("tournamentName"));
-
         } else {
             displayAlertDialog(TournamentActivity.this);
         }
@@ -139,8 +136,6 @@ public class TournamentActivity extends BaseActivity implements
                         PropertyListAdapter adapter = new PropertyListAdapter(TournamentActivity.this,
                                 R.layout.adapter_view_player, propertyList);
                         tournamentInfoList.setAdapter(adapter);
-
-//                        playerListener();
                     }
                 }
             }

@@ -43,11 +43,8 @@ public class RankingActivity extends BaseActivity implements
         setContentView(R.layout.activity_ranking);
 
         if (isConnectedToInternet(RankingActivity.this)) {
-
             setUpBars(RankingActivity.this, "PDC Order of Merit");
-
             getPlayerInfo();
-
             setPlayerClickListener(playerKeyList);
 
         } else {

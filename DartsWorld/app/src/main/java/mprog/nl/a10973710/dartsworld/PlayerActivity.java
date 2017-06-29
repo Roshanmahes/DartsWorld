@@ -101,6 +101,9 @@ public class PlayerActivity extends BaseActivity implements
         Picasso.with(PlayerActivity.this).load(nationLink).fit().into(nationFlight);
     }
 
+    /**
+     * Determines what player info should be displayed on screen.
+     */
     private ArrayList<KeyValuePair> processPlayerInfo(Player player) {
 
         ArrayList<KeyValuePair> propertyList = new ArrayList<>();

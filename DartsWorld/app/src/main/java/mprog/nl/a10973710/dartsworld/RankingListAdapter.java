@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
+class RankingListAdapter extends ArrayAdapter<KeyValuePair>{
 
     private static final String TAG = "RankingListAdapter";
     private Context mContext;

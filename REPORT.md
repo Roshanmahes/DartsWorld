@@ -78,18 +78,26 @@ een speler klikt, word je ook gestuurd naar de PlayerActivity.
 
 #### PlayerActivity
 Hierin zie je de spelersinformatie van één speler, die opgehaald wordt uit Firebase.
-- getFromDB: Haalt de speler op uit de database.
+- getFromDB: Haalt de speler op uit de database. Deze wordt op het scherm getoond
+met de PropertyListAdapter.
 - setPlayerName.
 - setNationImage.
-- processPlayerInfo:
-
+- processPlayerInfo: Bepaalt wat voor spelersinformatie er op een bepaalde manier
+op het scherm moet komen.
 
 #### RankingActivity
 Hierin zie je een lijst met spelers en hun ranking volgens de PDC Order of Merit.
 De werking is ongeveer hetzelfde als de PlayersActivity.
+- getPlayerInfo: Hierin wordt de ranking lijst gemaakt. Deze wordt op het scherm
+getoond m.b.v. de RankingListAdapter.
+- setPlayerClickListener.
 
 #### TournamentsActivity
 Deze activity bestaat uit een lijst met alle grote toernooien.
+- getTournaments: Slaat alle toernooien uit Firebase op in een lijst.
+- setTournaments: Laat een lijst met de toernooien op het scherm zien.
+- setListener: Als je op een toernooi klikt, ga je naar de TournamentActivity.
+- startPlayerActivity.
 
 #### TournamentActivity
 Hierin wordt er informatie over één toernooi getoond.
@@ -153,3 +161,4 @@ manier hoe ik heb geprogrammeerd. Daar zou ik niet veel aan veranderen. Wel zou
 ik nog een paar functies dubbele code static maken, zoals retrievePlayerInfo in
 MainActivity. Bettercodehub geeft vanwege de kortheid niet aan dat dit een
 duplicaat is. Ik had helaas geen tijd meer om mijn code nog verder op te schonen.
+Een aantal functies konden namelijk wel korter. Wel heb ik alle duplicaten verwijderd.

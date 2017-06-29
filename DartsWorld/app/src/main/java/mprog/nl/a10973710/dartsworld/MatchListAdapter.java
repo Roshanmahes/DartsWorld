@@ -15,6 +15,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Determines how a match should be displayed on the screen.
+ */
+
 class MatchListAdapter extends ArrayAdapter<Match> {
 
     private Context mContext;

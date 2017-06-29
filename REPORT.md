@@ -60,26 +60,37 @@ loadData opgehaald kan worden.
 Hiermee zie je alle wedstrijden van een bepaalde datum. In het groen staat wie
 er gewonnen heeft. Indien er een wedstrijd bezig is, dan zie je deze ook. Wanneer
 je op een speler klikt, word je verwezen naar de PlayerActivity.
-
+- processData: Verwerkt de data en toont het met een MatchListAdapter op het scherm.
+Bestaat uit de functie getMatches.
+- getMatches: Maakt een lijst met alle wedstrijden van een bepaalde datum.
+- setMatches: Bepaalt welke wedstrijden uit de lijst geldig zijn en hoe ze er
+qua tekst uit moeten zien.
+- retrievePlayerInfo: zie MainActivity.
+- tournamentInfoClick: zie MainActivity.
 
 #### PlayersActivity
 Dit is de tweede optie in het Hamburger-menu. Hier zie je een lijst, alfabetisch
 gesorteerd op achternaam, met alle in Firebase ingevoerde spelers. Wanneer je op
 een speler klikt, word je ook gestuurd naar de PlayerActivity.
+-
 
 #### PlayerActivity
 Hierin zie je de spelersinformatie van één speler, die opgehaald wordt uit Firebase.
 
 #### RankingActivity
+Hierin zie je een lijst met spelers en hun ranking volgens de PDC Order of Merit.
 
+#### TournamentsActivity
+Deze activity bestaat uit een lijst met alle grote toernooien.
 
+#### TournamentActivity
+Hierin wordt er informatie over één toernooi getoond.
 
-
-
-
-
+#### InfoActivity
+Hier staat alleen wat informatie in.
 
 #### Helper
+Deze class bevat functies die in meerdere activities gebruikt worden.
 
 
 ## Uitdagingen tijdens het ontwikkelen van de app
@@ -121,4 +132,7 @@ toernooien zijn (want zeer zelden voorkomt), dan wordt nu maar 1 toernooinaam
 weergegeven. Ik ben wel tevreden met de classes en het uiterlijk van de app.
 Met name op de PDC Order of Merit en op de scores per dag ben ik trots.
 Ik zou wel meer functionaliteit willen toevoegen, maar ik ben tevreden met de
-manier hoe ik heb geprogrammeerd. Daar zou ik niet veel aan veranderen.
+manier hoe ik heb geprogrammeerd. Daar zou ik niet veel aan veranderen. Wel zou
+ik nog een paar functies dubbele code static maken, zoals retrievePlayerInfo in
+MainActivity. Bettercodehub geeft vanwege de kortheid niet aan dat dit een
+duplicaat is. Ik had helaas geen tijd meer om mijn code nog verder op te schonen.

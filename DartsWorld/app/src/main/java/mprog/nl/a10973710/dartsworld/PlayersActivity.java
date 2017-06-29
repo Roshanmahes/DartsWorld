@@ -29,8 +29,6 @@ import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
 public class PlayersActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener{
 
-    private static final String TAG = "PlayersActivity";
-
     ArrayList<String> PlayerList = new ArrayList<String>();
     ArrayList<String> PlayerKeyList = new ArrayList<String>();
 

@@ -22,7 +22,6 @@ class Player {
     String twitter;
     String walkOn;
 
-    // Default constructor for FireBase
     public Player() {}
 
     String getFullName() { return fullName; }

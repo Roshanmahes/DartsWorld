@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+ * Displays an item consisting of two elements nicely on the screen.
+ */
+
 class PropertyListAdapter extends ArrayAdapter<KeyValuePair> {
 
     private Context mContext;

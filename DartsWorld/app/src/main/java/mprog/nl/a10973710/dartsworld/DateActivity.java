@@ -80,7 +80,7 @@ public class DateActivity extends BaseActivity implements
     }
 
     /**
-     * Shows all matches of a given date.
+     * Gets all matches of a given date (process 1).
      */
     private ArrayList<Match> getMatches(JSONArray tournaments, String date, String formatedDate) {
 
@@ -118,6 +118,9 @@ public class DateActivity extends BaseActivity implements
         return matchArrayList;
     }
 
+    /**
+     * Gets all real matches of a given date (process 2).
+     */
     private ArrayList<Match> setMatch(JSONObject eventObj, ArrayList<Match> matchArrayList, String date) {
 
         try {

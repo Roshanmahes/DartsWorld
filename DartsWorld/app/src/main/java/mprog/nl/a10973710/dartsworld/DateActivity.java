@@ -51,9 +51,8 @@ public class DateActivity extends BaseActivity implements
                 tournaments = data.getJSONObject("sportItem").getJSONArray("tournaments");
                 processData(tournaments, date, formatedDate);
             } catch (JSONException e) {
-                Toast.makeText(this, "There are no matches today.", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
-
         } else {
             displayAlertDialog(DateActivity.this);
         }
@@ -69,6 +68,9 @@ public class DateActivity extends BaseActivity implements
         return true;
     }
 
+    /**
+     * Processes match data and puts it on screen.
+     */
     private void processData(JSONArray tournaments, String date, String formatedDate) {
 
         ListView scoreList = (ListView) findViewById(R.id.scoreList);
@@ -77,6 +79,9 @@ public class DateActivity extends BaseActivity implements
         scoreList.setAdapter(adapter);
     }
 
+    /**
+     * Shows all matches of a given date.
+     */
     private ArrayList<Match> getMatches(JSONArray tournaments, String date, String formatedDate) {
 
         ArrayList<Match> matchArrayList = new ArrayList<>();
@@ -87,7 +92,6 @@ public class DateActivity extends BaseActivity implements
                 tournamentName = tournamentObj.getJSONObject("tournament").getString("name");
 
                 TextView tvTournamentName = (TextView) findViewById(R.id.tvTournamentName);
-                tvTournamentName.setText(tournamentName);
 
                 JSONArray events = tournamentObj.getJSONArray("events");
                 for (int j = 0; j < events.length(); j++) {
@@ -97,10 +101,12 @@ public class DateActivity extends BaseActivity implements
                     if (eventObj.has("formatedDate")) {
                         if (eventObj.get("formatedDate").toString().contains(formatedDate)) {
                             matchArrayList = setMatch(eventObj, matchArrayList, date);
+                            tvTournamentName.setText(tournamentName);
                         }
                     } else if (eventObj.has("formatedStartDate")) {
                         if (eventObj.get("formatedStartDate").toString().contains(formatedDate)) {
                             matchArrayList = setMatch(eventObj, matchArrayList, date);
+                            tvTournamentName.setText(tournamentName);
                         }
                     }
                 }

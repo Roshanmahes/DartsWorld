@@ -23,7 +23,7 @@
 
     <string name="info_text">"DartsWorld 1.0 is made by Roshan Mahes on the occasion of the Minor"
         "Programming at the Universiteit van Amsterdam (UvA). We do not guarantee that the data is"
-        " correct. If you see any incorrect information, please contact me using the following link."
+        "correct. If you see any incorrect information, please contact me using the following link."
     </string>
     <string name="choose_a_date">Choose a date</string>
     <string name="title_activity_ranking">RankingActivity</string>

@@ -111,7 +111,7 @@ public class PlayerActivity extends BaseActivity implements
         KeyValuePair born = new KeyValuePair("Born", player.born);
         KeyValuePair darts = new KeyValuePair("Darts", player.darts);
         KeyValuePair walkOn = new KeyValuePair("Walk-on", player.walkOn);
-        KeyValuePair money = new KeyValuePair("Prize Money", "£" + player.money);
+        KeyValuePair money = new KeyValuePair("Prize money", "£" + player.money);
         KeyValuePair pos = new KeyValuePair("Position (difference)", String.valueOf(player.currPos)
                 + " (" + String.valueOf(player.prevPos - player.currPos) + ")");
         KeyValuePair majors = new KeyValuePair("Majors", String.valueOf(player.majors));

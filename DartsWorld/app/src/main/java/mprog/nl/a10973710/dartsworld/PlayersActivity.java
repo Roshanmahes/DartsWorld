@@ -26,6 +26,10 @@ import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
 
+/**
+ * Displays a list with Players sorted by name.
+ */
+
 public class PlayersActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener{
 
@@ -39,9 +43,7 @@ public class PlayersActivity extends BaseActivity implements
         setContentView(R.layout.activity_players);
 
         if (isConnectedToInternet(PlayersActivity.this)) {
-
             setUpBars(PlayersActivity.this, "Players");
-
             getPlayerInfo();
             setListener(PlayerKeyList);
 
@@ -69,15 +71,14 @@ public class PlayersActivity extends BaseActivity implements
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Player post = postSnapshot.getValue(Player.class); // dit veranderen in playerSnapshot
-
+                        Player post = postSnapshot.getValue(Player.class);
                         PlayerKeyList.add(postSnapshot.getKey());
                         PlayerList.add(String.valueOf(post.getFullName()));
                     }
-
                     setPlayerInfo(PlayerList);
-
-                } catch (Exception ignored) {}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -86,9 +87,9 @@ public class PlayersActivity extends BaseActivity implements
     }
 
     private void setPlayerInfo(ArrayList<String> playerList) {
+
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, playerList);
-
         ListView playerListView = (ListView) findViewById(R.id.player_list_view);
         playerListView.setAdapter(mArrayAdapter);
     }

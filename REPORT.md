@@ -65,20 +65,28 @@ Bestaat uit de functie getMatches.
 - getMatches: Maakt een lijst met alle wedstrijden van een bepaalde datum.
 - setMatches: Bepaalt welke wedstrijden uit de lijst geldig zijn en hoe ze er
 qua tekst uit moeten zien.
-- retrievePlayerInfo: zie MainActivity.
-- tournamentInfoClick: zie MainActivity.
+- retrievePlayerInfo: Zie MainActivity.
+- tournamentInfoClick: Zie MainActivity.
 
 #### PlayersActivity
 Dit is de tweede optie in het Hamburger-menu. Hier zie je een lijst, alfabetisch
 gesorteerd op achternaam, met alle in Firebase ingevoerde spelers. Wanneer je op
 een speler klikt, word je ook gestuurd naar de PlayerActivity.
--
+- getPlayerInfo.
+- setPlayerInfo.
+- setListener: Als er op een speler geklikt wordt, ga je naar de PlayerActivity.
 
 #### PlayerActivity
 Hierin zie je de spelersinformatie van één speler, die opgehaald wordt uit Firebase.
+- getFromDB: Haalt de speler op uit de database.
+- setPlayerName.
+- setNationImage.
+- processPlayerInfo:
+
 
 #### RankingActivity
 Hierin zie je een lijst met spelers en hun ranking volgens de PDC Order of Merit.
+De werking is ongeveer hetzelfde als de PlayersActivity.
 
 #### TournamentsActivity
 Deze activity bestaat uit een lijst met alle grote toernooien.
@@ -86,12 +94,21 @@ Deze activity bestaat uit een lijst met alle grote toernooien.
 #### TournamentActivity
 Hierin wordt er informatie over één toernooi getoond.
 
+
 #### InfoActivity
-Hier staat alleen wat informatie in.
+Hier staat alleen maar wat informatie in.
 
 #### Helper
 Deze class bevat functies die in meerdere activities gebruikt worden.
-
+- navigateTo: Beheert de navigatie van het Hamburger-menu.
+- isConnectedToInternet.
+- displayAlertDialog: Laat een pop-up zien als er geen actieve internetverbinding is.
+- existsTournamentInfo: Controleert of er toernooi-informatie van een ingevoerd
+toernooi in Firebase te vinden is.
+- tournamentClick: start de TournamentActivity met de ingevoerde toernooinaam.
+- loadPlayerInfo: Controleert of er spelersinformatie van een ingevoerde speler
+in Firebase te vinden is.
+- startPlayerActivity.
 
 ## Uitdagingen tijdens het ontwikkelen van de app
 

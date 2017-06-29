@@ -25,6 +25,10 @@ import static mprog.nl.a10973710.dartsworld.Helper.isConnectedToInternet;
 import static mprog.nl.a10973710.dartsworld.Helper.navigateTo;
 import static mprog.nl.a10973710.dartsworld.Helper.startPlayerActivity;
 
+/**
+ * Displays a list with Players sorted by ranking.
+ */
+
 public class RankingActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
